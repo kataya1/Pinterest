@@ -7,6 +7,7 @@ https://app.diagrams.net/#Hkataya1%2FPinterest%2FERD%2Ferd2
 
 - A typical profile for a user  + (bio, website-link 
 - A user has pins it’s like saved posts 
+- A user may have one or more board/s
 - the user has a topic list. it's categories of the topics he's interested in  
   - The topic list is what use to display the posts in home for the user
   - The topic list if updated based on the user pins 
