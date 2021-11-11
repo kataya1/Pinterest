@@ -8,6 +8,10 @@ https://app.diagrams.net/#Hkataya1%2FPinterest%2FERD%2Ferd2
 - A typical profile for a user + (bio, website-link 
 - A user has pins it’s like saved posts 
 - A user may have one or more board/s
+- The user can make one or more comments on Pins and one or many replies on comments
+- A user has History of pins he seen
+- The user has a conversation chat with many users
+- The user can react on pins and on comments of that pins
 - the user has a topic list. it's categories of the topics he's interested in  
   - The topic list is what use to display the posts in home for the user
   - The topic list if updated based on the user pins 
@@ -17,6 +21,7 @@ https://app.diagrams.net/#Hkataya1%2FPinterest%2FERD%2Ferd2
     - Home could be sorted by relevance
   - Today has a list of all the trending hashtags that day
     - Hashtags is an umbrella that has all related topics under it
+ 
 
 
 #### simplified
