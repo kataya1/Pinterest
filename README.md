@@ -16,3 +16,4 @@ https://app.diagrams.net/#Hkataya1%2FPinterest%2FERD%2Ferd2
     - Home could be sorted by relevance
   - Today has a list of all the trending hashtags that day
     - Hashtags is an umbrella that has all related topics under it
+![ERD](./erd2.drawio.png)
