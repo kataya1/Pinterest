@@ -1,0 +1,3 @@
+ - python3 -m venv venv_name or virtualenv venv_name
+-  soruce venv/bin/activate
+-  pip install -r requirments
