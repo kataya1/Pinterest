@@ -1,9 +1,9 @@
 ---
-name: " Bug Report"
+name: "🐞Bug Report"
 about: "If something isn't working as expected \U0001F914."
 title: '[DATE]: [BUG NAME]'
 labels: 'i: bug, i: needs triage'
-assignees: 'kataya1'
+assignees: ''
 
 ---
 
