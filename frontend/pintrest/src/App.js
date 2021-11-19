@@ -1,10 +1,11 @@
 import Navbar from './components/Navbar/Navbar'
+import './App.css'
 
 function App() {
   return (
     <>
       <Navbar/>
-      <div className="words">
+      <div className="words" style={{"font-size" : '30px'}}>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat harum veritatis impedit architecto. Dicta iste consequatur ipsum veritatis illo aliquam debitis quibusdam hic sequi quidem, vitae deleniti, delectus dignissimos quae.
         Veniam sed debitis culpa error, quo praesentium repudiandae nemo temporibus ipsum perspiciatis doloribus esse nam fugiat labore natus non ullam similique rerum numquam saepe dolore fuga reiciendis quasi. Consequatur, dolor!
         Earum magnam sint minima mollitia numquam! Accusantium inventore laborum voluptatem officiis odio vel in autem modi earum mollitia dolores repellat, aliquid eum facilis eos! Atque sequi quisquam odio commodi veniam?
