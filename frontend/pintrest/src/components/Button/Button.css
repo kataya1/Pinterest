@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+:root {
+    --primary: #e1e1e1;
+    --hover: #e2e2e2;
+    --dark: #181717;
+    --red: #eb3f27;
+    --white: #fdfdfd;
+    --icon: #767676;
+}
+*{
+    font-family: 'Roboto', sans-serif;
+}
+.btn {
+    border: none;
+    padding: 5px;
+    font-weight: 900;
+    cursor: pointer;
+    padding: 15px;
+    font-size: 15px;
+}
+.btn--standard:hover{
+    background-color: var(--hover);
+}
+.btn--icon {
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    color: var(--icon);
+}
+.btn--icon:hover {
+    background-color: var(--hover);
+}
+.btn--standard {
+    background-color: transparent;
+    border-radius: 20px;
+}
+.btn--text {
+    font-weight: bold;
+    height: 3rem;
+    color: #fff;
+    padding: 1rem;
+    background-color: #151515;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1.563rem;
+}
+.btn--red {
+    background-color: var(--red);
+    color: var(--white);
+    border-radius: 25%;
+}
+.btn--down {
+    border-radius: 50%;
+    width: 1rem;
+    height: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.7rem;
+    background-color: transparent;
+    color: var(--icon);
+}
+.btn--down:hover {
+    background-color: var(--hover);
+}
+.btn--logo {
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: red;
+    background-color: transparent;
+}
+.btn--logo:hover {
+    background-color: var(--hover);
+}
