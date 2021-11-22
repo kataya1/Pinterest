@@ -1,0 +1,143 @@
+
+.my-masonry-grid {
+    display: -webkit-box; /* Not needed if autoprefixing */
+    display: -ms-flexbox; /* Not needed if autoprefixing */
+    display: flex;
+    width: fit-content;
+    justify-content: center;
+    align-content: center;
+    margin: auto;
+  }
+  .my-masonry-grid_column {
+    
+    background-clip: padding-box;
+  }
+  
+  /* Style your items */
+  .my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
+  
+    justify-self: center;
+  
+  }
+  
+  .pins{
+    width:252px;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+  
+  .pins .pin{
+    width:236px;
+    margin: auto;
+    position: relative;
+  }
+
+  
+  
+  .pins .pin div img{
+  border-radius: 20px;
+  width: 100%
+  }
+  
+  .pins .pin .title{
+    font-weight: bold;
+    font-size: 14px;
+  }
+  .pins .pin .user {
+    display: flex;
+    align-content: center;
+  }
+  .pins .pin .user .name{
+    font-size: 12px;
+    display: inline-block;
+    align-self: center;
+  
+  
+  }
+  .pins .pin .user .avatar{
+    width: 30px;
+    height: 30px;
+    background-color: black;
+    display: inline-block;
+    margin-right: 10px;
+    border-radius: 50%;
+  
+  }
+.overlay {
+
+  display: none;
+}
+.overlay-on {
+  height: calc(100% - 70px);
+  width: 100%;
+  z-index: 3;
+  background-color: rgb(118 94 94 / 52%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}  
+.overlay input, 
+.overlay-on input{
+  display: inline-block;
+  position: absolute;
+  top: 20px;
+  right: 10%;
+  border-radius: 36%;
+  color: white;
+  background-color: #d2192b;
+  font-weight: bold;
+  border-radius: 32%;
+  padding: 12px;
+  
+} 
+
+.overlay div, 
+.overlay-on div{
+  background-color:#c6c6c6;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  font-size: 15px;
+  position: absolute;
+  bottom: 10px;
+  border-radius: 50%;
+}
+.one{
+  right: 10px;
+}
+.two{
+  right: 50px;
+}
+.one, .two{
+  position: relative;
+  
+}
+.svg-inline--fa.fa-ellipsis-h.fa-w-16, .svg-inline--fa.fa-arrow-up.fa-w-14{
+
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%);
+}
+@media screen and (max-width: 920px){
+  .overlay input, 
+  .overlay-on input{
+    display: inline-block;
+    position: absolute;
+    top: 20px;
+    right: 10%;
+    border-radius: 36%;
+    color: white;
+    background-color: #d2192b;
+    font-weight: bold;
+    border-radius: 32%;
+    padding: 12px;
+    width: fit-content
+    
+  } 
+
+}
+

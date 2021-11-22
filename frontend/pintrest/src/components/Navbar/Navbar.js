@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {Link} from 'react-router-dom'
 import Avatar from '../Avatar/Avatar'
 import ButtonFlex from '../Button/ButtonFlex'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import '../Navbar/Navbar.css'
 import Searchbox  from '../Searchbox/Searchbox'; 
