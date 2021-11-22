@@ -4,14 +4,14 @@ import Home from './components/Home/Home';
 import Settings from './components/Settings/Settings';
 import { BrowserRouter as Router , Route, Routes } from "react-router-dom";
 import React from 'react';
-import AccountSettings from './components/SideBar/Pages/AccountSettings'
-import ProfileEdit from './components/SideBar/Pages/ProfileEdit'
-import Claim from './components/SideBar/Pages/Claim'
-import Permission from './components/SideBar/Pages/Permissions';
-import Notification from './components/SideBar/Pages/Notification';
-import Privacy from './components/SideBar/Pages/Privacy';
-import Security from './components/SideBar/Pages/Security';
-import Apps from './components/SideBar/Pages/Apps'
+import AccountSettings from './components/Settings/SideBar/Pages/AccountSettings'
+import ProfileEdit from './components/Settings/SideBar/Pages/ProfileEdit'
+import Claim from './components/Settings/SideBar/Pages/Claim'
+import Permission from './components/Settings/SideBar/Pages/Permissions';
+import Notification from './components/Settings/SideBar/Pages/Notification';
+import Privacy from './components/Settings/SideBar/Pages/Privacy';
+import Security from './components/Settings/SideBar/Pages/Security';
+import Apps from './components/Settings/SideBar/Pages/Apps'
 
 function App() {
   return (

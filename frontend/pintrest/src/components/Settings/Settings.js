@@ -1,5 +1,5 @@
 import React from "react"
-import SideBar from "../SideBar/SideBar"
+import SideBar from "./SideBar/SideBar"
 import { Outlet } from "react-router-dom"
 
 const Settings = () =>{
