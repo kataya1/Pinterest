@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from pins.models import Topic
+from pins.models import Topic, Pin, Save
 
 
 class User(AbstractUser):
@@ -15,9 +15,9 @@ class User(AbstractUser):
     bio = models.TextField(null=True, blank=True)
 
     interest = models.ManyToManyField(Topic,  blank=True)
+    saved_pins = models.ManyToManyField(Pin, through=Save, related_name="saved_by", blank=True)
 
-    # need to change the following followers it's not working the way it should
-    # check this https://stackoverflow.com/a/58799650/11101594
+    
     following = models.ManyToManyField( 'self', related_name='followers', blank=True, symmetrical=False)
     
     def __str__(self):
