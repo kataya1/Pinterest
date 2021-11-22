@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'pins',
     'accounts.apps.AccountsConfig',
-    
+    'corsheaders'
+
 ]
 
 MIDDLEWARE = [
@@ -52,6 +53,32 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+
+]
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -131,8 +158,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.User'
 
+import os
 MEDIA_URL = '/media/'
-MEDIA_ROOT = '../media_root'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 
 # USE THIS IF YOU DON'T WANT TO WRITE @authentication_classes([TokenAuthentication]) BEFORE EVERY FUNCTION
