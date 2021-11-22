@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './components/Navbar/Navbar'
 import './App.css'
-import Home from './components/home/Home';
+import Home from './components/Home/Home';
 import Settings from './components/Settings/Settings';
 import { BrowserRouter as Router , Route, Routes } from "react-router-dom";
 import React from 'react';
@@ -14,6 +14,7 @@ import Privacy from './components/Settings/SideBar/Pages/Privacy';
 import Security from './components/Settings/SideBar/Pages/Security';
 import Apps from './components/Settings/SideBar/Pages/Apps';
 import CreatePin from './components/createPin/CreatePin';
+import Profile from './components/Profile/Profile';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path="/settings/security" element={<Security />} />
             <Route path="/settings/apps" element={<Apps />} />
           </Route>
+            <Route path="/profile" element={<Profile />} />
           <Route path="/edit" element={<ProfileEdit />} />
         </Routes>
     </Router>

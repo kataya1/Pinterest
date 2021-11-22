@@ -29,7 +29,10 @@ export default function Navbar() {
         <div className='right'>
             <ButtonFlex buttonStyle="btn--icon"><FontAwesomeIcon icon="bell" size="2x"/></ButtonFlex>
             <ButtonFlex buttonStyle="btn--icon"><FontAwesomeIcon icon="comment-dots" size="2x"/></ButtonFlex>
+            <Link to='/profile'>
             <Avatar src="https://images.unsplash.com/photo-1534308143481-c55f00be8bd7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1488&q=80"/>
+               
+            </Link>
             <Link to='/settings'>
                 <ButtonFlex buttonStyle="btn--down"><FontAwesomeIcon icon="chevron-down"/></ButtonFlex>
             </Link>
