@@ -37,8 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'accounts',
+    'rest_framework',
+    'rest_framework.authtoken',
     'pins',
+    'accounts.apps.AccountsConfig',
     
 ]
 
@@ -128,3 +130,13 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.User'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = '../media_root'
+
+
+# USE THIS IF YOU DON'T WANT TO WRITE @authentication_classes([TokenAuthentication]) BEFORE EVERY FUNCTION
+# to override the default permission @permission_classes([])
+REST_FRAMEWORK = {
+'DEFAULT_AUTHENTICATION_CLASSES':['rest_framework.authentication.TokenAuthentication'],
+}
