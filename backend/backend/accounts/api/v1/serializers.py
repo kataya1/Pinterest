@@ -73,4 +73,33 @@ class Saved_Pins(serializers.ModelSerializer):
         model = au
         fields = ('saved_pins',)
 
-# class UserChangePasswordSerializer()
+
+
+#
+#  kholoud -mo3az
+#
+
+
+class UserAvatarSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ('username', 'avatar')
+
+class PinSerializer(serializers.ModelSerializer):
+    creator = UserAvatarSerializer()
+    class Meta:
+        model = Pin
+        fields = '__all__'
+
+
+class PinCreateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Pin
+        fields = '__all__'
+class PinSaveSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Save
+        fields = '__all__'

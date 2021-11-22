@@ -28,7 +28,7 @@ class Pin(models.Model):
     website = models.CharField(max_length=100, null=True, blank=True)
     creator = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.PROTECT, null=True)
     # react is a list of people so it should be reactees or reacted_on_by
-    reactees = models.ManyToManyField(AUTH_USER_MODEL, related_name="reacted_on")
+    reactees = models.ManyToManyField(AUTH_USER_MODEL, related_name="reacted_on", blank=True)
     topics = models.ManyToManyField('Topic', related_name='pins',blank=True)
     # saved_by = models.ManyToManyField(AUTH_USER_MODEL, through="Save", related_name="saved_pins")
     seen_by = models.ManyToManyField(AUTH_USER_MODEL, through="History", related_name="seen_pins")
@@ -56,7 +56,7 @@ class Board(models.Model):
 #                              on_delete=models.PROTECT)
 #     pin = models.ForeignKey(Pin, on_delete=models.PROTECT)
 #     time = models.DateTimeField(auto_now_add=True)
-    ## you can't have manytomanyfields in a unique together src= https://docs.djangoproject.com/en/3.2/ref/models/options/ 
+    ## you can't have manytomanyfields in a unique together src= https://docs.djangoproject.com/en/3.2/ref/models/options/
 #     class Meta:
 #         unique_together = (('user', 'pin'),)
 
@@ -77,7 +77,7 @@ class History(models.Model):
     class Meta:
         ordering=['time']
 
-    # you can't have manytomanyfields in a unique together src= https://docs.djangoproject.com/en/3.2/ref/models/options/ 
+    # you can't have manytomanyfields in a unique together src= https://docs.djangoproject.com/en/3.2/ref/models/options/
     # class Meta:
     #     unique_together = (('user', 'pin', 'time'),)
 
