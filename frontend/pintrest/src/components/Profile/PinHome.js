@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from "axios";
 import Masonry from 'react-masonry-css'
 import PinDisplay from "./PinDisplay";
-import'./Pinhom.css'
+import'../Home/pin.css'
 
 class PinHome extends Component {
     constructor(props) {
