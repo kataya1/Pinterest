@@ -48,7 +48,7 @@ class CreatePin extends React.Component{
         formdata.append('title', this.state.sendData.title)
         formdata.append('description', this.state.sendData.description)
         formdata.append('creator', this.state.data.username)
-        formdata.append('website', this.state.data.website)
+        formdata.append('website', this.state.sendData.website)
 
         
 

@@ -4,6 +4,7 @@ import Masonry from 'react-masonry-css'
 import PinDisplay from "./PinDisplay";
 import'./logo.css'
 import'./pin.css'
+import styles from './pin.module.css'
 import AnQ from "./Anq-btns";
 
 class Home extends React.Component {
