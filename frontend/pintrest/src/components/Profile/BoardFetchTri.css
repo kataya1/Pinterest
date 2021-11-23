@@ -1,0 +1,32 @@
+.board-container {
+    display: flex;
+    justify-content: center;
+    gap: 5vw;
+  }
+  
+  .board-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    background-color: #efefef;
+    gap:2px;
+    width:236px;
+  }
+  .board-image2{
+     height:78.5px;
+      width:100%;
+      object-fit:cover;
+  }
+  
+  
+  .Bcontainer > div {
+   
+    border-radius: 10%;
+    overflow: hidden;
+    cursor:pointer
+
+   
+  }
+  
+  
+  

@@ -160,7 +160,7 @@ def list_user(request,id):
 
 @api_view(['GET'])
 def list_board(request,id):
-    boards = Board.objects.all()
+    boards = Board.objects.filter(creator=id)
     Serialzed_data = UserBoard(boards,many=True)
     return Response(data=Serialzed_data.data,status=status.HTTP_200_OK)
 
