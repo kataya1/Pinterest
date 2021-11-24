@@ -1,19 +1,17 @@
-nav{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #fff;
-    padding: 0.938rem;
+nav .btn--text:hover{
+    color: white;
+    background-color: red;
+}
+nav .btn--text:active{
+    color: red;
+    background-color: white;
+}
+nav .btn-check:focus+.btn,nav .btn:focus {
+
+    box-shadow: none;    
 }
 
-.left {
-    display: flex;
-    align-items: center;
-    width: 20%;
-}
-.right{
-    width: 20%;
-    display: flex;
-    align-items: center;
-}
+nav a{
+    text-decoration: none;
 
+}

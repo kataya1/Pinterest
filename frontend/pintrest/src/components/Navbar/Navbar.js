@@ -6,9 +6,9 @@ import {Link} from 'react-router-dom'
 import Avatar from '../Avatar/Avatar'
 import ButtonFlex from '../Button/ButtonFlex'
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-import '../Navbar/Navbar.css'
-import Searchbox  from '../Searchbox/Searchbox'; 
+import styles from './Navbar.module.css'
+import Searchbox  from './Searchbox/Searchbox'; 
+import './Navbar.css'
 
 library.add(faPinterest,faBell,faCommentDots,faSearch,faChevronDown,faUser)
 
@@ -16,27 +16,27 @@ library.add(faPinterest,faBell,faCommentDots,faSearch,faChevronDown,faUser)
 export default function Navbar() {
     
     return (
-    <nav>
-        <div className='left'>
-            <Link to='/'>
-                <ButtonFlex buttonStyle="btn--logo"><FontAwesomeIcon icon={['fab', 'pinterest']} size="2x"/></ButtonFlex>
-            </Link>
-            <Link to='/'>
-                <ButtonFlex buttonStyle='btn--text'>Home</ButtonFlex>
-            </Link>
-        </div>
+    <nav className={styles.navigation}>
+        {/* <div className='left'>
+        </div> */}
+        {/* can't do anything about font awesome, this is not outline */}
+        <Link to='/'>
+            <ButtonFlex buttonStyle="btn--logo"><FontAwesomeIcon icon={['fab', 'pinterest']} size="2x"/></ButtonFlex>
+        </Link>
+        <Link to='/'>
+            <ButtonFlex buttonStyle='btn--text'>Home</ButtonFlex>
+        </Link>
         <Searchbox></Searchbox>
-        <div className='right'>
-            <ButtonFlex buttonStyle="btn--icon"><FontAwesomeIcon icon="bell" size="2x"/></ButtonFlex>
-            <ButtonFlex buttonStyle="btn--icon"><FontAwesomeIcon icon="comment-dots" size="2x"/></ButtonFlex>
-            <Link to='/profile'>
+        <ButtonFlex buttonStyle="btn--icon"><FontAwesomeIcon icon="bell" size="2x"/></ButtonFlex>
+        <ButtonFlex buttonStyle="btn--icon"><FontAwesomeIcon icon="comment-dots" size="2x"/></ButtonFlex>
+        <Link to='/profile'>
             <Avatar src="https://images.unsplash.com/photo-1534308143481-c55f00be8bd7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1488&q=80"/>
-               
-            </Link>
-            <Link to='/settings'>
-                <ButtonFlex buttonStyle="btn--down"><FontAwesomeIcon icon="chevron-down"/></ButtonFlex>
-            </Link>
-        </div>
+        </Link>
+        <Link to='/settings'>
+            <ButtonFlex buttonStyle="btn--down"><FontAwesomeIcon icon="chevron-down"/></ButtonFlex>
+        </Link>
+        {/* <div className='right'>
+        </div> */}
     </nav>
     )
 }
