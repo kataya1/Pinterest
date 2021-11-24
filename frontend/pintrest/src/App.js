@@ -15,6 +15,8 @@ import Security from './components/Settings/SideBar/Pages/Security';
 import Apps from './components/Settings/SideBar/Pages/Apps';
 import CreatePin from './components/createPin/CreatePin';
 import Profile from './components/Profile/Profile';
+import PinView from './components/History/viewpins';
+import History from './components/History/History';
 
 function App() {
   return (
@@ -23,6 +25,7 @@ function App() {
         <Routes>
           <Route path="/" exact element={<Home />} />
           <Route path="/create" exact element={<CreatePin/>} />
+          <Route path="pin/:Id" element={<PinView/>}/>
           <Route path="/settings" element={<Settings />} >
             <Route path="/settings/" element={<ProfileEdit />} />
             <Route path="/settings/account-settings" element={<AccountSettings />} />
@@ -34,7 +37,7 @@ function App() {
             <Route path="/settings/apps" element={<Apps />} />
           </Route>
             <Route path="/profile" element={<Profile />} />
-          <Route path="/edit" element={<ProfileEdit />} />
+            <Route path="/edit" element={<History/>} />
         </Routes>
     </Router>
   );
