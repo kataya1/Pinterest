@@ -18,6 +18,7 @@ from django.urls import path, include
 from . import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',include('pins.api.v1.urls')),
     path('accounts/api/v1/', include('accounts.api.v1.urls'))
 ]
 
