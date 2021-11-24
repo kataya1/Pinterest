@@ -19,16 +19,17 @@ class CreatePin extends React.Component{
                 website:''
         
             },
-            url:{}
+            url:{},
+            token:'bfa079b117486766b43df3e3c05a97b26f531e8d',
         }
     }
 
 
     
     getData = async()=>{
-        let api = await fetch("http://localhost:8000/accounts/api/v1/create/",{
+        let api = await fetch("http://localhost:8000/pin/create/",{
         method: 'GET',
-        headers: {'Authorization': 'Token bfa079b117486766b43df3e3c05a97b26f531e8d'}})
+        headers: {'Authorization': `Token ${this.state.token}`}})
           let data = await api.json();
           console.log(data)
           this.setState({
@@ -42,7 +43,7 @@ class CreatePin extends React.Component{
     
 
     postData = (file)=>{
-        const url = "http://localhost:8000/accounts/api/v1/create/"
+        const url = "http://localhost:8000/pin/create/"
         const formdata = new FormData()
         formdata.append('image', file)
         formdata.append('title', this.state.sendData.title)
@@ -55,7 +56,7 @@ class CreatePin extends React.Component{
         fetch(url,{
             method:"post",
             headers:{
-                'Authorization': 'Token bfa079b117486766b43df3e3c05a97b26f531e8d'
+                'Authorization': `Token ${this.state.token}`
             },
             body:formdata,
         }).catch(console.error)

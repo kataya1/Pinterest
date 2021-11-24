@@ -2,18 +2,17 @@ import axios from "axios";
 import React from 'react';
 import Masonry from 'react-masonry-css'
 import PinDisplay from "./PinDisplay";
-import'./logo.css'
 import'./pin.css'
-import styles from './pin.module.css'
 import AnQ from "./Anq-btns";
 
 class Home extends React.Component {
 constructor(){
     super()
     this.state = {
-        events: []
+        events: [],
+        token:'bfa079b117486766b43df3e3c05a97b26f531e8d'
     }
-    this.myRef = React.createRef()
+  
 }
 
 componentDidMount(){
@@ -22,37 +21,48 @@ componentDidMount(){
 
 Home= () =>  {
 var self = this;  
-axios.get('http://localhost:8000/accounts/api/v1/home' )
-.then(res => {
- 
-    self.setState({events: res.data},() => console.log(self.state))
-        
-        })
+axios.get('http://localhost:8000/home' )
+.then(res => {self.setState({events: res.data})})
     }
 
     onMouseEnterHandler = (e) => {
-        
         e.target.nextElementSibling.classList.toggle('overlay-on')
-
     }
+
     onMouseLeaveHandler = (e) => {
-       
         e.target.nextElementSibling.classList.toggle('overlay-on')
     }
 
     onClickHandler =(e, id) => {
-        console.log(id)
+        e.stopPropagation();
+        e.preventDefault();
         const data = {'pin': id}
         e.target.style.backgroundColor = 'black'
-        const url = "http://localhost:8000/accounts/api/v1/save/"
+        const url = "http://localhost:8000/pin/save/"
         fetch(url,{
             method:"post",
             headers:{
-                'Authorization': 'Token bfa079b117486766b43df3e3c05a97b26f531e8d',
+                'Authorization': `Token ${this.state.token}`,
                 "Content-type": "application/json"
             },
             body: JSON.stringify(data),
         }).catch(console.error)
+    }
+
+    saveHistory = (e, id)=>{
+        console.log(id)
+        const data = {'pin': id}
+        const url = "http://localhost:8000/profile/history/"
+        fetch(url,{
+            method:"post",
+            headers:{
+                'Authorization': `Token ${this.state.token}`,
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify(data),
+        }).catch(console.error)
+        console.log('saved')
+
     }
 
 
@@ -77,6 +87,7 @@ axios.get('http://localhost:8000/accounts/api/v1/home' )
     onMouseEnterHandler={this.onMouseEnterHandler} 
     onMouseLeaveHandler={this.onMouseLeaveHandler}
     onClickHandler={this.onClickHandler}
+    saveHistory={this.saveHistory}
     key = {item.id}
     id = {item.id}
     image={item.image} 

@@ -76,3 +76,12 @@ def history(request):
         history_pins = History.objects.filter(user=request.user.id)
         ser_pin = HistoryGetSerializer(instance=history_pins, many=True)
         return Response(data=ser_pin.data, status=status.HTTP_200_OK)
+
+
+@api_view(["DELETE"])
+@permission_classes([IsAuthenticated])
+def delete_history(request, **kwargs):
+    if request.method == "DELETE":
+        id = kwargs.get('id')
+        History.objects.filter(pk=id).delete()
+        return Response({'msg':"Pin Deleted From History"}, status=status.HTTP_201_CREATED)
