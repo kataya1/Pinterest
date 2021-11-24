@@ -66,7 +66,8 @@ class Save(models.Model):
     saved_at = models.DateField(auto_now_add=True)
 
     class Meta:
-        ordering=['saved_at']
+        unique_together = (('user', 'pin'),)
+        ordering=['-saved_at']
 
 # # same thing here an intermedite table is done through a through ~kataya
 class History(models.Model):
@@ -75,7 +76,8 @@ class History(models.Model):
     time = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering=['time']
+        unique_together = (('user', 'pin'),)
+        ordering = ['-time']
 
     # you can't have manytomanyfields in a unique together src= https://docs.djangoproject.com/en/3.2/ref/models/options/
     # class Meta:

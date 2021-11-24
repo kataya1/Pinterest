@@ -8,7 +8,7 @@ from rest_framework.authtoken.models import Token
 from .serializers import UserSignUpSerializer, UserSerializer
 from rest_framework.renderers import JSONRenderer
 from accounts.models import User
-from .serializers import PinSerializer, PinCreateSerializer, UserAvatarSerializer, PinSaveSerializer
+
 
 
 
@@ -182,53 +182,5 @@ def list_savedpin(request,id):
 ############################
 
 
-@api_view(['GET'])
-def home(request):
-    pins = Pin.objects.all()
-    serializer = PinSerializer(pins, many=True)
-
-    return Response(data=serializer.data, status=status.HTTP_200_OK)
-
-
-@api_view(['GET','POST'])
-@authentication_classes([TokenAuthentication])
-@permission_classes([IsAuthenticated])
-def create_pin(request):
-    if request.method == 'GET':
-        user = request.user
-        seralizer = UserAvatarSerializer(instance=user)
-        return Response(data=seralizer.data, status=status.HTTP_200_OK)
-
-    if request.method == 'POST':
-        data = {
-            'title': request.data.get('title'),
-            'description': request.data.get('description'),
-            'image': request.data.get('image'),
-            'creator': request.user.id,
-            'website': request.data.get('website'),
-        }
-        new_pin = PinCreateSerializer(data=data)
-        if new_pin.is_valid():
-            new_pin.save()
-            return Response(new_pin.data, status=status.HTTP_201_CREATED)
-        else:
-            return Response(data=new_pin.errors)
-
-@api_view(['POST'])
-@authentication_classes([TokenAuthentication])
-@permission_classes([IsAuthenticated])
-def save_pin(request):
-
-    if request.method == 'POST':
-        data = {
-            'pin': request.data.get('pin'),
-            'user': request.user.id,
-        }
-        saved_pin = PinSaveSerializer(data=data)
-        if saved_pin.is_valid():
-            saved_pin.save()
-            return Response(saved_pin.data, status=status.HTTP_201_CREATED)
-        else:
-            return Response(data=saved_pin.errors)
 
 ###############################################################
