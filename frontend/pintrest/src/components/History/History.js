@@ -14,7 +14,6 @@ class History extends React.Component {
         super()
         this.state = {
             events: [],
-            token:'bfa079b117486766b43df3e3c05a97b26f531e8d'
         }
         
     }
@@ -24,11 +23,11 @@ class History extends React.Component {
     };
     
     History= () =>  {
-   
+        const token = localStorage.getItem('token')
         var self = this;  
         axios.get('http://localhost:8000/profile/history/',{
             headers:{
-                'Authorization': `Token ${self.state.token}`,
+                'Authorization': `Token ${token}`,
                 "Content-type": "application/json"
             },
         } )
@@ -54,12 +53,13 @@ class History extends React.Component {
           onClickHandler = (e,id)=>{
             e.stopPropagation();
             e.preventDefault()
+            const token = localStorage.getItem('token')
             console.log(id)
             const url = `http://localhost:8000/profile/history/${id}`
             fetch(url,{
                 method:"delete",
                 headers:{
-                    'Authorization': `Token ${this.state.token}`,
+                    'Authorization': `Token ${token}`,
                     "Content-type": "application/json"
                 }
             }).catch(console.error)

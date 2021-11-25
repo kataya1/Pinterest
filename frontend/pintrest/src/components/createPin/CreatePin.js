@@ -20,21 +20,30 @@ class CreatePin extends React.Component{
         
             },
             url:{},
-            token:'bfa079b117486766b43df3e3c05a97b26f531e8d',
+        
         }
     }
 
 
     
     getData = async()=>{
+        try{
+        const token = localStorage.getItem('token')
         let api = await fetch("http://localhost:8000/pin/create/",{
         method: 'GET',
-        headers: {'Authorization': `Token ${this.state.token}`}})
+        headers: {'Authorization': `Token ${token}`}})
           let data = await api.json();
           console.log(data)
           this.setState({
               data:data
           })
+        }
+          catch{
+            let error = 'Iternal Server Error'
+            console.log(error)
+
+          }
+          
       }
 
       componentDidMount(){
@@ -50,13 +59,13 @@ class CreatePin extends React.Component{
         formdata.append('description', this.state.sendData.description)
         formdata.append('creator', this.state.data.username)
         formdata.append('website', this.state.sendData.website)
-
+        const token = localStorage.getItem('token')
         
 
         fetch(url,{
             method:"post",
             headers:{
-                'Authorization': `Token ${this.state.token}`
+                'Authorization': `Token ${token}`
             },
             body:formdata,
         }).catch(console.error)
@@ -93,13 +102,16 @@ class CreatePin extends React.Component{
     }
     render(){
         
-            return ( <>
+            return ( 
+           
+            
+            <>
     <div className='container-fluid'>
         <div className='for-container'>
             <div className='row lable'>
 
                 <div className="lable">
-                    <div>Create a Pin</div>
+               <div>Create a Pin</div>
                 </div>
 
 

@@ -10,7 +10,7 @@ constructor(){
     super()
     this.state = {
         events: [],
-        token:'bfa079b117486766b43df3e3c05a97b26f531e8d'
+      
     }
   
 }
@@ -36,13 +36,14 @@ axios.get('http://localhost:8000/home' )
     onClickHandler =(e, id) => {
         e.stopPropagation();
         e.preventDefault();
+        const token = localStorage.getItem('token')
         const data = {'pin': id}
         e.target.style.backgroundColor = 'black'
         const url = "http://localhost:8000/pin/save/"
         fetch(url,{
             method:"post",
             headers:{
-                'Authorization': `Token ${this.state.token}`,
+                'Authorization': `Token ${token}`,
                 "Content-type": "application/json"
             },
             body: JSON.stringify(data),
@@ -51,12 +52,13 @@ axios.get('http://localhost:8000/home' )
 
     saveHistory = (e, id)=>{
         console.log(id)
+        const token = localStorage.getItem('token')
         const data = {'pin': id}
         const url = "http://localhost:8000/profile/history/"
         fetch(url,{
             method:"post",
             headers:{
-                'Authorization': `Token ${this.state.token}`,
+                'Authorization': `Token ${token}`,
                 "Content-type": "application/json"
             },
             body: JSON.stringify(data),

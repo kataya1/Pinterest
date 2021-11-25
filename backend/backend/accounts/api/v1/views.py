@@ -39,7 +39,7 @@ def sign_up(request):
         data['status'] = status.HTTP_200_OK
     else:
         data['data'] = user_serialized.errors
-        data['status'] = status.HTTP_400_BAD_REQUEST
+        data['status'] = status.HTTP_403_FORBIDDEN
     return Response(**data)
 
 @api_view(['GET'])
@@ -51,7 +51,11 @@ def log_out(request):
         token = str(request.auth)
         print(f"request.auth 👏{str(request.auth)}")
         t = Token.objects.get(key=token)
-        res['data'] = {"user": str(t.user), "message": 'logged out'}
+        if t: 
+            usr = t.user
+        else:
+            usr = ''
+        res['data'] = {"user": str(usr), "message": 'logged out'}
         t.delete()
         res['status'] =  status.HTTP_200_OK
     # print(dir(t))
@@ -65,6 +69,7 @@ def log_out(request):
 @permission_classes([IsAuthenticated])
 def profile(request):
     try:
+        
         token = str(request.auth)
         t = Token.objects.get(key=token)
         u = t.user
