@@ -1,0 +1,12 @@
+.sidebar {
+    height: 100%;
+    width: 25%;
+    float: left;
+    padding: 1.8rem 1rem 1rem;
+}
+.navlinkButton {
+    width: 50%;
+}
+.displayBloack {
+    display: inline-block;
+}

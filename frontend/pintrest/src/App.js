@@ -11,8 +11,6 @@ import Claim from './components/Settings/SideBar/Pages/Claim'
 import Permission from './components/Settings/SideBar/Pages/Permissions';
 import Notification from './components/Settings/SideBar/Pages/Notification';
 import Privacy from './components/Settings/SideBar/Pages/Privacy';
-import Security from './components/Settings/SideBar/Pages/Security';
-import Apps from './components/Settings/SideBar/Pages/Apps';
 import CreatePin from './components/createPin/CreatePin';
 import Profile from './components/Profile/Profile';
 import { Authcontext } from './components/Authentication/Authcontext';
@@ -84,8 +82,6 @@ function App() {
               <Route path="/settings/permissions" element={<Permission />} />
               <Route path="/settings/notifications" element={<Notification />} />
               <Route path="/settings/privacy" element={<Privacy />} />
-              <Route path="/settings/security" element={<Security />} />
-              <Route path="/settings/apps" element={<Apps />} />
             </Route>
             <Route path="/profile" element={<Profile />} />
             <Route path="/edit" element={<History/>} />
