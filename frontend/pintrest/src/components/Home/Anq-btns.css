@@ -6,6 +6,7 @@
   position: fixed;
   bottom: 100px;
   right: 50px;
+  z-index: 50;
 }
 .question-btn {
   background-color: white;
@@ -15,6 +16,7 @@
   position: fixed;
   bottom: 35px;
   right: 50px;
+  z-index: 50;
 }
 .question-btn:hover {
   background-color: #ddd;

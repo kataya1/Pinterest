@@ -21,6 +21,9 @@ import Signup from './components/Authentication/Signup/Signup';
 import Welcome from './components/Welcome/Welcome';
 import axios from 'axios';
 import R404 from './components/R404/R404';
+import PinView from './components/History/viewpins';
+import History from './components/History/History';
+
 
 function App() {
 
@@ -67,11 +70,13 @@ function App() {
       <Authcontext.Provider value={{ isUserLogedin, setisUserLogedin }}>
         <Navbar />
         <Routes>
+
           {isUserLogedin? (
           <>
             <Route path="/" exact element={<Home />} />
             <Route path="/home" element={<Home />} />
             <Route path="/create" exact element={<CreatePin />} />
+            <Route path="pin/:Id" element={<PinView/>}/>
             <Route path="/settings" element={<Settings />} >
               <Route path="/settings/" element={<ProfileEdit />} />
               <Route path="/settings/account-settings" element={<AccountSettings />} />
@@ -83,7 +88,7 @@ function App() {
               <Route path="/settings/apps" element={<Apps />} />
             </Route>
             <Route path="/profile" element={<Profile />} />
-            <Route path="/edit" element={<ProfileEdit />} />
+            <Route path="/edit" element={<History/>} />
           </>) : (
           <>
             <Route path="/" exact element={<Welcome />} />
@@ -92,6 +97,7 @@ function App() {
           </>
           )}
           <Route path="*" element={<R404/>}></Route>
+
         </Routes>
       </Authcontext.Provider>
     </Router>
