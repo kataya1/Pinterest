@@ -1,41 +1,19 @@
 import React from "react";
-import './SideBar.css'
+import styles from  './SideBar.module.css'
 import { SideBarButton } from "./SideBarButton/SideBarButton";
-import {NavLink } from 'react-router-dom'
 
 const SideBar = () => {
     return(
         <React.Fragment>
-            <div className='side-bar'>
-                <NavLink to = '/settings/' end={true}>
-                    <SideBarButton>Public profile</SideBarButton>
-                </NavLink>
-                <NavLink to = '/settings/account-settings'>
-                    <SideBarButton>Account settings</SideBarButton>
-                </NavLink>
-                <NavLink to = '/edit'>
-                    <SideBarButton>Home Feed Turner</SideBarButton>
-                </NavLink>
-                <NavLink to = '/settings/claim'>
-                    <SideBarButton>Claim</SideBarButton>
-                </NavLink>
-                <NavLink to = '/settings/permissions'>
-                    <SideBarButton>Permissions</SideBarButton>
-                </NavLink>
-                <NavLink to = '/settings/notifications'>
-                    <SideBarButton>Notifications</SideBarButton>    
-                </NavLink>
-                <NavLink to = '/settings/privacy'>
-                    <SideBarButton>Privacy and data</SideBarButton>
-                </NavLink>
-                <NavLink to = '/settings/security'>
-                    <SideBarButton>Security</SideBarButton>
-                </NavLink>
-                <NavLink to = '/settings/apps'>
-                    <SideBarButton>Apps</SideBarButton>
-                </NavLink>
-            </div>
-            
+            <nav className={styles.sidebar}>
+                <SideBarButton toProp = {'/settings/'}>Public profile</SideBarButton>
+                <SideBarButton toProp={'/settings/account-settings'}>Account settings</SideBarButton>
+                <SideBarButton toProp={'/edit'}>Home Feed Turner</SideBarButton>
+                <SideBarButton toProp={'/settings/claim'}>Claim</SideBarButton>
+                <SideBarButton toProp={'/settings/permissions'}>Permissions</SideBarButton>
+                <SideBarButton toProp={'/settings/notifications'}>Notifications</SideBarButton>
+                <SideBarButton toProp={'/settings/privacy'}>Privacy and data</SideBarButton>
+            </nav>
         </React.Fragment>
     )
 }

@@ -1,0 +1,15 @@
+.DownBar {
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+    position: sticky; 
+    bottom: 0;
+    overflow: hidden;
+}
+.borderRaduis50{
+    border-radius: 50%;
+}
