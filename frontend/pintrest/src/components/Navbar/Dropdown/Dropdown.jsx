@@ -5,18 +5,19 @@ export default function Dropdown(prop) {
 
 
     return (
-        <div className={styles.Dropdown}>
-            {prop.children}
+        <div className={styles.dropdown}>
+            <ul>
+                {prop.children}
+            </ul>
         </div>
     )
 }
 
-export function Dropmenuitem(){
-
+export function Dropmenuitem(prop){
 
     return (
-        <div >
-
-        </div>
+        <li onClick={prop.onClick}>
+            {prop.children}
+        </li>
     )
 }

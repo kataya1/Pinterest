@@ -24,16 +24,18 @@ import History from './components/History/History';
 
 
 function App() {
-  const host = 'http://localhost:8000'
-  const token = localStorage.getItem('token')
+  const host = "http://localhost:8000"
+  const path = '/accounts/api/v1'
+  const endpoint = '/profile'
+  let token = localStorage.getItem('token')
   let isValid = token? true : false
   const [isUserLogedin, setisUserLogedin] = useState(isValid)
   const [currentUser, setCurrentUser] = useState({})
   useEffect(() => {
       if (isUserLogedin){
-        const host = "http://localhost:8000"
-        const path = '/accounts/api/v1'
-        const endpoint = '/profile'
+        isValid= true
+        token = localStorage.getItem('token')
+  
         axios({
           method: 'GET',
           url: `${host}${path}${endpoint}`,
@@ -43,7 +45,6 @@ function App() {
           }
         }).then((response) => {
           setCurrentUser(response.data)
-          console.log(response)
         }).catch(err =>{
           if (err.response){
             console.log(err.response)
