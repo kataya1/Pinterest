@@ -10,12 +10,12 @@
 How to run the backend?
 - After cloning the repo then cd Pinterest/backend/
 - Create your virtual environment 
-	for windows:
+	- for windows:
 		- Open PowerShell on the same level for backend dir 
 		- Run this command to create your venv 
-			"python3 -m venv <your environment name>"
+			"python3 -m venv 'your environment name'"
 		- Activate your venv by this command
-			"<your environment name>/Scripts/activate"
+			"'your environment name'/Scripts/activate"
 - Go to backend directory "cd backend"
 - Install the project requirements "pip install -r requirements"
 - "py manage.py makemigrations"
