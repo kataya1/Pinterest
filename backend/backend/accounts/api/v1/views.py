@@ -8,6 +8,7 @@ from rest_framework.authtoken.models import Token
 from .serializers import UserSignUpSerializer, UserSerializer
 from rest_framework.renderers import JSONRenderer
 from accounts.models import User
+import http.client
 
 
 
@@ -149,7 +150,25 @@ def list_users(request):
         return Response(**{'data': usrlist,  'status': status.HTTP_200_OK})
     except Exception as e:  
         return Response(**{'data': str(e),  'status': status.HTTP_500_INTERNAL_SERVER_ERROR})
-        
+
+@api_view(['GET'])
+def search_autocomplete(request):
+    try:
+        print(request.GET)
+        url = "suggestqueries.google.com/complete/search?client=chrome&q=dog"
+        payload={}
+        headers = {}
+        response = requests.request("GET", url, headers=headers, data=payload)
+
+        print(response.text)
+        return Response(**{'data': response.text,  'status': status.HTTP_200_OK})
+    except Exception as e:
+        return Response(**{'data': str(e),  'status': status.HTTP_500_INTERNAL_SERVER_ERROR})
+
+    pass
+
+
+
 #
 # arafa -- sahar
 #
