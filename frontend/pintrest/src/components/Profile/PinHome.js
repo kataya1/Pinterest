@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import axios from "axios";
 import Masonry from 'react-masonry-css'
 import PinDisplay from "./PinDisplay";
-import'../Home/pin.css'
 
 class PinHome extends Component {
     constructor(props) {
@@ -15,8 +14,15 @@ class PinHome extends Component {
 
         }
     }
+    onMouseEnterHandler = (e) => {
+        e.target.nextElementSibling.classList.toggle('overlay-on')
+    }
+
+    onMouseLeaveHandler = (e) => {
+        e.target.nextElementSibling.classList.toggle('overlay-on')
+    }
     componentDidMount() {
-        axios.get('http://localhost:8000/accounts/api/v1/save/3')
+        axios.get(`http://localhost:8000/accounts/api/v1/save/${this.props.id}`)
             .then(response => {
                 console.log(response)
                 this.setState({ userPins: response.data })
@@ -48,8 +54,9 @@ class PinHome extends Component {
                             key={item.id}
                             image={item.image}
                             desc={item.description}
+                           
                              />
-
+                          
                     })}
                 </Masonry>
             </div>

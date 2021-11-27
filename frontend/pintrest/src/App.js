@@ -21,8 +21,11 @@ import Signup from './components/Authentication/Signup/Signup';
 import Welcome from './components/Welcome/Welcome';
 import axios from 'axios';
 import R404 from './components/R404/R404';
-import PinView from './components/History/viewpins';
+// import PinView from './components/History/viewpins';
+import PinView from './components/PinView/PinView';
 import History from './components/History/History';
+import UserProfile from './components/Profile/UserProfile';
+import PassingUserId from './components/Profile/PassingUserId';
 
 
 function App() {
@@ -77,6 +80,7 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/create" exact element={<CreatePin />} />
             <Route path="pin/:Id" element={<PinView/>}/>
+            <Route path="user/:Id" element={<PassingUserId />} />
             <Route path="/settings" element={<Settings />} >
               <Route path="/settings/" element={<ProfileEdit />} />
               <Route path="/settings/account-settings" element={<AccountSettings />} />
