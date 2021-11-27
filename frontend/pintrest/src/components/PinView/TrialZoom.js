@@ -1,5 +1,11 @@
 import React, { Component } from "react";
 import Home from "../Home/Home";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
+library.add( faHeart );
+
+
 class TrialZoom extends Component {
   constructor(props) {
     super(props)
@@ -68,8 +74,11 @@ handleClick = () => {
               >
                 <div className='d-flex col element-star-arrow' >
                   <div className='element..' style={{ width: "48px" }}>
-                  <i id="pulse-click" onClick={this.handleClick} style={{cursor:'pointer',color:this.state.bgcolor }}  
-                       className= "fa fa-heart fa-lg" ></i>
+                  {/* <i id="pulse-click" onClick={this.handleClick} style={{cursor:'pointer',color:this.state.bgcolor }}  
+                       className= "fa fa-heart fa-lg" ></i> */}
+                        <i id="pulse-click" onClick={this.handleClick} style={{cursor:'pointer',fill:this.state.bgcolor }}  
+                        ><FontAwesomeIcon  icon={faHeart} size="1x"/></i>
+                       
                   </div>
                   <div className='up-arrow' style={{ width: "48px" }}>
                     <svg
