@@ -8,17 +8,20 @@ import {
     faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Avatar from "../Avatar/Avatar";
 import ButtonFlex from "../Button/ButtonFlex";
 import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "./Navbar.module.css";
 import Searchbox from "./Searchbox/Searchbox";
 import "./Navbar.css";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Authcontext } from "../Authentication/Authcontext";
-// import Dropdown from "./Dropdown/Dropdown";
-import axios from 'axios'
+import Dropdown, { Dropmenuitem } from "./Dropdown/Dropdown";
+import axios from "axios";
+import Userinfolistisem from "./Userinfolistitem/Userinfolistitem"
+
+
 
 library.add(
     faPinterest,
@@ -30,9 +33,14 @@ library.add(
 );
 
 export default function Navbar() {
-    const { isUserLogedin, setisUserLogedin } = useContext(Authcontext);
+
+    const { isUserLogedin, setisUserLogedin, currentUser, host } = useContext(Authcontext);
+    const navigate = useNavigate()
+
     const handleLogout = (e) => {
-        e.preventDefault()
+        ' removes the token from local storage and sets isUserLogedin to false'
+      
+        e.preventDefault();
         const host = "http://localhost:8000";
         const path = "/accounts/api/v1";
         const endpoint = "/logout";
@@ -41,13 +49,14 @@ export default function Navbar() {
             url: `${host}${path}${endpoint}`,
             headers: {
                 "Content-Type": " application/json",
-                'Authorization': 'token ' + localStorage.getItem('token')
+                Authorization: "token " + localStorage.getItem("token"),
             },
         })
             .then((response) => {
                 console.log(response);
-                localStorage.removeItem('token')
+                localStorage.removeItem("token");
                 setisUserLogedin(false);
+                navigate('/')
                 // navigate("/", { replace: true });
                 // this is the part where we redirect
             })
@@ -57,7 +66,20 @@ export default function Navbar() {
                 } else {
                     console.log(err);
                 }
-            })
+            });
+    };
+    const [dropOpen, setDropOpen] = useState(false)
+    document.addEventListener('click', () => {
+        setDropOpen(false)
+    })
+    useEffect(() => {
+        "closes the dropdown menu when the user logsout"
+        setDropOpen(false)
+    }, [isUserLogedin])
+
+    const emptyBoxstyle = {
+        width: "300px",
+        height: "400px",
     }
 
     return (
@@ -70,20 +92,56 @@ export default function Navbar() {
             <Link to="/">
                 <ButtonFlex buttonStyle="btn--text">Home</ButtonFlex>
             </Link>
-            <Searchbox></Searchbox>
+            <Searchbox />
             {isUserLogedin ? (
                 <>
-                    <Link to="/settings">
-                        <ButtonFlex buttonStyle="btn--icon">
-                            <FontAwesomeIcon icon="bell" size="2x" />
-                        </ButtonFlex>
-                    </Link>
-                    <ButtonFlex buttonStyle="btn--icon">
+
+                    <ButtonFlex buttonStyle="btn--icon" onClick={(e)=>{ e.stopPropagation(); setDropOpen('notifications_dropdown')}}>
+                        <FontAwesomeIcon icon="bell" size="2x" />
+                        { dropOpen === "notifications_dropdown" && 
+                            <Dropdown>
+                                <Dropmenuitem>
+                                    <p style={{textAlign: 'center'}}>coming soon...</p>
+                                    <div style={emptyBoxstyle}></div>
+                                </Dropmenuitem>
+                            </Dropdown>
+                        }
+                    </ButtonFlex>
+                    <ButtonFlex buttonStyle="btn--icon" onClick={(e)=>{ e.stopPropagation(); setDropOpen('messages_dropdown')}}>
                         <FontAwesomeIcon icon="comment-dots" size="2x" />
+                        { dropOpen === "messages_dropdown" && 
+                            <Dropdown>
+                                <Dropmenuitem>
+                                    <p style={{textAlign: 'center'}}>No messages...</p>
+                                    <div style={emptyBoxstyle}></div>
+                                </Dropmenuitem>
+                            </Dropdown>
+                        }
                     </ButtonFlex>
                     <Link to="/profile">
-                        <Avatar src="https://images.unsplash.com/photo-1534308143481-c55f00be8bd7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1488&q=80" />
+                        <Avatar src={`${host}${currentUser.avatar}`} />
                     </Link>
+                    <ButtonFlex
+                        buttonStyle="btn--down"
+                        onClick={(e) => { e.stopPropagation(); setDropOpen('carret_dropdown'); }}
+                    >
+                        <FontAwesomeIcon icon="chevron-down" />
+                        {dropOpen === "carret_dropdown" &&
+                            <Dropdown>
+                                <Dropmenuitem>
+                                    <Userinfolistisem avatarsrc={`${host}${currentUser.avatar}`} username={currentUser.username} email={currentUser.email} />
+                                </Dropmenuitem>
+                                <Dropmenuitem>
+                                    <Link to="/settings">Settings</Link>
+                                </Dropmenuitem>
+                                <Dropmenuitem>
+                                    <Link to="/edit">Tune Your Home Feed</Link>
+                                </Dropmenuitem>
+                                <Dropmenuitem onClick={(e) => { handleLogout(e) }}>
+                                    <p>Logout</p>
+                                </Dropmenuitem>
+                            </Dropdown>}
+                    </ButtonFlex>
                 </>
             ) : (
                 <>
@@ -96,14 +154,6 @@ export default function Navbar() {
                     </Link>
                 </>
             )}
-
-            <ButtonFlex buttonStyle="btn--down" onClick={(e) => { handleLogout(e) }}>
-                <FontAwesomeIcon icon="chevron-down" />
-                {/* <Dropdown>
-                    <Link to="/settings">Settings</Link> 
-                    
-                </Dropdown> */}
-            </ButtonFlex>
         </nav>
     );
 }

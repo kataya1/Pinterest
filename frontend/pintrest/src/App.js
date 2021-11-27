@@ -4,15 +4,13 @@ import './App.css'
 import Home from './components/Home/Home';
 import Settings from './components/Settings/Settings';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import React, { useState, useLayoutEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import AccountSettings from './components/Settings/SideBar/Pages/AccountSettings'
 import ProfileEdit from './components/Settings/SideBar/Pages/ProfileEdit'
 import Claim from './components/Settings/SideBar/Pages/Claim'
 import Permission from './components/Settings/SideBar/Pages/Permissions';
 import Notification from './components/Settings/SideBar/Pages/Notification';
 import Privacy from './components/Settings/SideBar/Pages/Privacy';
-import Security from './components/Settings/SideBar/Pages/Security';
-import Apps from './components/Settings/SideBar/Pages/Apps';
 import CreatePin from './components/createPin/CreatePin';
 import Profile from './components/Profile/Profile';
 import { Authcontext } from './components/Authentication/Authcontext';
@@ -29,48 +27,43 @@ import PassingUserId from './components/Profile/PassingUserId';
 
 
 function App() {
-
-  // without this part going to /singup and /login will log the user out, don't know why exactly
-  // it's a bit long to make sure the token is valid
-  const [isUserLogedin, setisUserLogedin] = useState(false)
-  useLayoutEffect(() => {
-    let isValid = false;
-    const token = localStorage.getItem('token')
-    if (token){
-      const host = "http://localhost:8000"
-      const path = '/accounts/api/v1'
-      const endpoint = '/example'
-      axios({
-        method: 'GET',
-        url: `${host}${path}${endpoint}`,
-        headers: {
-          'Content-Type': ' application/json',
-          'Authorization': 'token '+ token
-        }
-      }).then((response) => {
-        console.log(response)
-        isValid = true
-      }).catch(err =>{
-        if (err.response){
-          console.log(err.response)
-          localStorage.removeItem('token')
-          isValid = false
-        }
-      }).finally(()=>{
-        setisUserLogedin(isValid)
-      })
-    } 
-  }, [isUserLogedin])
-  // this whole crap up there can be replaced by 3 lines of code but it's not the right way to go about things
-  // const token = localStorage.getItem('token')
-  // let isValid = token? true : false
-  // const [isUserLogedin, setisUserLogedin] = useState(isValid)
-
-
-
-  return (
+  const host = "http://localhost:8000"
+  const path = '/accounts/api/v1'
+  const endpoint = '/profile'
+  let token = localStorage.getItem('token')
+  let isValid = token? true : false
+  const [isUserLogedin, setisUserLogedin] = useState(isValid)
+  const [currentUser, setCurrentUser] = useState({})
+  useEffect(() => {
+      if (isUserLogedin){
+        isValid= true
+        token = localStorage.getItem('token')
+  
+        axios({
+          method: 'GET',
+          url: `${host}${path}${endpoint}`,
+          headers: {
+            'Content-Type': ' application/json',
+            'Authorization': 'token '+ token
+          }
+        }).then((response) => {
+          setCurrentUser(response.data)
+        }).catch(err =>{
+          if (err.response){
+            console.log(err.response)
+          }
+        }).finally(()=>{
+          setisUserLogedin(isValid)
+        })
+      }
+      else{
+        setCurrentUser({})
+      }
+    }, [isUserLogedin])
+  
+  return (  
     <Router>
-      <Authcontext.Provider value={{ isUserLogedin, setisUserLogedin }}>
+      <Authcontext.Provider value={{ isUserLogedin, setisUserLogedin, currentUser, host }}>
         <Navbar />
         <Routes>
 
@@ -88,8 +81,6 @@ function App() {
               <Route path="/settings/permissions" element={<Permission />} />
               <Route path="/settings/notifications" element={<Notification />} />
               <Route path="/settings/privacy" element={<Privacy />} />
-              <Route path="/settings/security" element={<Security />} />
-              <Route path="/settings/apps" element={<Apps />} />
             </Route>
             <Route path="/profile" element={<Profile />} />
             <Route path="/edit" element={<History/>} />

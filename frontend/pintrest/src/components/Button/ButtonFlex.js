@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import'./Button.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -12,14 +12,14 @@ const STYLES = [
     'btn--none'
 ]
 
-const ButtonFlex = ({children,type,onClick,buttonStyle}) => {
+
+const ButtonFlex = ({ children,type,buttonStyle, onClick}) => {
     const checkButtonStyle = STYLES.includes(buttonStyle) ? buttonStyle : STYLES[0]   
     return(
-        <React.Fragment>
             <button className={`btn ${checkButtonStyle}`} onClick={onClick} type={type} >
                 {children}
+
             </button>
-        </React.Fragment>
     )
 }
 export default ButtonFlex

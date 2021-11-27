@@ -1,4 +1,3 @@
-import './Searchbox.css'
 import styles from './Searchbox.module.css'
 import {ReactComponent as Magniglass} from './magni.svg'
 

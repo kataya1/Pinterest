@@ -1,0 +1,14 @@
+.settingsPage {
+    height: 85vh;
+    width: 100vw;
+}
+.sidebarContent {
+    height: 100%;
+    width: 30%;
+    padding: 2.8rem 0 0 0;
+    overflow: hidden;
+    scroll-behavior: auto;
+}
+.downBar {
+    box-shadow: 0px -5px 10px -5px rgba(100, 100, 111, 0.2) ; 
+}
