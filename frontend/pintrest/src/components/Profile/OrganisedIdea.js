@@ -11,7 +11,7 @@ class OrganisedIdea extends Component {
                 <div className="d-flex justify-content-between">
                 <div><div className='col'>
                 <div style={{height: "48px",width: "48px"}}>
-                <button style={{cursor:'text'}} type="button" className="btn btn-light rounded-pill" >
+                <button style={{cursor:'text'}} type="button" className="btn btn rounded-pill" >
                     <h5>Unorganised ideas</h5>
                 </button>
                    </div>

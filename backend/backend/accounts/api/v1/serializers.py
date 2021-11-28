@@ -60,12 +60,17 @@ class UserBoard(serializers.ModelSerializer):
     class Meta:
         model = Board
         fields = '__all__'
+class creator_Pins(serializers.ModelSerializer):
+
+    class Meta:
+         model = User
+         fields = ('username','following','avatar',)
 
 class SavedPins(serializers.ModelSerializer):
-    # pin = UserBoardPin(many=True)
+    creator = creator_Pins()
     class Meta:
         model = Pin
-        fields = ('image','description','created_at','creator')
+        fields = ('image','description','created_at','creator','reactees')
 
 class Saved_Pins(serializers.ModelSerializer):
      saved_pins=SavedPins(many=True)
