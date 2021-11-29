@@ -8,18 +8,17 @@ class BoradFetchTrial extends Component {
 
         this.state = {
             boards: [],
-            // Bpins:[],
             errormsg: ""
 
         }
     }
+    
     componentDidMount() {
-        axios.get('http://localhost:8000/accounts/api/v1/board/3')
+        axios.get(`http://localhost:8000/accounts/api/v1/board/${this.props.id}`)
             .then(response => {
                 
                 this.setState({ boards: response.data })
-                // this.setState({ Bpins: response.data[0].pins })
-                // console.log(response.data[1].pins)
+               
               
             })
             .catch(error => {
@@ -33,8 +32,6 @@ class BoradFetchTrial extends Component {
         return (
             <div>
                 <div className="board-container">
-                    
-                    
                 {
                 boards.map(board =>
                     <section className="Bcontainer">
@@ -45,10 +42,7 @@ class BoradFetchTrial extends Component {
                         </div></div>)}
                          </div><p style={{fontWeight:'bold',fontSize:'18px'}}>{board.name}</p></section>)               
     }
-    
-
- 
-                
+           
             </div>
             </div>
         )
