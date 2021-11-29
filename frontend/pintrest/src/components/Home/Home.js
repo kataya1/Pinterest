@@ -21,7 +21,7 @@ componentDidMount(){
 
 Home= () =>  {
 var self = this;  
-axios.get('http://localhost:8000/home' )
+axios.get('http://localhost:8000/home/' )
 .then(res => {self.setState({events: res.data})})
     }
 
