@@ -2,36 +2,32 @@ import React, { Component } from "react";
 import Home from "../Home/Home";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
-library.add( faHeart );
-
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+library.add(faHeart);
 
 class TrialZoom extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
-         count:this.props.likes.length,
-         clicked: `${this.props.likes.length} like this`,
-         bgcolor:''
-    }
-    console.log(`sahar${this.state.count}`)
-}
-
-handleClick = () => {
-  if (this.state.count==this.props.likes.length){
-    this.setState(prev => ({ count: prev.count + 1 }))
-    this.setState({bgcolor:'#E60023'})
-    this.setState({clicked:`You and ${this.state.count} like this`})
-    
-  }
-  else if (this.state.count==this.props.likes.length+1){
-    this.setState(prev => ({ count: prev.count - 1 }))
-    this.setState({bgcolor:'black'})
-    this.setState({clicked:`${this.state.count-1} like this`})
-  }
-  
+      count: this.props.likes.length,
+      clicked: `${this.props.likes.length} like this`,
+      bgcolor: "",
     };
+    console.log(`sahar${this.state.count}`);
+  }
+
+  handleClick = () => {
+    if (this.state.count === this.props.likes.length) {
+      this.setState(prev => ({ count: prev.count + 1 }));
+      this.setState({ bgcolor: "#E60023" });
+      this.setState({ clicked: `You and ${this.state.count} like this` });
+    } else if (this.state.count === this.props.likes.length + 1) {
+      this.setState(prev => ({ count: prev.count - 1 }));
+      this.setState({ bgcolor: "black" });
+      this.setState({ clicked: `${this.state.count - 1} like this` });
+    }
+  };
 
   render() {
     return (
@@ -57,7 +53,6 @@ handleClick = () => {
                   borderRadius: "5%",
                   paddingTop: "3%",
                   minWidth: "300px",
-
                 }}
                 src={`http://localhost:8000${this.props.image}`}
                 alt=''
@@ -72,18 +67,34 @@ handleClick = () => {
                 className=' d-flex profile-save row '
                 style={{ marginTop: "20px" }}
               >
-                <div className='d-flex col element-star-arrow' >
+                <div className='d-flex col element-star-arrow'>
                   <div className='element..' style={{ width: "48px" }}>
-                  {/* <i id="pulse-click" onClick={this.handleClick} style={{cursor:'pointer',color:this.state.bgcolor }}  
-                       className= "fa fa-heart fa-lg" ></i> */}
-                        <i id="pulse-click" onClick={this.handleClick} style={{cursor:'pointer',fill:this.state.bgcolor }}  
-                        ><FontAwesomeIcon  icon={faHeart} size="1x"/></i>
-                       
+                    <i
+                      id='pulse-click'
+                      onClick={this.handleClick}
+                      style={{ cursor: "pointer", fill: this.state.bgcolor }}
+                    >
+                      <svg
+                        aria-hidden='true'
+                        focusable='false'
+                        data-prefix='fas'
+                        data-icon='heart'
+                        class='svg-inline--fa fa-heart fa-w-16 fa-2x '
+                        role='img'
+                        xmlns='http://www.w3.org/2000/svg'
+                        viewBox='0 0 512 512'
+                      >
+                        <path
+                          fill={this.state.bgcolor}
+                          d='M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z'
+                        ></path>
+                      </svg>
+                    </i>
                   </div>
                   <div className='up-arrow' style={{ width: "48px" }}>
                     <svg
-                      height='20'
-                      width='20'
+                      height='32'
+                      width='28'
                       viewBox='0 0 24 24'
                       aria-label='Send'
                       role='img'
@@ -93,10 +104,10 @@ handleClick = () => {
                   </div>
                   <div className='star'>
                     <div style={{ height: "48px", width: "48px" }}>
-                      <svg 
-                      //  onClick={this.props.incrementingCount}
-                        height='20'
-                        width='20'
+                      <svg
+                        //  onClick={this.props.incrementingCount}
+                        height='32'
+                        width='28'
                         viewBox='0 0 24 24'
                         aria-hidden='true'
                         aria-label=''
@@ -107,56 +118,81 @@ handleClick = () => {
                     </div>
                   </div>
                 </div>
-                <div className='col d-flex justify-content-end save-prof' >
-                  <button style={{fontSize: "1.1rem",fontWeight: "bold",padding:'0px 16px'}}className='btn btn rounded-pill dropdown-toggle '>
+                <div className='col d-flex justify-content-end save-prof'>
+                  <button
+                    style={{
+                      fontSize: "1.1rem",
+                      fontWeight: "bold",
+                      padding: "0px 16px",
+                    }}
+                    className='btn btn rounded-pill dropdown-toggle '
+                  >
                     Profile
                   </button>
                   <button
                     className='btn btn rounded-pill'
-                    style={{backgroundColor: "#E60023",
-                    color: "#FFFFFF",
-                      
+                    style={{
+                      backgroundColor: "#E60023",
+                      color: "#FFFFFF",
+
                       fontWeight: "700",
-                      
+
                       width: "69.22px",
-                      
+
                       height: "48px",
-                      
+
                       float: "right",
-                      
+
                       fontSize: "1.1rem",
-                      
+
                       textAlign: "center",
-                      padding:'5px'
-                      
-                      }}
+                      padding: "5px",
+                    }}
                   >
                     Save
                   </button>
                 </div>
               </div>
               <div>
-                <span style={{fontSize:'16px',fontWeight:'normal'}}>{this.state.clicked} </span>
+                <span style={{ fontSize: "16px", fontWeight: "normal" }}>
+                  {this.state.clicked}{" "}
+                </span>
               </div>
               <div className='uploaded-by' style={{ marginTop: "5%" }}>
-                <span style={{ fontSize: "21px", float: "left",fontWeight:'normal' }}>
-                  Uploaded By 
-                  <span style={{ fontWeight: "bold",fontSize: "21px" }}> {this.props.creator.username}</span>
+                <span
+                  style={{
+                    fontSize: "21px",
+                    float: "left",
+                    fontWeight: "normal",
+                  }}
+                >
+                  Uploaded By
+                  <span style={{ fontWeight: "bold", fontSize: "21px" }}>
+                    {" "}
+                    {this.props.creator.username}
+                  </span>
                 </span>
               </div>
               <br />
               <div className='creator-prof row' style={{ marginTop: "30px" }}>
                 <div className='col avatar-follow '>
                   <div className='col' style={{ float: "left" }}>
-                    <img src={`http://localhost:8000${this.props.creator.avatar}`} style={{width:'48px',height:'48px',borderRadius:'50%'}} />
-                    <span>{console.log('@',this.props)}</span>
+                    <img
+                      src={`http://localhost:8000${this.props.creator.avatar}`}
+                      style={{
+                        width: "48px",
+                        height: "48px",
+                        borderRadius: "50%",
+                      }}
+                    />
+                    <span>{console.log("@", this.props)}</span>
                   </div>
                   <div className='col'>
                     <span style={{ fontSize: "14px", fontWeight: "bold" }}>
-                    {this.props.creator.username}
+                      {this.props.creator.username}
                     </span>
                     <br />
-                    <span>{(this.props.creator.following.length)} followers</span>
+                    <span>{this.props.creator.following.length} followers</span>
                   </div>
                 </div>
                 <div className='col avatar-info'></div>
@@ -197,39 +233,56 @@ handleClick = () => {
                 </button>
               </div>
               <div className='comment-container' style={{ marginTop: "80px" }}>
-             
-                  <div style={{
-                        fontSize: "1rem",
-                        fontWeight: "bold",
-                        float: "left",
-                      }}>
-                    Comments
-                   
-                  </div>
-                  <div style={{ float:'left',marginLeft:'1%' }}>
-                    <svg
-                      height='18'
-                      width='18'
-                      viewBox='0 0 24 24'
-                      aria-hidden='true'
-                      aria-label=''
-                      role='img'
-                    >
-                      <path d='M12 19.5.66 8.29c-.88-.86-.88-2.27 0-3.14.88-.87 2.3-.87 3.18 0L12 13.21l8.16-8.06c.88-.87 2.3-.87 3.18 0 .88.87.88 2.28 0 3.14L12 19.5z'></path>
-                    </svg>
-                  </div>
-                
+                <div
+                  style={{
+                    fontSize: "1rem",
+                    fontWeight: "bold",
+                    float: "left",
+                  }}
+                >
+                  Comments
+                </div>
+                <div style={{ float: "left", marginLeft: "1%" }}>
+                  <svg
+                    height='18'
+                    width='18'
+                    viewBox='0 0 24 24'
+                    aria-hidden='true'
+                    aria-label=''
+                    role='img'
+                  >
+                    <path d='M12 19.5.66 8.29c-.88-.86-.88-2.27 0-3.14.88-.87 2.3-.87 3.18 0L12 13.21l8.16-8.06c.88-.87 2.3-.87 3.18 0 .88.87.88 2.28 0 3.14L12 19.5z'></path>
+                  </svg>
+                </div>
               </div>
-              <div className='comment-added row' style={{ width:'100%' ,marginTop:'20%' }}>
+              <div
+                className='comment-added row'
+                style={{ width: "100%", marginTop: "20%" }}
+              >
                 <div className='col-2 user'>
-                  <img src={`http://localhost:8000${this.props.creator.avatar}`} alt=''  style={{width:'48px',height:'48px',borderRadius:'50%',float:'left'}} />
+                  <img
+                    src={`http://localhost:8000${this.props.creator.avatar}`}
+                    alt=''
+                    style={{
+                      width: "48px",
+                      height: "48px",
+                      borderRadius: "50%",
+                      float: "left",
+                    }}
+                  />
                 </div>
                 <div className='col-10'>
                   <div className='row'>
                     <input
                       type='text'
                       placeholder='Add a comment'
-                      style={{ width: "80%", height:'50px',padding:'12px',borderRadius:'30px',border:'0.5px solid #767676' }}
+                      style={{
+                        width: "80%",
+                        height: "50px",
+                        padding: "12px",
+                        borderRadius: "30px",
+                        border: "0.5px solid #767676",
+                      }}
                     />
                   </div>
                   <div className='row' style={{ marginTop: "10px" }}>
@@ -270,7 +323,6 @@ handleClick = () => {
                           role='img'
                         >
                           <path d='M12 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3M3 9c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm18 0c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z'></path>
-                        
                         </svg>
                       </div>
                       <div className='px-1' style={{ marginLeft: "56%" }}>
@@ -318,9 +370,15 @@ handleClick = () => {
               </div>
 
               <div className='d-flex user-save' style={{ marginTop: "100%" }}>
-                <img src={`http://localhost:8000${this.props.creator.avatar}`}  style={{width:'32px',height:'32px',borderRadius:'50%'}} />
+                <img
+                  src={`http://localhost:8000${this.props.creator.avatar}`}
+                  style={{ width: "32px", height: "32px", borderRadius: "50%" }}
+                />
                 <p style={{ marginLeft: "10px" }}>
-                  <span style={{ fontWeight: "bold",fontSize:'16px' }}>You</span>saved this pin
+                  <span style={{ fontWeight: "bold", fontSize: "16px" }}>
+                    You
+                  </span>
+                  saved this pin
                 </p>
               </div>
             </div>
@@ -335,11 +393,13 @@ handleClick = () => {
           }}
         >
           {/* <button onClick={this.handleClick}>click{this.state.count}</button> */}
-          <h3 style={{ fontWeight: "700" ,textAlign:'center'}}>More like this</h3>
+          <h3 style={{ fontWeight: "700", textAlign: "center" }}>
+            More like this
+          </h3>
         </div>
         {/* 3nd Level container */}
-       
-        <Home/>
+
+        <Home />
       </div>
     );
   }

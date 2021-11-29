@@ -70,7 +70,7 @@ class SavedPins(serializers.ModelSerializer):
     creator = creator_Pins()
     class Meta:
         model = Pin
-        fields = ('image','description','created_at','creator','reactees')
+        fields = ('id', 'image', 'description', 'created_at', 'creator', 'reactees')
 
 class Saved_Pins(serializers.ModelSerializer):
      saved_pins=SavedPins(many=True)
