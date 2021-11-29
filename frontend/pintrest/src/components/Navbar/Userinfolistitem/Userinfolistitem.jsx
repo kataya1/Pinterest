@@ -7,7 +7,7 @@ export default function Userinfolistitem({avatarsrc, username, email}) {
         <div className={styles.userdiv}>
             <div className={styles.avatarcont}>
                 
-                <img src={avatarsrc} alt="profile picture"/>
+                <img src={avatarsrc} />
             </div>
             <div className={styles.info}>
                 <p>

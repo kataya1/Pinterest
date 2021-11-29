@@ -22,7 +22,7 @@ import R404 from './components/R404/R404';
 // import PinView from './components/History/viewpins';
 import PinView from './components/PinView/PinView';
 import History from './components/History/History';
-import UserProfile from './components/Profile/UserProfile';
+// import UserProfile from './components/Profile/UserProfile';
 import PassingUserId from './components/Profile/PassingUserId';
 
 
@@ -51,6 +51,8 @@ function App() {
         }).catch(err =>{
           if (err.response){
             console.log(err.response)
+            isValid = false
+            localStorage.removeItem('token')
           }
         }).finally(()=>{
           setisUserLogedin(isValid)
@@ -58,6 +60,8 @@ function App() {
       }
       else{
         setCurrentUser({})
+        isValid =false
+        localStorage.removeItem('token')
       }
     }, [isUserLogedin])
   
