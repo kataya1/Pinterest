@@ -117,10 +117,13 @@ def update_profile(request):
         token = str(request.auth)
         t = Token.objects.get(key=token)
         u = t.user
-        
+
+        print(request.data)
+
         usr = UserSerializer(u,data=request.data)
 
         if usr.is_valid():
+            print(usr.validated_data)
             usr.save()
         return Response(**{'data': usr.data,  'status': status.HTTP_200_OK})
     except Exception as e:

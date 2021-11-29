@@ -8,7 +8,7 @@ import styles from './pages.module.css'
 
 
 const ProfileEdit = () => {
-    const { currentUser, setCurrentUser } = useContext(Authcontext)
+    const { currentUser, setCurrentUser, host } = useContext(Authcontext)
     // const [user,setUser] = useState(currentUser)
     const [username, setUsername] = useState("")
     const [firstName, setFirstName] = useState("")
@@ -17,7 +17,6 @@ const ProfileEdit = () => {
     const [imgURL, setImgURL] = useState("")
     const [inputFile,setInputFile] = useState(null)
 
-    const host = "http://localhost:8000"
     const path = '/accounts/api/v1'
     const endpoint = '/profile/update'
     let token = localStorage.getItem('token')
@@ -39,24 +38,27 @@ const ProfileEdit = () => {
         formdata.append('last_name', lastName)
         formdata.append('username', username)
         formdata.append('bio', bio)
+        formdata.append('is_active', true)
         formdata.append('avatar', inputFile)
+
         let usr = currentUser
         usr.first_name = firstName
         usr.last_name = lastName
-        usr.username = firstName
         usr.bio = bio
+        usr.username = username
+        usr.avatar = inputFile
+
         axios({
             method: 'PUT',
             url: `${host}${path}${endpoint}`,
             headers: {
-                'Content-Type': ' application/json',
                 'Authorization': 'token ' + token
             },
             data:formdata
         }).then((response) => {
             console.log(response)
-            setCurrentUser(usr)
             console.log(usr)
+            setCurrentUser(usr)
         }).catch(err => {
             if (err.response) {
                 console.log(err.response)
@@ -64,14 +66,12 @@ const ProfileEdit = () => {
         })
     }
 
-  
-
     useEffect(() => {
         setUsername(currentUser.username)
         setFirstName(currentUser.first_name)
         setLastName(currentUser.last_name)
         setBio(currentUser.bio)
-        setImgURL(currentUser.avatar)
+        setImgURL(`${host}${currentUser.avatar}`)
         console.log(inputFile)
     }, [currentUser])
 
