@@ -11,7 +11,7 @@ from rest_framework.permissions import IsAuthenticated
 
 @api_view(['GET'])
 def home(request):
-    pins = Pin.objects.all()
+    pins = Pin.objects.all().order_by("-created_at")
     serializer = PinSerializer(pins, many=True)
 
     return Response(data=serializer.data, status=status.HTTP_200_OK)

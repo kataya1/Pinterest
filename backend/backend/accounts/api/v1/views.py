@@ -97,13 +97,15 @@ def get_user(request, user_id):
 @api_view(['PATCH', 'PUT'])
 @authentication_classes([TokenAuthentication])
 # neeed other permissions
-@permission_classes([IsAuthenticated])
 def update_user(request, user_id):
     try:
         user_model = User.objects.get(pk=user_id)
-        print('🍅🍅')
+        usr = UserSerializer(instance=user_model,data=request.data)
 
-        return Response(**{'data': "🍅", 'status': status.HTTP_500_INTERNAL_SERVER_ERROR})
+        if usr.is_valid():
+            usr.save()
+
+        return Response(**{'data': usr.data, 'status': status.HTTP_200_OK})
     except Exception as e:
         return Response(**{'data': str(e), 'status': status.HTTP_500_INTERNAL_SERVER_ERROR})
 
@@ -111,7 +113,22 @@ def update_user(request, user_id):
 @authentication_classes([TokenAuthentication])
 @permission_classes([IsAuthenticated])
 def update_profile(request):
-    pass
+    try:
+        token = str(request.auth)
+        t = Token.objects.get(key=token)
+        u = t.user
+
+        print(request.data)
+
+        usr = UserSerializer(u,data=request.data)
+
+        if usr.is_valid():
+            usr.save()
+            print("🍅🍅🍅")
+            print(usr)
+            return Response(**{'data': usr.data,  'status': status.HTTP_200_OK})
+    except Exception as e:
+        return Response(**{'data': str(e),  'status': status.HTTP_404_NOT_FOUND})
 
 # neeed other permissions
 @api_view(['DELETE'])

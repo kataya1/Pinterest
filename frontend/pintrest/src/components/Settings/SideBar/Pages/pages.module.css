@@ -11,7 +11,7 @@
 
 .profilePhoto .image {
     width: 4rem;
-    width: 4rem;
+    height: 4rem;
     border-radius: 50%;
 }
 
@@ -39,6 +39,7 @@
     -ms-user-select: none;
     user-select: none;
 }
+
 
 
 /* Hide the browser's default radio button */
@@ -237,6 +238,45 @@
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
+  }
+
+  .DownBar {
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    right: 50px;
+    z-index: 50;
+    padding-bottom: 10px;
+    background-color: white;
+}
+.borderRaduis50{
+    border-radius: 50%;
+}
+.questionBtn {
+    background-color: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+  }
+  .questionBtn:hover {
+    background-color: #ddd;
+  }
+  .svgLogo {
+    position: absolute;
+    top: 45%;
+    right: -0%;
+    transform: translate(-50%, -50%);
+    color: var(--icon);
+  }
+
+  .posrelative{
+    position:relative;
   }
 
 /* Reuseable Code */
