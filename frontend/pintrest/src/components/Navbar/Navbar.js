@@ -20,6 +20,7 @@ import { Authcontext } from "../Authentication/Authcontext";
 import Dropdown, { Dropmenuitem } from "./Dropdown/Dropdown";
 import axios from "axios";
 import Userinfolistisem from "./Userinfolistitem/Userinfolistitem"
+import newlogo from "./newlogo.png"
 
 
 
@@ -88,11 +89,13 @@ export default function Navbar() {
                 <ButtonFlex buttonStyle="btn--logo">
                     <FontAwesomeIcon icon={["fab", "pinterest"]} size="2x" />
                 </ButtonFlex>
+                {/* <img src={newlogo} style={{height: "20px",}} alt="" /> */}
             </Link>
+
             <Link to="/">
                 <ButtonFlex buttonStyle="btn--text">Home</ButtonFlex>
             </Link>
-            <Searchbox />
+            <Searchbox dropOpen={dropOpen} setDropOpen={setDropOpen}/>
             {isUserLogedin ? (
                 <>
 

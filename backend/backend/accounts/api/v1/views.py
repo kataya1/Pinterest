@@ -1,4 +1,5 @@
 from collections import UserList
+import warnings
 from rest_framework import status
 from rest_framework.decorators import api_view,permission_classes,authentication_classes
 from rest_framework.response import Response
@@ -8,6 +9,8 @@ from rest_framework.authtoken.models import Token
 from .serializers import UserSignUpSerializer, UserSerializer
 from rest_framework.renderers import JSONRenderer
 from accounts.models import User
+from pins.models import Pin
+import http.client
 
 
 
@@ -149,7 +152,48 @@ def list_users(request):
         return Response(**{'data': usrlist,  'status': status.HTTP_200_OK})
     except Exception as e:  
         return Response(**{'data': str(e),  'status': status.HTTP_500_INTERNAL_SERVER_ERROR})
-        
+
+
+from django.db.models import Q
+from pins.api.v1.serializers import PinSerializer
+import http.client
+from urllib.parse import quote
+@api_view(['GET'])
+def search_autocomplete(request):
+    try:
+        print(request.GET)
+        query = request.GET['q']
+        p = Pin.objects.filter(title__icontains=query)
+        # print(p)
+        pinlist = [PinSerializer(pin).data for pin in p ]
+        u = User.objects.filter(Q(username__icontains=query) | Q(first_name__icontains=query)| Q(last_name__icontains=query) | Q(email__icontains=query) )
+        usrlist = [UserSerializer(user).data for user in u] 
+        # print(u)
+
+        # google auto suggestion
+        try:
+            conn = http.client.HTTPSConnection("suggestqueries.google.com")
+            payload = ''
+            headers = {}
+            conn.request("GET", f"/complete/search?client=chrome&q={quote(query)}", payload, headers)
+            res = conn.getresponse()
+            data = res.read()
+            
+            googlesuggest = data.decode("utf-8").split("]")[0].split("[")[2].split(",")
+        except Exception as e:
+            print(e)
+
+        # url = "suggestqueries.google.com/complete/search?client=chrome&q=dog"
+        # payload={}
+        # headers = {}
+        return Response(**{'data': { 'users': usrlist[:4], 'pins': pinlist[:4], 'google': googlesuggest},  'status': status.HTTP_200_OK})
+    except Exception as e:
+        return Response(**{'data': str(e),  'status': status.HTTP_500_INTERNAL_SERVER_ERROR})
+
+    pass
+
+
+
 #
 # arafa -- sahar
 #

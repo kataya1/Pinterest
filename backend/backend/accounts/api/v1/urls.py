@@ -20,9 +20,10 @@ urlpatterns = [
     path('users/<int:user_id>', views.get_user, name="get_user"), #done
     path('users/<int:user_id>/delete', views.delete_user, name="delete_user"), #done
     path('users/<int:user_id>/update', views.update_user, name="update_user"),
-
+    
+    path('suggestquery', views.search_autocomplete),
     #
-    # arafar -sahar
+    # arafar -sahar,
     #
 
     path('list/<int:id>',list_user,name='get-data'),

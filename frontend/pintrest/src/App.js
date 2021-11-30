@@ -4,24 +4,28 @@ import "./App.css";
 import Home from "./components/Home/Home";
 import Settings from "./components/Settings/Settings";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import React, { useState, useEffect } from "react";
-import AccountSettings from "./components/Settings/SideBar/Pages/AccountSettings";
-import ProfileEdit from "./components/Settings/SideBar/Pages/ProfileEdit";
-import Claim from "./components/Settings/SideBar/Pages/Claim";
-import Permission from "./components/Settings/SideBar/Pages/Permissions";
-import Notification from "./components/Settings/SideBar/Pages/Notification";
-import Privacy from "./components/Settings/SideBar/Pages/Privacy";
-import CreatePin from "./components/createPin/CreatePin";
-import Profile from "./components/Profile/Profile";
-import { Authcontext } from "./components/Authentication/Authcontext";
-import Login from "./components/Authentication/Login/Login";
-import Signup from "./components/Authentication/Signup/Signup";
-import Welcome from "./components/Welcome/Welcome";
-import axios from "axios";
-import R404 from "./components/R404/R404";
-import PinView from "./components/PinView/PinView";
-import History from "./components/History/History";
-import PassingUserId from "./components/Profile/PassingUserId";
+import React, { useState, useEffect } from 'react';
+import AccountSettings from './components/Settings/SideBar/Pages/AccountSettings'
+import ProfileEdit from './components/Settings/SideBar/Pages/ProfileEdit'
+import Claim from './components/Settings/SideBar/Pages/Claim'
+import Permission from './components/Settings/SideBar/Pages/Permissions';
+import Notification from './components/Settings/SideBar/Pages/Notification';
+import Privacy from './components/Settings/SideBar/Pages/Privacy';
+import CreatePin from './components/createPin/CreatePin';
+import Profile from './components/Profile/Profile';
+import { Authcontext } from './components/Authentication/Authcontext';
+import Login from './components/Authentication/Login/Login';
+import Signup from './components/Authentication/Signup/Signup';
+import Welcome from './components/Welcome/Welcome';
+import axios from 'axios';
+import R404 from './components/R404/R404';
+// import PinView from './components/History/viewpins';
+import PinView from './components/PinView/PinView';
+import History from './components/History/History';
+// import UserProfile from './components/Profile/UserProfile';
+import PassingUserId from './components/Profile/PassingUserId';
+
+
 
 function App() {
   const host = "http://localhost:8000";
@@ -32,35 +36,40 @@ function App() {
   const [isUserLogedin, setisUserLogedin] = useState(isValid);
   const [currentUser, setCurrentUser] = useState({});
   useEffect(() => {
-    if (isUserLogedin) {
-      isValid = true;
-      token = localStorage.getItem("token");
-
-      axios({
-        method: "GET",
-        url: `${host}${path}${endpoint}`,
-        headers: {
-          "Content-Type": " application/json",
-          Authorization: "token " + token,
-        },
-      })
-        .then(response => {
-          setCurrentUser(response.data);
-        })
-        .catch(err => {
-          if (err.response) {
-            console.log(err.response);
+      if (isUserLogedin){
+        isValid= true
+        token = localStorage.getItem('token')
+  
+        axios({
+          method: 'GET',
+          url: `${host}${path}${endpoint}`,
+          headers: {
+            'Content-Type': ' application/json',
+            'Authorization': 'token '+ token
           }
+        }).then((response) => {
+          setCurrentUser(response.data)
+        }).catch(err =>{
+          if (err.response){
+            console.log(err.response)
+            isValid = false
+            localStorage.removeItem('token')
+          }
+        }).finally(()=>{
+          setisUserLogedin(isValid)
         })
-        .finally(() => {
-          setisUserLogedin(isValid);
-        });
-    } else {
-      setCurrentUser({});
-    }
-  }, [isUserLogedin]);
+      }
+      else{
+        setCurrentUser({})
+        isValid =false
+        localStorage.removeItem('token')
+      }
+    }, [isUserLogedin])
+  
+  return (  
 
-  return (
+
+
     <Router>
       <Authcontext.Provider
         value={{ isUserLogedin, setisUserLogedin, currentUser, host }}

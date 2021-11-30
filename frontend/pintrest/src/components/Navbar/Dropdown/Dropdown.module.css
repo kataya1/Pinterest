@@ -2,6 +2,8 @@
     background-color: white;
     --fnt-clr: black;
     color: var(--fnt-clr);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 700;
 
     display: flex;
     flex-direction: column;
@@ -11,6 +13,7 @@
     top: calc(100% + 0.3rem);
     right: 0%;
    
+    min-width: 200px;
     height: fit-content; 
     width: fit-content;
     border-radius: 5px;
