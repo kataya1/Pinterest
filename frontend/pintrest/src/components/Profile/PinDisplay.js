@@ -1,22 +1,30 @@
-import axios from "axios";
-import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
+import "./UserInfo.css";
 
- 
-const PinDisplay = (props) => {
-    
-    return ( 
-    <div className='pins'  >
-        <div className='pin'>
-            <div className='pin-image' >
-            <img src={`http://localhost:8000${props.image}`}/>
-           </div>
+// import '../Home/pin.css'
 
-            <p className='title' >{props.desc}</p>
-           
+const PinDisplay = props => {
+  return (
+    <div className='pins'>
+      <div className='pin'>
+        <div className='pin-image '>
+          <Link
+            to={`/pin/${props.id}`}
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <img
+              id='LegendaryImage'
+              src={`http://localhost:8000${props.image}`}
+              alt='pin'
+            />
+
+            <p className='title'>{props.desc}</p>
+          </Link>
         </div>
+      </div>
     </div>
+  );
+};
 
-     );
-}
- 
 export default PinDisplay;
