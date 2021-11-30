@@ -8,29 +8,20 @@ class PinHome extends Component {
     super(props);
 
     this.state = {
-      userPins: [],
+      serPins: [],
       savedPins: [],
       errormsg: "",
     };
   }
-  onMouseEnterHandler = e => {
-    e.target.nextElementSibling.classList.toggle("overlay-on");
-  };
 
-  onMouseLeaveHandler = e => {
-    e.target.nextElementSibling.classList.toggle("overlay-on");
-  };
   componentDidMount() {
     axios
       .get(`http://localhost:8000/accounts/api/v1/save/${this.props.id}`)
       .then(response => {
-        console.log(response);
         this.setState({ userPins: response.data });
-        console.log(response.data[0].saved_pins);
         this.setState({ savedPins: response.data[0].saved_pins });
       })
       .catch(error => {
-        console.log(error);
         this.setState({ errormsg: "error retreiving data" });
       });
   }

@@ -1,9 +1,5 @@
 import React, { Component } from "react";
 import Home from "../Home/Home";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
-library.add(faHeart);
 
 class TrialZoom extends Component {
   constructor(props) {
@@ -14,7 +10,6 @@ class TrialZoom extends Component {
       clicked: `${this.props.likes.length} like this`,
       bgcolor: "",
     };
-    console.log(`sahar${this.state.count}`);
   }
 
   handleClick = () => {
@@ -33,13 +28,10 @@ class TrialZoom extends Component {
     return (
       <div>
         <div>
-          {" "}
-          {/* className={style.container + " " + "container"} */}
           <div
-            className='row d-flex justify-content-center flex-wrap'
+            className='row d-flex justify-content-center flex-wrap shadow-lg p-3 mb-5 bg-body'
             style={{
               margin: "0 10%",
-              boxShadow: "6px 6px 3px  rgba(0,0,0,0.2)",
               borderRadius: "25px",
               marginTop: "3%",
               overflow: "hidden",
@@ -79,7 +71,7 @@ class TrialZoom extends Component {
                         focusable='false'
                         data-prefix='fas'
                         data-icon='heart'
-                        class='svg-inline--fa fa-heart fa-w-16 fa-2x '
+                        className='svg-inline--fa fa-heart fa-w-16 fa-2x '
                         role='img'
                         xmlns='http://www.w3.org/2000/svg'
                         viewBox='0 0 512 512'
@@ -184,8 +176,8 @@ class TrialZoom extends Component {
                         height: "48px",
                         borderRadius: "50%",
                       }}
+                      alt='avatar'
                     />
-                    <span>{console.log("@", this.props)}</span>
                   </div>
                   <div className='col'>
                     <span style={{ fontSize: "14px", fontWeight: "bold" }}>
@@ -369,10 +361,16 @@ class TrialZoom extends Component {
                 </button>
               </div>
 
-              <div className='d-flex user-save' style={{ marginTop: "100%" }}>
+              <div
+                className='d-flex user-save'
+                style={{
+                  marginTop: "80%",
+                }}
+              >
                 <img
                   src={`http://localhost:8000${this.props.creator.avatar}`}
                   style={{ width: "32px", height: "32px", borderRadius: "50%" }}
+                  alt='avatar'
                 />
                 <p style={{ marginLeft: "10px" }}>
                   <span style={{ fontWeight: "bold", fontSize: "16px" }}>

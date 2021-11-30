@@ -32,23 +32,21 @@ class EmptyComp extends Component {
         },
       })
       .then(response => {
-        this.setState({ users: [response.data] }, () =>
-          console.log(this.state)
-        );
+        this.setState({ users: [response.data] });
       })
       .catch(error => {
-        console.log(error);
         this.setState({ errormsg: "error retreiving data" });
       });
   };
 
   render() {
-    const { users, errormsg } = this.state;
+    const { users } = this.state;
+
     return (
       <div>
         {users.map(user => {
           return (
-            <div>
+            <div key={user.id}>
               <ProfileData
                 userId={user.id}
                 username={user.username}

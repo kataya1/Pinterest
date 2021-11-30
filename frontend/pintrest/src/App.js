@@ -1,8 +1,8 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from './components/Navbar/Navbar'
-import './App.css'
-import Home from './components/Home/Home';
-import Settings from './components/Settings/Settings';
+import "bootstrap/dist/css/bootstrap.min.css";
+import Navbar from "./components/Navbar/Navbar";
+import "./App.css";
+import Home from "./components/Home/Home";
+import Settings from "./components/Settings/Settings";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import AccountSettings from './components/Settings/SideBar/Pages/AccountSettings'
@@ -26,14 +26,15 @@ import History from './components/History/History';
 import PassingUserId from './components/Profile/PassingUserId';
 
 
+
 function App() {
-  const host = "http://localhost:8000"
-  const path = '/accounts/api/v1'
-  const endpoint = '/profile'
-  let token = localStorage.getItem('token')
-  let isValid = token? true : false
-  const [isUserLogedin, setisUserLogedin] = useState(isValid)
-  const [currentUser, setCurrentUser] = useState({})
+  const host = "http://localhost:8000";
+  const path = "/accounts/api/v1";
+  const endpoint = "/profile";
+  let token = localStorage.getItem("token");
+  let isValid = token ? true : false;
+  const [isUserLogedin, setisUserLogedin] = useState(isValid);
+  const [currentUser, setCurrentUser] = useState({});
   useEffect(() => {
       if (isUserLogedin){
         isValid= true
@@ -66,37 +67,47 @@ function App() {
     }, [isUserLogedin])
   
   return (  
+
+
+
     <Router>
-      <Authcontext.Provider value={{ isUserLogedin, setisUserLogedin, currentUser, host }}>
+      <Authcontext.Provider
+        value={{ isUserLogedin, setisUserLogedin, currentUser, host }}
+      >
         <Navbar />
         <Routes>
-
-          {isUserLogedin? (
-          <>
-            <Route path="/" exact element={<Home />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/create" exact element={<CreatePin />} />
-            <Route path="pin/:Id" element={<PinView/>}/>
-            <Route path="user/:Id" element={<PassingUserId />} />
-            <Route path="/settings" element={<Settings />} >
-              <Route path="/settings/" element={<ProfileEdit />} />
-              <Route path="/settings/account-settings" element={<AccountSettings />} />
-              <Route path="/settings/claim" element={<Claim />} />
-              <Route path="/settings/permissions" element={<Permission />} />
-              <Route path="/settings/notifications" element={<Notification />} />
-              <Route path="/settings/privacy" element={<Privacy />} />
-            </Route>
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/edit" element={<History/>} />
-          </>) : (
-          <>
-            <Route path="/" exact element={<Welcome />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-          </>
+          {isUserLogedin ? (
+            <>
+              <Route path='/' exact element={<Home />} />
+              <Route path='/home' element={<Home />} />
+              <Route path='/create' exact element={<CreatePin />} />
+              <Route path='pin/:Id' element={<PinView />} />
+              <Route path='user/:Id' element={<PassingUserId />} />
+              <Route path='/settings' element={<Settings />}>
+                <Route path='/settings/' element={<ProfileEdit />} />
+                <Route
+                  path='/settings/account-settings'
+                  element={<AccountSettings />}
+                />
+                <Route path='/settings/claim' element={<Claim />} />
+                <Route path='/settings/permissions' element={<Permission />} />
+                <Route
+                  path='/settings/notifications'
+                  element={<Notification />}
+                />
+                <Route path='/settings/privacy' element={<Privacy />} />
+              </Route>
+              <Route path='/profile' element={<Profile />} />
+              <Route path='/edit' element={<History />} />
+            </>
+          ) : (
+            <>
+              <Route path='/' exact element={<Welcome />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/signup' element={<Signup />} />
+            </>
           )}
-          <Route path="*" element={<R404/>}></Route>
-
+          <Route path='*' element={<R404 />}></Route>
         </Routes>
       </Authcontext.Provider>
     </Router>

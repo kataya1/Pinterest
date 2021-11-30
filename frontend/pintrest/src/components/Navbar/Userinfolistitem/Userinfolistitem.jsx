@@ -1,5 +1,6 @@
-import React from 'react'
-import styles from './Userinfolistitem.module.css'
+import React from "react";
+import styles from "./Userinfolistitem.module.css";
+
 
 
 export default function Userinfolistitem({avatarsrc, username, email}) {
