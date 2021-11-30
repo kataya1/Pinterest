@@ -47,7 +47,7 @@ const AccountSettings = () => {
 
     return (
         <React.Fragment>
-            <form onSubmit={(e) => onSubmitHandler(e)}>
+            <form onSubmit={(e) => {}}>
                 <div className={styles.topSection}>
                     <h3 className={`${styles.header3} ${styles.m0} ${styles.pb05} ${styles.mr1}`}>Account Settings</h3>
                     <p>Set your login preferences, help us personalize your experience and make big account changes here</p>

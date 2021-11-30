@@ -10,10 +10,10 @@ import styles from './pages.module.css'
 const ProfileEdit = () => {
     const { currentUser, setCurrentUser, host } = useContext(Authcontext)
     // const [user,setUser] = useState(currentUser)
-    const [username, setUsername] = useState("")
-    const [firstName, setFirstName] = useState("")
-    const [lastName, setLastName] = useState("")
-    const [bio, setBio] = useState("")
+    const [username, setUsername] = useState(currentUser.username)
+    const [firstName, setFirstName] = useState(currentUser.first_name)
+    const [lastName, setLastName] = useState(currentUser.last_name)
+    const [bio, setBio] = useState(currentUser.bio)
     const [imgURL, setImgURL] = useState("")
     const [inputFile,setInputFile] = useState(null)
 
@@ -39,14 +39,16 @@ const ProfileEdit = () => {
         formdata.append('username', username)
         formdata.append('bio', bio)
         formdata.append('is_active', true)
-        formdata.append('avatar', inputFile)
+        console.log(inputFile)
+        if (inputFile !== null)
+            formdata.append('avatar', inputFile)
 
-        let usr = currentUser
-        usr.first_name = firstName
-        usr.last_name = lastName
-        usr.bio = bio
-        usr.username = username
-        usr.avatar = inputFile
+        // let usr = currentUser
+        // usr.first_name = firstName
+        // usr.last_name = lastName
+        // usr.bio = bio
+        // usr.username = username
+        // usr.avatar = inputFile
 
         axios({
             method: 'PUT',
@@ -56,9 +58,9 @@ const ProfileEdit = () => {
             },
             data:formdata
         }).then((response) => {
-            console.log(response)
-            console.log(usr)
-            setCurrentUser(usr)
+            console.log(response.data)
+            // console.log(usr)
+            setCurrentUser(response.data)
         }).catch(err => {
             if (err.response) {
                 console.log(err.response)

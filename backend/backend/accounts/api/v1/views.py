@@ -123,9 +123,10 @@ def update_profile(request):
         usr = UserSerializer(u,data=request.data)
 
         if usr.is_valid():
-            print(usr.validated_data)
             usr.save()
-        return Response(**{'data': usr.data,  'status': status.HTTP_200_OK})
+            print("🍅🍅🍅")
+            print(usr)
+            return Response(**{'data': usr.data,  'status': status.HTTP_200_OK})
     except Exception as e:
         return Response(**{'data': str(e),  'status': status.HTTP_404_NOT_FOUND})
 
