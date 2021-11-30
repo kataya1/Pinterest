@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./UserInfo.css";
+import { Link } from 'react-router-dom';
 
 class ProfileData extends Component {
   render() {
@@ -36,11 +37,13 @@ class ProfileData extends Component {
                   </span>
                 </button>
                 <div>
+                  <Link to='/settings'>
                   <button type='button' className='btn btn-light rounded-pill'>
                     <span style={{ fontSize: "16px", fontWeight: "700" }}>
                       Edit profile
                     </span>
                   </button>
+                  </Link>
                 </div>
               </div>
             </div>

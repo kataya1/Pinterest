@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Home from "../Home/Home";
-
+import { Link } from 'react-router-dom';
 class TrialZoom extends Component {
   constructor(props) {
     super(props);
@@ -23,7 +23,23 @@ class TrialZoom extends Component {
       this.setState({ clicked: `${this.state.count - 1} like this` });
     }
   };
-
+  
+  onClickHandler = (e, id) => {
+    e.stopPropagation();
+    e.preventDefault();
+    const token = localStorage.getItem("token");
+    const data = { pin: id };
+    e.target.style.backgroundColor = "black";
+    const url = "http://localhost:8000/pin/save/";
+    fetch(url, {
+      method: "post",
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }).catch(console.error);
+  };
   render() {
     return (
       <div>
@@ -111,17 +127,21 @@ class TrialZoom extends Component {
                   </div>
                 </div>
                 <div className='col d-flex justify-content-end save-prof'>
+                  <Link to='/profile'>
                   <button
                     style={{
                       fontSize: "1.1rem",
                       fontWeight: "bold",
-                      padding: "0px 16px",
+                      padding: "10px 16px 0px 16px",
                     }}
                     className='btn btn rounded-pill dropdown-toggle '
                   >
                     Profile
                   </button>
+                  </Link>
                   <button
+                    onClick={e => this.onClickHandler(e, this.props.id)}
+                    value='Save'
                     className='btn btn rounded-pill'
                     style={{
                       backgroundColor: "#E60023",
