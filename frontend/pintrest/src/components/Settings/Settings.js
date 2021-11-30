@@ -3,7 +3,6 @@ import SideBar from "./SideBar/SideBar"
 import { Outlet } from "react-router-dom"
 
 import styles from './Settings.module.css'
-import DownBar from "./DownBar/DownBar"
 
 const Settings = () =>{
     return(
@@ -13,9 +12,7 @@ const Settings = () =>{
             <div className={styles.sidebarContent}>
                 <Outlet />
             </div>
-            <div className={styles.downBar}>
-                <DownBar />
-            </div>
+            
         </div>
     </React.Fragment>
     )

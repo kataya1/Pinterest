@@ -1,12 +1,24 @@
 .sidebar {
     height: 100%;
-    width: 25%;
     float: left;
     padding: 1.8rem 1rem 1rem;
+    width: 20%;
 }
 .navlinkButton {
     width: 50%;
 }
 .displayBloack {
     display: inline-block;
+}
+@media only screen and (max-width: 576px) {
+    .sidebar {
+        height: 50%;
+        width: 100%;
+    }
+}
+@media only screen and (min-width: 576px) and (max-width: 768px) {
+    .sidebar{
+        width: 25%;
+    }
+	/* // do something in this width range. */
 }
