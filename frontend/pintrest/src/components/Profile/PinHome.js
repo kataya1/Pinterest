@@ -41,14 +41,12 @@ class PinHome extends Component {
         >
           {this.state.savedPins.map(item => {
             return (
-              <div>
-                <PinDisplay
-                  key={item.id}
-                  id={item.id}
-                  image={item.image}
-                  desc={item.description}
-                />
-              </div>
+              <PinDisplay
+                key={item.id}
+                id={item.id}
+                image={item.image}
+                desc={item.description}
+              />
             );
           })}
         </Masonry>
