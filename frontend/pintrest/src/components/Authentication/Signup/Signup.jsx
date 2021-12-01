@@ -21,7 +21,7 @@ export default function Signup() {
     let token = "";
     const submitHandler = (e) => {
         e.preventDefault();
-        console.log("trying to signup 🍅");
+        console.log("trying to signup");
 
         setLoading(true);
         setError({});

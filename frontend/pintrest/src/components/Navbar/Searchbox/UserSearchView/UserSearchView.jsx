@@ -11,7 +11,7 @@ export default function UserSearchView({avatar, username, email, first_name, las
         <div className={styles.userdiv}>
             <div className={styles.avatarcont}>
                 
-                <img src={`${host}${avatar ? avatar : "/media/profilePic/default.jpg"}`} alt="profile picture"/>
+                <img src={`${host}${avatar ? avatar : "/media/profilePic/default.jpg"}`} alt="profile"/>
             </div>
             <div className={styles.info}>
                 <p>

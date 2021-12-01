@@ -46,7 +46,7 @@ class CreatePin extends React.Component{
           
       }
 
-      componentDidMount(){
+    componentDidMount(){
         this.getData();
     };
     
@@ -63,12 +63,16 @@ class CreatePin extends React.Component{
         
 
         fetch(url,{
-            method:"post",
+            method:"POST",
             headers:{
                 'Authorization': `Token ${token}`
             },
             body:formdata,
-        }).catch(console.error)
+        }).then((res)=>{
+            if (res){
+                console.log(res)
+            }
+        }).catch((error)=>{console.log(error)})
 
     }
 
@@ -128,7 +132,7 @@ class CreatePin extends React.Component{
                             <input className="media-upload" onChange={(e)=>this.uploadImage(e)} type="file" name='image' />
                             {this.state.url.length > 16 && <img  className="media-back" src={this.state.url} alt="."/>} 
                             
-                            {this.state.url == "[object Object]" && <div className="media-back">
+                            { typeof this.state.url === "object" && <div className="media-back">
                                 <div className="media-content">
                                     <div>
                                     <FontAwesomeIcon icon={faArrowAltCircleUp}/>
@@ -151,7 +155,7 @@ class CreatePin extends React.Component{
                             <div className="card-body">
                                 <input type='text' name='title' className="card-title" placeholder='Add Your Title'/>
                                 <div className='user'>
-                                    <img className='avatar' src={`http://localhost:8000${this.state.data.avatar}`}/>
+                                    <img className='avatar' alt="avatar" src={`http://localhost:8000${this.state.data.avatar}`}/>
                                     <p className='name'>{this.state.data.username}</p>
                                 </div> 
                                 <input type='text' name='description' className="card-text" placeholder='Tell everyone what your Pin is about'/>

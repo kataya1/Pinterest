@@ -10,7 +10,7 @@ export default function UserSearchView({image, title, created_at}) {
     return (
         <div className={styles.pindev}>
             <div className={styles.imagecont}>
-                <img src={`${host}${image ? image : "/media/pins/defaultpin.jpg"}`} />
+                <img alt="" src={`${host}${image ? image : "/media/pins/defaultpin.jpg"}`} />
             </div>
             <div className={styles.info}>
                 <p>
