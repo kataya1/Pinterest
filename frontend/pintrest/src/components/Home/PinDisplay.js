@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp, faEllipsisH } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { Authcontext } from "../Authentication/Authcontext";
+
 
 const PinDisplay = props => {
+  const {media} = useContext(Authcontext)
   return (
     <div className='pins'>
       <div className='pin'>
@@ -13,7 +16,7 @@ const PinDisplay = props => {
         >
           <div className='pin-image'>
             <img
-              src={`http://127.0.0.1:8000${props.image}`}
+              src={`${media}${props.image}`}
               onMouseOver={props.onMouseEnterHandler}
               onMouseOut={props.onMouseLeaveHandler}
               alt='pin'
@@ -42,7 +45,7 @@ const PinDisplay = props => {
           <div className='user'>
             <img
               className='avatar'
-              src={`http://localhost:8000${props.avatar}`}
+              src={`${media}${props.avatar}`}
               alt='avatar'
             />
             <p className='name'>{props.name}</p>

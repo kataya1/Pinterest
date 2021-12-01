@@ -29,6 +29,9 @@ import PassingUserId from './components/Profile/PassingUserId';
 
 function App() {
   const host = "http://localhost:8000";
+  // localhost in dev and  "" in production
+  const media = "http://localhost:8000"; 
+  // const media = "";
   const path = "/accounts/api/v1";
   const endpoint = "/profile";
   let token = localStorage.getItem("token");
@@ -72,7 +75,7 @@ function App() {
 
     <Router>
       <Authcontext.Provider
-        value={{ isUserLogedin, setisUserLogedin, currentUser, host }}
+        value={{ isUserLogedin, setisUserLogedin, currentUser, host, media }}
       >
         <Navbar />
         <Routes>
