@@ -18,27 +18,32 @@ const AccountSettings = () => {
 
     const onSubmitHandler = (e) => {
         e.preventDefault()
-        let usr = currentUser
-        usr.email = email
-        axios({
-            method: 'PUT',
-            url: `${host}${path}${endpoint}`,
-            headers: {
-                'Content-Type': ' application/json',
-                'Authorization': 'token ' + token
-            },
-            data:{
-                email: email,
-            }
-        }).then((response) => {
-            console.log(response)
-            setCurrentUser(usr)
 
-        }).catch(err => {
-            if (err.response) {
-                console.log(err.response)
-            }
-        })
+        // this if statement so that onsubmithandler does nothing, remove it when you're ready
+        if (false){
+
+            let usr = currentUser
+            usr.email = email
+            axios({
+                method: 'PUT',
+                url: `${host}${path}${endpoint}`,
+                headers: {
+                    'Content-Type': ' application/json',
+                    'Authorization': 'token ' + token
+                },
+                data:{
+                    email: email,
+                }
+            }).then((response) => {
+                console.log(response)
+                setCurrentUser(usr)
+    
+            }).catch(err => {
+                if (err.response) {
+                    console.log(err.response)
+                }
+            })
+        }
     }
     useEffect(() => {
         setEmail(currentUser.email)
@@ -47,7 +52,7 @@ const AccountSettings = () => {
 
     return (
         <React.Fragment>
-            <form onSubmit={(e) => {}}>
+            <form onSubmit={(e) => {onSubmitHandler(e)}}>
                 <div className={styles.topSection}>
                     <h3 className={`${styles.header3} ${styles.m0} ${styles.pb05} ${styles.mr1}`}>Account Settings</h3>
                     <p>Set your login preferences, help us personalize your experience and make big account changes here</p>
