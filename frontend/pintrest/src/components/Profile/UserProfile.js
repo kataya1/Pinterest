@@ -5,6 +5,7 @@ import OrganisedIdea from './OrganisedIdea';
 import PinHome from './PinHome';
 import ProfileData2 from './ProfileData2';
 
+const host = localStorage.getItem('host')
 
 class UserProfile extends Component {
     constructor(props) {
@@ -22,7 +23,7 @@ class UserProfile extends Component {
     };
 
     bringUserData = () => {
-        const host="http://localhost:8000"
+
         const path='/accounts/api/v1'
         const endpoint=`/users/${this.props.id}`
        

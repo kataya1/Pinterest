@@ -5,7 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Authcontext } from "../Authcontext";
 export default function Signin() {
-    const { setisUserLogedin } = useContext(Authcontext);
+    const { setisUserLogedin, host } = useContext(Authcontext);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
@@ -21,7 +21,7 @@ export default function Signin() {
             username,
             password,
         };
-        const host = "http://localhost:8000";
+        
         const path = "/accounts/api/v1";
         const endpoint = "/login";
         axios({
@@ -67,8 +67,7 @@ export default function Signin() {
                 >
                     {Object.keys(error).map((key, index) => (
                         <>
-                            <span>{`${key}:  ${error[key]}`}</span>
-                            <br />
+                            <span key={`proplem${key}`}>{`${key}:  ${error[key]}`}</span>
                         </>
                     ))}
                 </div>
@@ -80,6 +79,7 @@ export default function Signin() {
                         placeholder="username"
                         onChange={(e) => setUsername(e.target.value)}
                         value={username}
+                        autoComplete="true"
                     />
                     <input
                         type="password"
@@ -88,6 +88,7 @@ export default function Signin() {
                         placeholder="password"
                         onChange={(e) => setPassword(e.target.value)}
                         value={password}
+                        autoComplete="true"
                     />
 
                     <button type="submit">

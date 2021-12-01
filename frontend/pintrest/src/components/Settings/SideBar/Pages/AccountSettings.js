@@ -7,11 +7,11 @@ import styles2 from './pages.module.css'
 
 
 const AccountSettings = () => {
-    const { currentUser, setCurrentUser } = useContext(Authcontext)
+    const { currentUser, setCurrentUser, host } = useContext(Authcontext)
     const [email, setEmail] = useState("")
 
 
-    const host = "http://localhost:8000"
+    
     const path = '/accounts/api/v1'
     const endpoint = '/profile/update'
     let token = localStorage.getItem('token')

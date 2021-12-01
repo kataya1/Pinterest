@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./UserInfo.css";
 import { Link } from 'react-router-dom';
 
+const media = localStorage.getItem('media')
 class ProfileData extends Component {
   render() {
     return (
@@ -13,7 +14,7 @@ class ProfileData extends Component {
               <div>
                 <img
                   className='profile-image'
-                  src={`http://localhost:8000${this.props.avatar}`}
+                  src={`${media}${this.props.avatar}`}
                   alt='profile'
                 />
               </div>

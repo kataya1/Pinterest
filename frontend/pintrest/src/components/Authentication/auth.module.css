@@ -59,6 +59,7 @@
     /* transition: ; */
 }
 .form-container p,.form-container span{
+    display: block;
     text-align: center;
     font-size: small;
 }

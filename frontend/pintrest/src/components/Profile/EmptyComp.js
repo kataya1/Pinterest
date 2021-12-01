@@ -7,6 +7,7 @@ import OrganisedIdea from "./OrganisedIdea";
 import PinHome from "./PinHome";
 import AnQ from "../Home/Anq-btns";
 
+const host = localStorage.getItem('host')
 class EmptyComp extends Component {
   constructor(props) {
     super(props);
@@ -25,7 +26,7 @@ class EmptyComp extends Component {
     const token = localStorage.getItem("token");
 
     axios
-      .get("http://localhost:8000/accounts/api/v1/profile", {
+      .get(`${host}/accounts/api/v1/profile`, {
         headers: {
           Authorization: `Token ${token}`,
           "Content-type": "application/json",

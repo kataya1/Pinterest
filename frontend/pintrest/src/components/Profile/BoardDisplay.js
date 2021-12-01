@@ -1,3 +1,5 @@
+
+const media = localStorage.getItem('media')
 const BoardDisplay = props => {
   return (
     <div className='boards'>
@@ -5,7 +7,7 @@ const BoardDisplay = props => {
         <div className='board-image'>
           <img
             style={{ width: "157px", height: "157px" }}
-            src={`http://localhost:8000${props.image}`}
+            src={`${media}${props.image}`}
             alt='board'
           />
         </div>

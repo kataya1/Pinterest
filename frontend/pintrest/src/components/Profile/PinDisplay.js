@@ -4,6 +4,7 @@ import "./UserInfo.css";
 
 // import '../Home/pin.css'
 
+const media = localStorage.getItem('media')
 const PinDisplay = props => {
   return (
     <div className='pins'>
@@ -15,7 +16,7 @@ const PinDisplay = props => {
           >
             <img
               id='LegendaryImage'
-              src={`http://localhost:8000${props.image}`}
+              src={`${media}${props.image}`}
               alt='pin'
             />
 

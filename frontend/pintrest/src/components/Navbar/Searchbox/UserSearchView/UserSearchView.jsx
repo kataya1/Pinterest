@@ -5,13 +5,13 @@ import { Authcontext } from "../../../Authentication/Authcontext";
 
 
 export default function UserSearchView({avatar, username, email, first_name, last_name}) {
-    const { host } = useContext(Authcontext);
+    const { media } = useContext(Authcontext);
    
     return (
         <div className={styles.userdiv}>
             <div className={styles.avatarcont}>
                 
-                <img src={`${host}${avatar ? avatar : "/media/profilePic/default.jpg"}`} alt="profile"/>
+                <img src={`${media}${avatar ? avatar : "/media/profilePic/default.jpg"}`} alt="profile"/>
             </div>
             <div className={styles.info}>
                 <p>

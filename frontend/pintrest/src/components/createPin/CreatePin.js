@@ -29,7 +29,8 @@ class CreatePin extends React.Component{
     getData = async()=>{
         try{
         const token = localStorage.getItem('token')
-        let api = await fetch("http://localhost:8000/pin/create/",{
+        const host = localStorage.getItem('host')
+        let api = await fetch(`${host}/pin/create/`,{
         method: 'GET',
         headers: {'Authorization': `Token ${token}`}})
           let data = await api.json();
@@ -52,7 +53,8 @@ class CreatePin extends React.Component{
     
 
     postData = (file)=>{
-        const url = "http://localhost:8000/pin/create/"
+        const host = localStorage.getItem('host')
+        const url =`${host}/pin/create/`
         const formdata = new FormData()
         formdata.append('image', file)
         formdata.append('title', this.state.sendData.title)
@@ -105,10 +107,11 @@ class CreatePin extends React.Component{
         })
     }
     render(){
-        
+        const media = localStorage.getItem('media')
+        const frontendhost = localStorage.getItem('frontendhost')
+
             return ( 
            
-            
             <>
     <div className='container-fluid'>
         <div className='for-container'>
@@ -121,7 +124,7 @@ class CreatePin extends React.Component{
 
             </div>
 
-            <form action='http://localhost:3000' onSubmit={this.createImage} >
+            <form action={frontendhost} method="GET" onSubmit={this.createImage} >
       
             <div className='row create'>
 
@@ -160,7 +163,7 @@ class CreatePin extends React.Component{
                                 <div className='user'>
 
 
-                                    <img className='avatar' alt="avatar" src={`http://localhost:8000${this.state.data.avatar}`}/>
+                                    <img className='avatar' alt="avatar" src={`${media}${this.state.data.avatar}`}/>
 
                                     <p className='name'>{this.state.data.username}</p>
                                 </div> 

@@ -8,7 +8,7 @@ import styles from './pages.module.css'
 
 
 const ProfileEdit = () => {
-    const { currentUser, setCurrentUser, host } = useContext(Authcontext)
+    const { currentUser, setCurrentUser, host, media } = useContext(Authcontext)
     // const [user,setUser] = useState(currentUser)
     const [username, setUsername] = useState(currentUser.username)
     const [firstName, setFirstName] = useState(currentUser.first_name)
@@ -70,8 +70,8 @@ const ProfileEdit = () => {
         setFirstName(currentUser.first_name)
         setLastName(currentUser.last_name)
         setBio(currentUser.bio)
-        setImgURL(`${host}${currentUser.avatar}`)
-    }, [currentUser, host ])
+        setImgURL(`${media}${currentUser.avatar}`)
+    }, [currentUser, media])
 
     return (
         <React.Fragment>

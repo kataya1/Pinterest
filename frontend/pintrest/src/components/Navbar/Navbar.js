@@ -35,14 +35,13 @@ library.add(
 
 export default function Navbar() {
 
-    const { isUserLogedin, setisUserLogedin, currentUser, host } = useContext(Authcontext);
+    const { isUserLogedin, setisUserLogedin, currentUser, host, media } = useContext(Authcontext);
     const navigate = useNavigate()
 
     const handleLogout = (e) => {
         ' removes the token from local storage and sets isUserLogedin to false'
       
         e.preventDefault();
-        const host = "http://localhost:8000";
         const path = "/accounts/api/v1";
         const endpoint = "/logout";
         axios({
@@ -122,7 +121,7 @@ export default function Navbar() {
                         }
                     </ButtonFlex>
                     <Link to="/profile">
-                        <Avatar src={`${host}${currentUser.avatar}`} />
+                        <Avatar src={`${media}${currentUser.avatar}`} />
                     </Link>
                     <ButtonFlex
                         buttonStyle="btn--down"
@@ -132,7 +131,7 @@ export default function Navbar() {
                         {dropOpen === "carret_dropdown" &&
                             <Dropdown>
                                 <Dropmenuitem>
-                                    <Userinfolistisem avatarsrc={`${host}${currentUser.avatar}`} username={currentUser.username} email={currentUser.email} />
+                                    <Userinfolistisem avatarsrc={`${media}${currentUser.avatar}`} username={currentUser.username} email={currentUser.email} />
                                 </Dropmenuitem>
                                 <Dropmenuitem>
                                     <Link to="/settings">Settings</Link>

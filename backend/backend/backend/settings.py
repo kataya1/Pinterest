@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import django_heroku
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,6 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 from .env import S_KEY
 SECRET_KEY = S_KEY
+# SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -30,11 +32,10 @@ ALLOWED_HOSTS = []
 # this media websiet
 import cloudinary
 import cloudinary_storage
-
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': "djy8s9jhb",
-    'API_KEY': 148938527224564,
-    'API_SECRET': "K2_j3inKQo6Yh8oUu6UhgUO_Za4",
+    'CLOUD_NAME': os.environ.get("CLOUD_NAME"),
+    'API_KEY': os.environ.get("API_KEY"),
+    'API_SECRET': os.environ.get("API_SECRET"),
 }
 
 # uncomment in prod
@@ -70,11 +71,10 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
 ]
-
+# CORS_ALLOW_ALL_ORIGINS= True
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "https://specialties-rows-painted-directors.trycloudflare.com"
-
+    "http://localhost:3000",    
+    
 ]
 CORS_ALLOW_METHODS = [
     "DELETE",
@@ -123,8 +123,9 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'dev.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
         # 'NAME': BASE_DIR / 'prod.sqlite3',
+        # 'NAME': BASE_DIR / 'prodmedialocal.sqlite3',
     }
 }
 

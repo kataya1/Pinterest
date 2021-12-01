@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import styles from "./history.module.css";
 
 const PinDisplay = props => {
+  const media = localStorage.getItem('media')
+
+
   return (
     <div className={styles.pins}>
       <div className={styles.pin}>
@@ -12,7 +15,7 @@ const PinDisplay = props => {
         >
           <div className={styles.pin_image}>
             <img
-              src={`http://localhost:8000${props.image}`}
+              src={`${media}${props.image}`}
               onMouseOver={props.onMouseEnterHandler}
               onMouseOut={props.onMouseLeaveHandler}
               alt='pine'

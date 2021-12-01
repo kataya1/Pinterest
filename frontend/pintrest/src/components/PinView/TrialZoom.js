@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import Home from "../Home/Home";
 import "./Modal.css";
 import { Link } from 'react-router-dom';
-
+const media = localStorage.getItem('media')
+const host = localStorage.getItem('host')
+const currentUserAvatarURL = localStorage.getItem('currentUserAvatarURL')
 class TrialZoom extends Component {
   constructor(props) {
     super(props);
@@ -40,7 +42,7 @@ class TrialZoom extends Component {
     const token = localStorage.getItem("token");
     const data = { pin: id };
     e.target.style.backgroundColor = "black";
-    const url = "http://localhost:8000/pin/save/";
+    const url = `${host}/pin/save/`;
     fetch(url, {
       method: "post",
       headers: {
@@ -73,7 +75,7 @@ class TrialZoom extends Component {
                   paddingTop: "3%",
                   minWidth: "300px",
                 }}
-                src={`http://localhost:8000${this.props.image}`}
+                src={`${media}${this.props.image}`}
                 alt=''
               />
             </div>
@@ -201,7 +203,7 @@ class TrialZoom extends Component {
                 <div className='col avatar-follow '>
                   <div className='col' style={{ float: "left" }}>
                     <img
-                      src={`http://localhost:8000${this.props.creator.avatar}`}
+                      src={`${media}${this.props.creator.avatar}`}
                       style={{
                         width: "48px",
                         height: "48px",
@@ -329,7 +331,7 @@ class TrialZoom extends Component {
               >
                 <div className='col-2 user'>
                   <img
-                    src={`http://localhost:8000${this.props.creator.avatar}`}
+                    src={`${media}${ currentUserAvatarURL}`}
                     alt=''
                     style={{
                       width: "48px",
@@ -444,7 +446,7 @@ class TrialZoom extends Component {
                 }}
               >
                 <img
-                  src={`http://localhost:8000${this.props.creator.avatar}`}
+                  src={`${media}${currentUserAvatarURL}`}
                   style={{ width: "32px", height: "32px", borderRadius: "50%" }}
                   alt='avatar'
                 />
