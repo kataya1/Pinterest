@@ -20,7 +20,7 @@ import { Authcontext } from "../Authentication/Authcontext";
 import Dropdown, { Dropmenuitem } from "./Dropdown/Dropdown";
 import axios from "axios";
 import Userinfolistisem from "./Userinfolistitem/Userinfolistitem"
-import newlogo from "./newlogo.png"
+// import newlogo from "./newlogo.png"
 
 
 

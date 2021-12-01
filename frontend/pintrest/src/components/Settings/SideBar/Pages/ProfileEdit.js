@@ -26,7 +26,6 @@ const ProfileEdit = () => {
     const uploadImage = (e)=>{
         // const inputfile = e.target.files[0]
         let imgLink = URL.createObjectURL(e.target.files[0])
-        console.log(imgLink)
         setImgURL(imgLink)
         setInputFile(e.target.files[0])
     }
@@ -39,7 +38,6 @@ const ProfileEdit = () => {
         formdata.append('username', username)
         formdata.append('bio', bio)
         formdata.append('is_active', true)
-        console.log(inputFile)
         if (inputFile !== null)
             formdata.append('avatar', inputFile)
 
@@ -59,7 +57,6 @@ const ProfileEdit = () => {
             data:formdata
         }).then((response) => {
             console.log(response.data)
-            // console.log(usr)
             setCurrentUser(response.data)
         }).catch(err => {
             if (err.response) {
@@ -74,8 +71,7 @@ const ProfileEdit = () => {
         setLastName(currentUser.last_name)
         setBio(currentUser.bio)
         setImgURL(`${host}${currentUser.avatar}`)
-        console.log(inputFile)
-    }, [currentUser])
+    }, [currentUser, host ])
 
     return (
         <React.Fragment>
