@@ -35,6 +35,7 @@ class PassingImg extends Component {
               image={item.image}
               creator={item.creator}
               likes={item.reactees}
+              id={item.id}
             />
           );
         })}

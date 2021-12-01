@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Home from "../Home/Home";
+import "./Modal.css";
+import { Link } from 'react-router-dom';
 
 class TrialZoom extends Component {
   constructor(props) {
@@ -9,8 +11,13 @@ class TrialZoom extends Component {
       count: this.props.likes.length,
       clicked: `${this.props.likes.length} like this`,
       bgcolor: "",
+      text: "What do you want to remember about this Pin?",
     };
   }
+
+  clickChange = e => {
+    this.setState({ text: e.target.value });
+  };
 
   handleClick = () => {
     if (this.state.count === this.props.likes.length) {
@@ -22,6 +29,26 @@ class TrialZoom extends Component {
       this.setState({ bgcolor: "black" });
       this.setState({ clicked: `${this.state.count - 1} like this` });
     }
+  };
+  handleNotesClick = () => {
+    console.log(this.state.text);
+  };
+
+  onClickHandler = (e, id) => {
+    e.stopPropagation();
+    e.preventDefault();
+    const token = localStorage.getItem("token");
+    const data = { pin: id };
+    e.target.style.backgroundColor = "black";
+    const url = "http://localhost:8000/pin/save/";
+    fetch(url, {
+      method: "post",
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }).catch(console.error);
   };
 
   render() {
@@ -97,7 +124,6 @@ class TrialZoom extends Component {
                   <div className='star'>
                     <div style={{ height: "48px", width: "48px" }}>
                       <svg
-                        //  onClick={this.props.incrementingCount}
                         height='32'
                         width='28'
                         viewBox='0 0 24 24'
@@ -111,19 +137,24 @@ class TrialZoom extends Component {
                   </div>
                 </div>
                 <div className='col d-flex justify-content-end save-prof'>
+                 <Link to='/profile'>
                   <button
                     style={{
                       fontSize: "1.1rem",
                       fontWeight: "bold",
-                      padding: "0px 16px",
+                      padding: "10px 16px 0px 16px",
                     }}
                     className='btn btn rounded-pill dropdown-toggle '
                   >
                     Profile
                   </button>
+                  </Link>
                   <button
                     className='btn btn rounded-pill'
+                    onClick={e => this.onClickHandler(e, this.props.id)}
+                      value='Save'
                     style={{
+                      
                       backgroundColor: "#E60023",
                       color: "#FFFFFF",
 
@@ -206,23 +237,68 @@ class TrialZoom extends Component {
                       fontSize: "1.2rem",
                       fontWeight: "bold",
                       float: "left",
+                      padding: "0",
                     }}
                   >
                     Note to self
                   </span>
                   <br />
-                  <p style={{ fontSize: "1rem", float: "left" }}>
-                    What do you want to remember about this Pin?
+                  <p style={{ fontSize: "1rem", float: "left", width: "100%" }}>
+                    {this.state.text}
                   </p>
                 </div>
                 <button
                   style={{ backgroundColor: "#E2E2E2", float: "right" }}
                   className='btn btn rounded-pill'
+                  data-bs-toggle='modal'
+                  data-bs-target='#exampleModal'
                 >
                   <span style={{ fontSize: "16px", fontWeight: "bold" }}>
                     Add note
                   </span>
                 </button>
+                {/* modal */}
+                <div
+                  className='modal fade center'
+                  id='exampleModal'
+                  tabIndex='-1'
+                  aria-labelledby='exampleModalLabel'
+                  aria-hidden='true'
+                >
+                  <div className='modal-dialog'>
+                    <div className='modal-content' style={{ textAlign: "center" }}>
+                      <div className='modal-header d-flex justify-content-center'>
+                        <span className='modal-title' id='exampleModalLabel' style={{fontSize:'25px',fontWeight:'bold'}}>
+                          Add note to self
+                        </span>
+                      </div>
+                      
+                      <div className='modal-body'>
+                        <div className='form-floating'>
+                          <textarea
+                            className='form-control'
+                            id='floatingTextarea2'
+                            style={{ height: "100px" }}
+                            placeholder="Add a private note -such as 'show Tim?' or 'Needs more salt' "
+                            onChange={this.clickChange}
+                          ></textarea>
+                        </div>
+                      </div>
+                      <div className='modal-footer'>
+                        <button
+                          type='button'
+                          className='btn btn-danger rounded-pill'
+                          onClick={this.handleNotesClick}
+                          data-bs-dismiss='modal'
+                        >
+                          Done
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* comment-container */}
               </div>
               <div className='comment-container' style={{ marginTop: "80px" }}>
                 <div

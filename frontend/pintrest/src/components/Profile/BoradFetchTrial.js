@@ -30,8 +30,8 @@ class BoradFetchTrial extends Component {
       <div>
         <div className='board-container'>
           {boards.map(board => (
-            <section className='Bcontainer'>
-              <div className='board-grid' key={board.id}>
+            <section className='Bcontainer' key={board.id}>
+              <div className='board-grid' >
                 {board.pins.map((pin, index) => (
                   <div key={index}>
                     <div>

@@ -44,7 +44,7 @@ class History extends React.Component {
                 res="seen " +Math.round(timeInSeconds/60)+" Mins ago"
             }else if(timeInSeconds<60*60*24){
                 res="seen " +Math.round(timeInSeconds/60/60) +' Hours ago'
-            }else{res= new Date(tm).toISOString()}
+            }else{res= new Date(tm).toLocaleDateString()}
             
             return res;
       

@@ -19,7 +19,7 @@ class CreatePin extends React.Component{
                 website:''
         
             },
-            url:{},
+            url:'',
         
         }
     }
@@ -81,7 +81,7 @@ class CreatePin extends React.Component{
         
         this.setState({
         url:URL.createObjectURL(inputfile)
-    })
+    },()=>console.log(typeof this.state.url))
 
     }
 
@@ -132,7 +132,10 @@ class CreatePin extends React.Component{
                             <input className="media-upload" onChange={(e)=>this.uploadImage(e)} type="file" name='image' />
                             {this.state.url.length > 16 && <img  className="media-back" src={this.state.url} alt="."/>} 
                             
-                            { typeof this.state.url === "object" && <div className="media-back">
+
+                            {this.state.url === "" && <div className="media-back">
+
+                           
                                 <div className="media-content">
                                     <div>
                                     <FontAwesomeIcon icon={faArrowAltCircleUp}/>
@@ -155,7 +158,10 @@ class CreatePin extends React.Component{
                             <div className="card-body">
                                 <input type='text' name='title' className="card-title" placeholder='Add Your Title'/>
                                 <div className='user'>
+
+
                                     <img className='avatar' alt="avatar" src={`http://localhost:8000${this.state.data.avatar}`}/>
+
                                     <p className='name'>{this.state.data.username}</p>
                                 </div> 
                                 <input type='text' name='description' className="card-text" placeholder='Tell everyone what your Pin is about'/>

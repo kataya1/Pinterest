@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import BoradFetchTrial from './BoradFetchTrial';
-import Buttons from './Buttons';
 import OrganisedIdea from './OrganisedIdea';
 import PinHome from './PinHome';
-import ProfileData from './ProfileData';
+import ProfileData2 from './ProfileData2';
 
 
 class UserProfile extends Component {
@@ -43,8 +42,8 @@ class UserProfile extends Component {
             <div>
                 {this.state.users.map((user) => {
 
-                    return (<div>
-                        <ProfileData
+                    return (<div key={user.id}>
+                        <ProfileData2
                             userId={user.id}
                             username={user.username}
                             avatar={user.avatar}
@@ -53,7 +52,8 @@ class UserProfile extends Component {
                             following={user.following}
 
                         />
-                    <Buttons/>
+                        <br></br>
+                        <br></br>
                     <BoradFetchTrial id={user.id}/>
                     <hr></hr>
                     <OrganisedIdea />
