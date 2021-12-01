@@ -7,9 +7,9 @@ import UserSearchView from "./UserSearchView/UserSearchView";
 import PinSearchView from "./PinSearchView/PinSearchView"
 import {  useNavigate } from "react-router-dom"
 
+let acStylebox = [styles["auto-complete-box"]];
 export default function Searchbox({ dropOpen, setDropOpen }) {
     const [query, setQuery] = useState("");
-    let acStylebox = [styles["auto-complete-box"]];
     const acbox = useRef(null);
     const { host } = useContext(Authcontext);
     const [userandPins, setUserandPins] = useState({})
@@ -29,10 +29,10 @@ export default function Searchbox({ dropOpen, setDropOpen }) {
 
         } else {
 
-            console.log("query 🍅->", query);
+           
             acStylebox = [styles["auto-complete-box"], styles["auto-complete-box-H"]];
         }
-        console.log(dropOpen)
+       
 
         acbox.current.className = acStylebox.join(" ");
     }, [query, dropOpen]);
@@ -54,7 +54,7 @@ export default function Searchbox({ dropOpen, setDropOpen }) {
                 console.log(err)
             })
         }
-    }, [query])
+    }, [query, host])
 
     useLayoutEffect(() => {
         if (Object.keys(userandPins).length !== 0) {
@@ -83,7 +83,7 @@ export default function Searchbox({ dropOpen, setDropOpen }) {
         }
 
 
-    }, [userandPins])
+    }, [userandPins, navigate, setDropOpen])
 
 
     const onSubmitHandler = (e) => {
@@ -121,9 +121,9 @@ export default function Searchbox({ dropOpen, setDropOpen }) {
 
             <div ref={acbox} className={acStylebox.join(" ")}>
                 <ul className={styles.query_list}>
-
+                    {userList.length === 0 && pinList.length === 0 && <li>no results...</li> }
                     { userList  }
-                    {pinList}
+                    { pinList }
                 </ul>
             </div>
         </div>

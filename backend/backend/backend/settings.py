@@ -37,6 +37,7 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': "K2_j3inKQo6Yh8oUu6UhgUO_Za4",
 }
 
+# uncomment in prod
 # DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Application definition
