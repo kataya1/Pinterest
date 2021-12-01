@@ -117,15 +117,10 @@ def update_profile(request):
         token = str(request.auth)
         t = Token.objects.get(key=token)
         u = t.user
-
-        print(request.data)
-
         usr = UserSerializer(u,data=request.data)
 
         if usr.is_valid():
             usr.save()
-            print("🍅🍅🍅")
-            print(usr)
             return Response(**{'data': usr.data,  'status': status.HTTP_200_OK})
     except Exception as e:
         return Response(**{'data': str(e),  'status': status.HTTP_404_NOT_FOUND})
