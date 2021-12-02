@@ -26,14 +26,14 @@ import History from './components/History/History';
 import PassingUserId from './components/Profile/PassingUserId';
 
 
-const host = "http://localhost:8000";
-const frontendhost = "http://localhost:3000"
+// const host = "http://localhost:8000";
 // const media = "http://localhost:8000"; 
 // are we in production now ? yes   <-- change this accordingly 
 // localhost in dev and  "" in production
-// const host = "https://removal-favor-overcome-vegetarian.trycloudflare.com";
-// const frontendhost = "https://would-unnecessary-quiz-pe.trycloudflare.com"
+const host = "https://iti-pinterest.herokuapp.com";
 const media = "";
+const frontendhost = `${window.location.protocol}//${window.location.host}`
+
 
 const path = "/accounts/api/v1";
 localStorage.setItem("host", host);
