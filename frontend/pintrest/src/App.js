@@ -30,27 +30,27 @@ import PassingUserId from './components/Profile/PassingUserId';
 // const media = "http://localhost:8000"; 
 // are we in production now ? yes   <-- change this accordingly 
 // localhost in dev and  "" in production
-const host = "https://iti-pinterest.herokuapp.com";
+const host = "https://iti-pinterest-backend.herokuapp.com";
 const media = "";
 const frontendhost = `${window.location.protocol}//${window.location.host}`
 
-
-const path = "/accounts/api/v1";
 localStorage.setItem("host", host);
 localStorage.setItem("frontendhost", frontendhost);
 localStorage.setItem("media", media);
 
 
 function App() {
-
+  
+  const path = "/accounts/api/v1";
   const endpoint = "/profile";
+
   let appData = useRef({
     token:  localStorage.getItem("token"),
   })
-  appData.current.isValid =  appData.current.token? true: false
+  appData.current["isValid"] =  appData.current.token? true: false
   // let token = localStorage.getItem("token");
   // let isValid = token ? true : false;
-  const [isUserLogedin, setisUserLogedin] = useState(appData.current.isValid);
+  const [isUserLogedin, setisUserLogedin] = useState(appData.current['isValid']);
   const [currentUser, setCurrentUser] = useState({});
   useEffect(() => {
       if (isUserLogedin){
@@ -67,12 +67,12 @@ function App() {
         }).then((response) => {
           setCurrentUser(response.data)
           try{
-            localStorage.setItem("currentUserAvatarURL", response.data.avatar === null ? "" : response.data.avatar )
+            localStorage.setItem("currentUserAvatarURL", !response.data.avatar ? "" : response.data.avatar )
           }catch{}
         }).catch(err =>{
           if (err.response){
-            console.log(err.response)
-            appData.current.isValid = false
+            console.log("error app.js ", err.response)
+            appData.current['isValid'] = false
             appData.current.token = null
             localStorage.removeItem('token')
           }
