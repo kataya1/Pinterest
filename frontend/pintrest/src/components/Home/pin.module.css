@@ -26,6 +26,11 @@
     margin-bottom: 10px;
   }
   
+  .pin:hover .overlay-on{
+    display: flex;
+  }
+  
+
   .pins .pin{
     width:236px;
     margin: auto;
@@ -63,10 +68,10 @@
     border-radius: 50%;
   
   }
-.overlay {
+/* .overlay {
 
   display: none;
-}
+} */
 .overlay-on {
   height: calc(100% - 70px);
   width: 100%;
@@ -76,8 +81,8 @@
   top: 0;
   left: 0;
   border-radius: 20px;
-  display: flex;
   flex-direction: column;
+  display: none;
 }  
 .overlay input, 
 .overlay-on input{

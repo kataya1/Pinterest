@@ -3,6 +3,7 @@ import axios from "axios";
 import Masonry from "react-masonry-css";
 import PinDisplay from "./PinDisplay";
 
+const host = localStorage.getItem('host')
 class PinHome extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +17,7 @@ class PinHome extends Component {
 
   componentDidMount() {
     axios
-      .get(`http://localhost:8000/accounts/api/v1/save/${this.props.id}`)
+      .get(`${host}/accounts/api/v1/save/${this.props.id}`)
       .then(response => {
         this.setState({ userPins: response.data });
         this.setState({ savedPins: response.data[0].saved_pins });

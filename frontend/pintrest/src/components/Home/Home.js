@@ -5,6 +5,11 @@ import PinDisplay from "./PinDisplay";
 import "./pin.css";
 import AnQ from "./Anq-btns";
 
+
+// const media = localStorage.getItem('media')
+const host = localStorage.getItem('host')
+// const frontendhost = localStorage.getItem('frontendhost')
+
 class Home extends React.Component {
   constructor() {
     super();
@@ -19,18 +24,11 @@ class Home extends React.Component {
 
   Home = () => {
     var self = this;
-    axios.get("http://localhost:8000/home/").then(res => {
+    axios.get(`${host}/home/`).then(res => {
       self.setState({ events: res.data });
     });
   };
 
-  onMouseEnterHandler = e => {
-    e.target.nextElementSibling.classList.toggle("overlay-on");
-  };
-
-  onMouseLeaveHandler = e => {
-    e.target.nextElementSibling.classList.toggle("overlay-on");
-  };
 
   onClickHandler = (e, id) => {
     e.stopPropagation();
@@ -38,7 +36,7 @@ class Home extends React.Component {
     const token = localStorage.getItem("token");
     const data = { pin: id };
     e.target.style.backgroundColor = "black";
-    const url = "http://localhost:8000/pin/save/";
+    const url = `${host}/pin/save/`;
     fetch(url, {
       method: "post",
       headers: {
@@ -53,7 +51,7 @@ class Home extends React.Component {
     console.log(id);
     const token = localStorage.getItem("token");
     const data = { pin: id };
-    const url = "http://localhost:8000/profile/history/";
+    const url = `${host}/profile/history/`;
     fetch(url, {
       method: "post",
       headers: {
@@ -82,8 +80,7 @@ class Home extends React.Component {
           {this.state.events.map(item => {
             return (
               <PinDisplay
-                onMouseEnterHandler={this.onMouseEnterHandler}
-                onMouseLeaveHandler={this.onMouseLeaveHandler}
+
                 onClickHandler={this.onClickHandler}
                 saveHistory={this.saveHistory}
                 key={item.id}

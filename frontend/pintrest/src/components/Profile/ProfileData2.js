@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+const media = localStorage.getItem('media')
  class ProfileData2 extends Component {
     render() {
         return (
@@ -12,7 +13,7 @@ import React, { Component } from 'react'
               <div>
                 <img
                   className='profile-image'
-                  src={`http://localhost:8000${this.props.avatar}`}
+                  src={`${media}${this.props.avatar}`}
                   alt='profile'
                 />
               </div>

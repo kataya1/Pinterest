@@ -5,11 +5,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Authcontext } from "../Authcontext";
 
-// axios.defaults.baseURL = 'http://localhost:1010/'
-// axios.defaults.headers.common = {'Authorization': `bearer ${token}`}
-// export default axios;
+
 export default function Signup() {
-    const { setisUserLogedin } = useContext(Authcontext);
+    const { setisUserLogedin, host } = useContext(Authcontext);
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -31,7 +29,7 @@ export default function Signup() {
             password,
             password_confirm: confirmPassword,
         };
-        const host = "http://localhost:8000";
+
         const path = "/accounts/api/v1";
         const endpoint = "/signup";
         axios({
@@ -79,8 +77,8 @@ export default function Signup() {
                 >
                     {Object.keys(error).map((key, index) => (
                         <>
-                            <span>{`${key}:  ${error[key]}`}</span>
-                            <br />
+                            <span key={`proplem${key}`}>{`${key}:  ${error[key]}`}</span>
+                            
                         </>
                     ))}
                 </div>

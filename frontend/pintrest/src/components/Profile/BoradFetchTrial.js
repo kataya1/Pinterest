@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./BoardFetchTri.css";
 
+const media = localStorage.getItem('media')
+const host = localStorage.getItem('host')
 class BoradFetchTrial extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +16,7 @@ class BoradFetchTrial extends Component {
 
   componentDidMount() {
     axios
-      .get(`http://localhost:8000/accounts/api/v1/board/${this.props.id}`)
+      .get(`${host}/accounts/api/v1/board/${this.props.id}`)
       .then(response => {
         this.setState({ boards: response.data });
       })
@@ -37,7 +39,7 @@ class BoradFetchTrial extends Component {
                     <div>
                       <img
                         className='board-image2'
-                        src={`http://localhost:8000${pin.image}`}
+                        src={`${media}${pin.image}`}
                         alt='board'
                       />
                     </div>

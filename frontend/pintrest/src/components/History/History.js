@@ -24,8 +24,9 @@ class History extends React.Component {
     
     History= () =>  {
         const token = localStorage.getItem('token')
+        const host = localStorage.getItem('host')
         var self = this;  
-        axios.get('http://localhost:8000/profile/history/',{
+        axios.get(`${host}/profile/history/`,{
             headers:{
                 'Authorization': `Token ${token}`,
                 "Content-type": "application/json"
@@ -54,8 +55,10 @@ class History extends React.Component {
             e.stopPropagation();
             e.preventDefault()
             const token = localStorage.getItem('token')
+            const host = localStorage.getItem('host')
+
             console.log(id)
-            const url = `http://localhost:8000/profile/history/${id}`
+            const url = `${host}/profile/history/${id}`
             fetch(url,{
                 method:"delete",
                 headers:{

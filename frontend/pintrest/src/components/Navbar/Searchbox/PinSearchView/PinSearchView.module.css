@@ -5,6 +5,7 @@
     grid-template-columns: max-content  auto;
     position: relative;
     height: var(--w);
+    cursor: pointer;
    
 }
 .imagecont{

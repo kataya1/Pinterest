@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import TrialZoom from "./TrialZoom";
 
+const host = localStorage.getItem('host')
 class PassingImg extends Component {
   constructor(props) {
     super(props);
@@ -13,7 +14,7 @@ class PassingImg extends Component {
   }
   componentDidMount() {
     axios
-      .get(`http://localhost:8000/accounts/api/v1/pin/${this.props.pinId}`)
+      .get(`${host}/accounts/api/v1/pin/${this.props.pinId}`)
 
       .then(response => {
         this.setState({ pins: response.data });

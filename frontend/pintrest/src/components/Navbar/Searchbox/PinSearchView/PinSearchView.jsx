@@ -5,12 +5,12 @@ import { Authcontext } from "../../../Authentication/Authcontext";
 
 
 export default function UserSearchView({image, title, created_at}) {
-    const { host } = useContext(Authcontext);
+    const { media } = useContext(Authcontext);
    
     return (
         <div className={styles.pindev}>
             <div className={styles.imagecont}>
-                <img alt="" src={`${host}${image ? image : "/media/pins/defaultpin.jpg"}`} />
+                <img alt="" src={`${media}${image ? image : "/media/pins/defaultpin.jpg"}`} />
             </div>
             <div className={styles.info}>
                 <p>

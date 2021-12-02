@@ -9,8 +9,9 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import django_heroku
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,11 +23,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 from .env import S_KEY
 SECRET_KEY = S_KEY
+# SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# this media websiet
+import cloudinary
+import cloudinary_storage
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ.get("CLOUD_NAME"),
+    'API_KEY': os.environ.get("API_KEY"),
+    'API_SECRET': os.environ.get("API_SECRET"),
+}
+
+# uncomment in prod
+# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Application definition
 
@@ -41,7 +54,9 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'pins',
     'accounts.apps.AccountsConfig',
-    'corsheaders'
+    'corsheaders',
+    'cloudinary',
+    'cloudinary_storage',
 
 ]
 
@@ -56,10 +71,10 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
 ]
-
+# CORS_ALLOW_ALL_ORIGINS= True
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-
+    "http://localhost:3000",    
+    
 ]
 CORS_ALLOW_METHODS = [
     "DELETE",
@@ -109,6 +124,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        # 'NAME': BASE_DIR / 'prod.sqlite3',
+        # 'NAME': BASE_DIR / 'prodmedialocal.sqlite3',
     }
 }
 
@@ -149,8 +166,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+import os
 STATIC_URL = '/static/'
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -158,13 +176,21 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.User'
 
-import os
+
 MEDIA_URL = '/media/'
+# MEDIA_URL = 'https://scontent.fcai21-3.fna.fbcdn.net/v/t1.18169-9/29683973_1745428302191727_8070179974430644409_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=4VJoGcTNv6gAX914S7S&_nc_ht=scontent.fcai21-3.fna&oh=7ac068b3740211cc3ac762f3e540ecec&oe=61CA880F/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'media'),
+# )
 
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # USE THIS IF YOU DON'T WANT TO WRITE @authentication_classes([TokenAuthentication]) BEFORE EVERY FUNCTION
 # to override the default permission @permission_classes([])
 REST_FRAMEWORK = {
 'DEFAULT_AUTHENTICATION_CLASSES':['rest_framework.authentication.TokenAuthentication'],
 }
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())

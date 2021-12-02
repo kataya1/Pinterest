@@ -24,7 +24,13 @@
     width:252px;
     margin: auto;
     margin-bottom: 10px;
+    cursor: zoom-in;
   }
+  .pin:hover .overlay-on{
+    display: flex;
+    cursor: zoom-in;
+  }
+  
   
   .pins .pin{
     width:236px;
@@ -63,20 +69,16 @@
     border-radius: 50%;
   
   }
-.overlay {
-
-  display: none;
-}
 .overlay-on {
   height: calc(100% - 70px);
   width: 100%;
   z-index: 3;
-  background-color: rgb(118 94 94 / 52%);
+  background-color: rgb(0 0 0 / 0.3);
   position: absolute;
   top: 0;
   left: 0;
   border-radius: 20px;
-  display: flex;
+  display: none;
   flex-direction: column;
 }  
 .overlay input, 
