@@ -28,12 +28,12 @@ import PassingUserId from './components/Profile/PassingUserId';
 
 const host = "http://localhost:8000";
 const frontendhost = "http://localhost:3000"
-const media = "http://localhost:8000"; 
-// are we in production now ? no   <-- change this accordingly 
+// const media = "http://localhost:8000"; 
+// are we in production now ? yes   <-- change this accordingly 
 // localhost in dev and  "" in production
 // const host = "https://removal-favor-overcome-vegetarian.trycloudflare.com";
 // const frontendhost = "https://would-unnecessary-quiz-pe.trycloudflare.com"
-// const media = "";
+const media = "";
 
 const path = "/accounts/api/v1";
 localStorage.setItem("host", host);

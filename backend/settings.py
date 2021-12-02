@@ -21,13 +21,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-from .env import S_KEY
-SECRET_KEY = S_KEY
-# SECRET_KEY = os.environ.get("SECRET_KEY")
+# from .env import S_KEY
+# SECRET_KEY = S_KEY
+SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+DEBUG = False
 
 # this media websiet
 import cloudinary
@@ -39,7 +37,7 @@ CLOUDINARY_STORAGE = {
 }
 
 # uncomment in prod
-# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Application definition
 
@@ -63,19 +61,30 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "corsheaders.middleware.CorsMiddleware",
-    "django.middleware.common.CommonMiddleware",
-]
-# CORS_ALLOW_ALL_ORIGINS= True
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",    
     
 ]
+# are we in prod now ? yes
+# in prod
+# set csrf_trusted_origins, cors_allowed_origins, allowed_hosts
+# maybe set allowed_hosts = cors_allowed_origins in prod
+
+# THESE ALL SEEMS LIKE EACH OTHERS, 
+ALLOWED_HOSTS = []
+# CORS_ORIGIN_WHITELIST = [unnecessary ignore this]   # this and cors_allowed_origins are the same the later is the most recent
+CORS_ALLOW_ALL_ORIGINS= True  #set it to true as a last ditch soloution if cors is not working, alias: CORS_ORIGIN_ALLOW_ALL
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:3000",    
+# ]
+# CSRF_TRUSTED_ORIGINS = []
+
+
+
 CORS_ALLOW_METHODS = [
     "DELETE",
     "GET",
@@ -123,12 +132,17 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        # 'NAME': BASE_DIR / 'prod.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'prod.sqlite3',
         # 'NAME': BASE_DIR / 'prodmedialocal.sqlite3',
     }
 }
-
+# 'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'test_models3',
+#         'USER': 'moaaz',
+#         'PASSWORD': '12345',
+#         'HOST': 'localhost',
+#         'PORT': 5432
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
