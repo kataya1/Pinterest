@@ -29,13 +29,6 @@ class Home extends React.Component {
     });
   };
 
-  onMouseEnterHandler = e => {
-    e.target.nextElementSibling.classList.toggle("overlay-on");
-  };
-
-  onMouseLeaveHandler = e => {
-    e.target.nextElementSibling.classList.toggle("overlay-on");
-  };
 
   onClickHandler = (e, id) => {
     e.stopPropagation();
@@ -87,8 +80,7 @@ class Home extends React.Component {
           {this.state.events.map(item => {
             return (
               <PinDisplay
-                onMouseEnterHandler={this.onMouseEnterHandler}
-                onMouseLeaveHandler={this.onMouseLeaveHandler}
+
                 onClickHandler={this.onClickHandler}
                 saveHistory={this.saveHistory}
                 key={item.id}

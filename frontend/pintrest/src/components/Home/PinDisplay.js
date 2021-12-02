@@ -17,12 +17,10 @@ const PinDisplay = props => {
           <div className='pin-image'>
             <img
               src={`${media}${props.image}`}
-              onMouseOver={props.onMouseEnterHandler}
-              onMouseOut={props.onMouseLeaveHandler}
               alt='pin'
             />
             <div
-              className='overlay'
+              className='overlay-on'
               onClick={e => props.saveHistory(e, props.id)}
             >
               <input
