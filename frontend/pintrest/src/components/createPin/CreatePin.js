@@ -74,6 +74,7 @@ class CreatePin extends React.Component{
             if (res){
                 console.log(res)
             }
+            this.props.navigate('/home')            
         }).catch((error)=>{console.log(error)})
 
     }
@@ -89,7 +90,7 @@ class CreatePin extends React.Component{
 
 
     createImage = (e)=>{
-
+        e.preventDefault()
         let inputfile = e.target.image.files[0]
         this.setState({
             sendData:{

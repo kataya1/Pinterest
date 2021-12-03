@@ -11,7 +11,7 @@ import Claim from './components/Settings/SideBar/Pages/Claim'
 import Permission from './components/Settings/SideBar/Pages/Permissions';
 import Notification from './components/Settings/SideBar/Pages/Notification';
 import Privacy from './components/Settings/SideBar/Pages/Privacy';
-import CreatePin from './components/createPin/CreatePin';
+// import CreatePin from './components/createPin/CreatePin';
 import Profile from './components/Profile/Profile';
 import { Authcontext } from './components/Authentication/Authcontext';
 import Login from './components/Authentication/Login/Login';
@@ -24,6 +24,7 @@ import PinView from './components/PinView/PinView';
 import History from './components/History/History';
 // import UserProfile from './components/Profile/UserProfile';
 import PassingUserId from './components/Profile/PassingUserId';
+import Createpinroute from "./components/createPin/Createpinroute";
 
 
 const host = "http://localhost:8000";
@@ -100,7 +101,7 @@ function App() {
             <>
               <Route path='/' exact element={<Home />} />
               <Route path='/home' element={<Home />} />
-              <Route path='/create' exact element={<CreatePin />} />
+              <Route path='/create' exact element={<Createpinroute />} />
               <Route path='pin/:Id' element={<PinView />} />
               <Route path='user/:Id' element={<PassingUserId />} />
               <Route path='/settings' element={<Settings />}>
