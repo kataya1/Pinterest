@@ -11,7 +11,7 @@ import Claim from './components/Settings/SideBar/Pages/Claim'
 import Permission from './components/Settings/SideBar/Pages/Permissions';
 import Notification from './components/Settings/SideBar/Pages/Notification';
 import Privacy from './components/Settings/SideBar/Pages/Privacy';
-import CreatePin from './components/createPin/CreatePin';
+// import CreatePin from './components/createPin/CreatePin';
 import Profile from './components/Profile/Profile';
 import { Authcontext } from './components/Authentication/Authcontext';
 import Login from './components/Authentication/Login/Login';
@@ -24,37 +24,36 @@ import PinView from './components/PinView/PinView';
 import History from './components/History/History';
 // import UserProfile from './components/Profile/UserProfile';
 import PassingUserId from './components/Profile/PassingUserId';
+import Createpinroute from "./components/createPin/Createpinroute";
 
 
 const host = "http://localhost:8000";
-const frontendhost = "http://localhost:3000"
 const media = "http://localhost:8000"; 
 // are we in production now ? no   <-- change this accordingly 
 // localhost in dev and  "" in production
 // const host = "https://removal-favor-overcome-vegetarian.trycloudflare.com";
-// const frontendhost = "https://would-unnecessary-quiz-pe.trycloudflare.com"
 // const media = "";
-
-const path = "/accounts/api/v1";
+const frontendhost = `${window.location.protocol}//${window.location.host}`
 localStorage.setItem("host", host);
 localStorage.setItem("frontendhost", frontendhost);
 localStorage.setItem("media", media);
+const path = "/accounts/api/v1";
+const endpoint = "/profile";
 
 
 function App() {
 
-  const endpoint = "/profile";
   let appData = useRef({
     token:  localStorage.getItem("token"),
   })
-  appData.current.isValid =  appData.current.token? true: false
+  appData.current["isValid"] =  appData.current.token? true: false
   // let token = localStorage.getItem("token");
   // let isValid = token ? true : false;
-  const [isUserLogedin, setisUserLogedin] = useState(appData.current.isValid);
+  const [isUserLogedin, setisUserLogedin] = useState(appData.current['isValid']);
   const [currentUser, setCurrentUser] = useState({});
   useEffect(() => {
       if (isUserLogedin){
-        appData.current.isValid= true
+        appData.current['isValid'] = true
         appData.current.token = localStorage.getItem('token')
   
         axios({
@@ -67,22 +66,22 @@ function App() {
         }).then((response) => {
           setCurrentUser(response.data)
           try{
-            localStorage.setItem("currentUserAvatarURL", response.data.avatar === null ? "" : response.data.avatar )
+            localStorage.setItem("currentUserAvatarURL", !response.data.avatar ? "" : response.data.avatar )
           }catch{}
         }).catch(err =>{
           if (err.response){
-            console.log(err.response)
-            appData.current.isValid = false
+            console.log("error app.js ", err.response)
+            appData.current['isValid'] = false
             appData.current.token = null
             localStorage.removeItem('token')
           }
         }).finally(()=>{
-          setisUserLogedin(appData.current.isValid)
+          setisUserLogedin(appData.current['isValid'])
         })
       }
       else{
         setCurrentUser({})
-        appData.current.isValid =false
+        appData.current['isValid'] =false
         appData.current.token = null
         localStorage.removeItem('token')
       }
@@ -102,7 +101,7 @@ function App() {
             <>
               <Route path='/' exact element={<Home />} />
               <Route path='/home' element={<Home />} />
-              <Route path='/create' exact element={<CreatePin />} />
+              <Route path='/create' exact element={<Createpinroute />} />
               <Route path='pin/:Id' element={<PinView />} />
               <Route path='user/:Id' element={<PassingUserId />} />
               <Route path='/settings' element={<Settings />}>
