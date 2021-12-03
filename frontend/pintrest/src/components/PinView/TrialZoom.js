@@ -2,19 +2,38 @@ import React, { Component } from "react";
 import Home from "../Home/Home";
 import "./Modal.css";
 import { Link } from 'react-router-dom';
+
+import "../Home/pin.css";
+
+
 const media = localStorage.getItem('media')
 const host = localStorage.getItem('host')
+const userid = localStorage.getItem('userId')
 const currentUserAvatarURL = localStorage.getItem('currentUserAvatarURL')
 class TrialZoom extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      reactt: this.props.likes,
       count: this.props.likes.length,
       clicked: `${this.props.likes.length} like this`,
       bgcolor: "",
+      check: false,
       text: "What do you want to remember about this Pin?",
     };
+  }
+
+  componentDidMount() {
+   
+    // console.log(`${this.state.reactt}`)
+    // console.log(`USER${typeof Number(userid) }`)
+    // console.log(this.state.reactt.indexOf(Number(userid)))
+    if (this.state.reactt.indexOf(Number(userid)) >= 0) {
+      this.setState({ check: true })
+      this.setState({ bgcolor: "#E60023" });
+    }
+
   }
 
   clickChange = e => {
@@ -22,15 +41,41 @@ class TrialZoom extends Component {
   };
 
   handleClick = () => {
-    if (this.state.count === this.props.likes.length) {
+    if (this.state.check == false)
+    {
+      this.setState({ check: true })
       this.setState(prev => ({ count: prev.count + 1 }));
+      const token = localStorage.getItem('token')
+      const url = `${host}/accounts/api/v1/pin/update/${this.props.id}`;
+      fetch(url, {
+        method: "patch",
+        headers: {
+          Authorization: `Token ${token}`,
+          "Content-type": "application/json",
+        },
+      }).catch(console.error);
+
       this.setState({ bgcolor: "#E60023" });
-      this.setState({ clicked: `You and ${this.state.count} like this` });
-    } else if (this.state.count === this.props.likes.length + 1) {
+      this.setState({ clicked: `You and ${this.state.count} like this` }, () => { console.log(this.state.clicked) });
+
+   
+
+    } else if (this.state.check == true) {
+      this.setState({ check: false })
       this.setState(prev => ({ count: prev.count - 1 }));
+      const token = localStorage.getItem('token')
+      const url = `${host}/accounts/api/v1/pin/update/${this.props.id}`;
+      fetch(url, {
+        method: "delete",
+        headers: {
+          Authorization: `Token ${token}`,
+          "Content-type": "application/json",
+        },
+      }).catch(console.error);
       this.setState({ bgcolor: "black" });
-      this.setState({ clicked: `${this.state.count - 1} like this` });
+      this.setState({ clicked: `${this.state.count - 1} like this` }, () => { console.log(this.state.clicked) });
     }
+    console.log(`mo3azzn${this.state.reactt}`)
   };
   handleNotesClick = () => {
     console.log(this.state.text);
@@ -52,6 +97,8 @@ class TrialZoom extends Component {
       body: JSON.stringify(data),
     }).catch(console.error);
   };
+
+ 
 
   render() {
     return (
@@ -139,24 +186,24 @@ class TrialZoom extends Component {
                   </div>
                 </div>
                 <div className='col d-flex justify-content-end save-prof'>
-                 <Link to='/profile'>
-                  <button
-                    style={{
-                      fontSize: "1.1rem",
-                      fontWeight: "bold",
-                      padding: "10px 16px 0px 16px",
-                    }}
-                    className='btn btn rounded-pill dropdown-toggle '
-                  >
-                    Profile
-                  </button>
+                  <Link to='/profile'>
+                    <button
+                      style={{
+                        fontSize: "1.1rem",
+                        fontWeight: "bold",
+                        padding: "10px 16px 0px 16px",
+                      }}
+                      className='btn btn rounded-pill dropdown-toggle '
+                    >
+                      Profile
+                    </button>
                   </Link>
                   <button
                     className='btn btn rounded-pill'
                     onClick={e => this.onClickHandler(e, this.props.id)}
-                      value='Save'
+                    value='Save'
                     style={{
-                      
+
                       backgroundColor: "#E60023",
                       color: "#FFFFFF",
 
@@ -270,11 +317,11 @@ class TrialZoom extends Component {
                   <div className='modal-dialog'>
                     <div className='modal-content' style={{ textAlign: "center" }}>
                       <div className='modal-header d-flex justify-content-center'>
-                        <span className='modal-title' id='exampleModalLabel' style={{fontSize:'25px',fontWeight:'bold'}}>
+                        <span className='modal-title' id='exampleModalLabel' style={{ fontSize: '25px', fontWeight: 'bold' }}>
                           Add note to self
                         </span>
                       </div>
-                      
+
                       <div className='modal-body'>
                         <div className='form-floating'>
                           <textarea
@@ -331,7 +378,7 @@ class TrialZoom extends Component {
               >
                 <div className='col-2 user'>
                   <img
-                    src={`${media}${ currentUserAvatarURL}`}
+                    src={`${media}${currentUserAvatarURL}`}
                     alt=''
                     style={{
                       width: "48px",
@@ -468,14 +515,15 @@ class TrialZoom extends Component {
             margin: "0px 0px 4px",
           }}
         >
-          {/* <button onClick={this.handleClick}>click{this.state.count}</button> */}
           <h3 style={{ fontWeight: "700", textAlign: "center" }}>
             More like this
           </h3>
         </div>
         {/* 3nd Level container */}
-
-        <Home />
+         
+         <Home/>
+        
+          
       </div>
     );
   }
