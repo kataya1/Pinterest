@@ -53,6 +53,7 @@ function App() {
   const [isUserLogedin, setisUserLogedin] = useState(appData.current['isValid']);
   const [currentUser, setCurrentUser] = useState({});
   useEffect(() => {
+    console.log("app.js🍅", appData.current['isValid'])
       if (isUserLogedin){
         appData.current.isValid= true
         appData.current.token = localStorage.getItem('token')
