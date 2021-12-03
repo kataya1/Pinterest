@@ -54,7 +54,6 @@ function App() {
       if (isUserLogedin){
         appData.current['isValid'] = true
         appData.current.token = localStorage.getItem('token')
-        console.log("app.js isValid = ", appData.current['isValid'])
   
         axios({
           method: 'GET',

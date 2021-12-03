@@ -48,10 +48,9 @@ export default function Signin() {
                     console.log(err);
                     setError({ error: err.message });
                 }
-            })
-            .finally(() => {
                 setLoading(false);
-            });
+            })
+
     };
     const alertStyle =
         error && Object.keys(error).length === 0
@@ -79,7 +78,7 @@ export default function Signin() {
                         placeholder="username"
                         onChange={(e) => setUsername(e.target.value)}
                         value={username}
-                        autoComplete="true"
+                        autoComplete="username"
                     />
                     <input
                         type="password"
@@ -88,7 +87,7 @@ export default function Signin() {
                         placeholder="password"
                         onChange={(e) => setPassword(e.target.value)}
                         value={password}
-                        autoComplete="true"
+                        autoComplete="current-password"
                     />
 
                     <button type="submit">

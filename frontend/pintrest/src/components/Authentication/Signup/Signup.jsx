@@ -56,10 +56,8 @@ export default function Signup() {
                     console.log(err);
                     setError({ error: err.message });
                 }
-            })
-            .finally(() => {
                 setLoading(false);
-            });
+            })
     };
 
     const alertStyle =
@@ -90,6 +88,7 @@ export default function Signup() {
                         placeholder="username"
                         onChange={(e) => setUsername(e.target.value)}
                         value={username}
+                        autoComplete="off"
                     />
                     <input
                         type="text"
@@ -98,6 +97,7 @@ export default function Signup() {
                         placeholder="email"
                         onChange={(e) => setEmail(e.target.value)}
                         value={email}
+                        autoComplete="off"
                     />
                     <input
                         type="password"
@@ -106,6 +106,7 @@ export default function Signup() {
                         placeholder="password"
                         onChange={(e) => setPassword(e.target.value)}
                         value={password}
+                        autoComplete="off"
                     />
                     <input
                         type="password"
@@ -114,6 +115,7 @@ export default function Signup() {
                         placeholder="confirm password"
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         value={confirmPassword}
+                        autoComplete="off"
                     />
                     <button type="submit">
                         {loading ? "Creating Account.." : "Create Account"}
