@@ -41,7 +41,7 @@ class TrialZoom extends Component {
   };
 
   handleClick = () => {
-    if (this.state.check == false)
+    if (this.state.check === false)
     {
       this.setState({ check: true })
       this.setState(prev => ({ count: prev.count + 1 }));
@@ -56,11 +56,11 @@ class TrialZoom extends Component {
       }).catch(console.error);
 
       this.setState({ bgcolor: "#E60023" });
-      this.setState({ clicked: `You and ${this.state.count} like this` }, () => { console.log(this.state.clicked) });
+      this.setState({ clicked: `You and ${this.state.count} like this` });
 
    
 
-    } else if (this.state.check == true) {
+    } else if (this.state.check === true) {
       this.setState({ check: false })
       this.setState(prev => ({ count: prev.count - 1 }));
       const token = localStorage.getItem('token')
@@ -73,9 +73,8 @@ class TrialZoom extends Component {
         },
       }).catch(console.error);
       this.setState({ bgcolor: "black" });
-      this.setState({ clicked: `${this.state.count - 1} like this` }, () => { console.log(this.state.clicked) });
+      this.setState({ clicked: `${this.state.count - 1} like this` });
     }
-    console.log(`mo3azzn${this.state.reactt}`)
   };
   handleNotesClick = () => {
     console.log(this.state.text);

@@ -30,7 +30,7 @@ class PassingImg extends Component {
     return (
       <div>
         {pins.map(item => {
-          return (<div>
+          return (
             <TrialZoom
               key={item.id}
               image={item.image}
@@ -38,8 +38,8 @@ class PassingImg extends Component {
               likes={item.reactees}
               id={item.id}
             />
-            {console.log(`saq${item.reactees}`)}
-         </div> );
+            
+         );
         })}
       </div>
     );
