@@ -7,5 +7,5 @@ urlpatterns = [
     path('pin/save/', save_pin, name='save'),
     path('profile/history/', history, name='history'),
     path('profile/history/<int:id>', delete_history, name='delete_history'),
-     path('api_status/', api_status, name="status"),
+     path('', api_status, name="status"),
 ]
