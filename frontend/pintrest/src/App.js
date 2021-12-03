@@ -11,7 +11,7 @@ import Claim from './components/Settings/SideBar/Pages/Claim'
 import Permission from './components/Settings/SideBar/Pages/Permissions';
 import Notification from './components/Settings/SideBar/Pages/Notification';
 import Privacy from './components/Settings/SideBar/Pages/Privacy';
-import CreatePin from './components/createPin/CreatePin';
+// import CreatePin from './components/createPin/CreatePin';
 import Profile from './components/Profile/Profile';
 import { Authcontext } from './components/Authentication/Authcontext';
 import Login from './components/Authentication/Login/Login';
@@ -24,6 +24,8 @@ import PinView from './components/PinView/PinView';
 import History from './components/History/History';
 // import UserProfile from './components/Profile/UserProfile';
 import PassingUserId from './components/Profile/PassingUserId';
+import Createpinroute from "./components/createPin/Createpinroute";
+
 
 
 // const host = "http://localhost:8000";
@@ -34,15 +36,17 @@ const host = "https://iti-pinterest-backend.herokuapp.com";
 const media = "";
 const frontendhost = `${window.location.protocol}//${window.location.host}`
 
+
 localStorage.setItem("host", host);
 localStorage.setItem("frontendhost", frontendhost);
 localStorage.setItem("media", media);
+const path = "/accounts/api/v1";
+const endpoint = "/profile";
 
 
 function App() {
-  
-  const path = "/accounts/api/v1";
-  const endpoint = "/profile";
+
+
 
   let appData = useRef({
     token:  localStorage.getItem("token"),
@@ -55,7 +59,7 @@ function App() {
   useEffect(() => {
     console.log("app.js🍅", appData.current['isValid'])
       if (isUserLogedin){
-        appData.current.isValid= true
+        appData.current['isValid'] = true
         appData.current.token = localStorage.getItem('token')
   
         axios({
@@ -78,12 +82,12 @@ function App() {
             localStorage.removeItem('token')
           }
         }).finally(()=>{
-          setisUserLogedin(appData.current.isValid)
+          setisUserLogedin(appData.current['isValid'])
         })
       }
       else{
         setCurrentUser({})
-        appData.current.isValid =false
+        appData.current['isValid'] =false
         appData.current.token = null
         localStorage.removeItem('token')
       }
@@ -103,7 +107,7 @@ function App() {
             <>
               <Route path='/' exact element={<Home />} />
               <Route path='/home' element={<Home />} />
-              <Route path='/create' exact element={<CreatePin />} />
+              <Route path='/create' exact element={<Createpinroute />} />
               <Route path='pin/:Id' element={<PinView />} />
               <Route path='user/:Id' element={<PassingUserId />} />
               <Route path='/settings' element={<Settings />}>

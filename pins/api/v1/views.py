@@ -10,6 +10,10 @@ from .serializers import PinSerializer, PinCreateSerializer, UserAvatarSerialize
 from rest_framework.permissions import IsAuthenticated
 
 @api_view(['GET'])
+def api_status(request):
+    return Response(data={"message": "api is working"}, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
 def home(request):
     pins = Pin.objects.all().order_by("-created_at")
     serializer = PinSerializer(pins, many=True)

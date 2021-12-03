@@ -1,4 +1,9 @@
 # Pinterest
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/30096c8e-c784-4459-a6a2-29506ee1ff11/deploy-status)](https://app.netlify.com/sites/iti-pinterest/deploys)
+[![Heroku](https://heroku-badge.herokuapp.com/?app=iti-pinterest-backend)]
+
+
 # backend
 
  dependencies 

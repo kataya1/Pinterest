@@ -46,7 +46,7 @@ class PinHome extends Component {
                 key={item.id}
                 id={item.id}
                 image={item.image}
-                desc={item.description}
+                title={item.title}
               />
             );
           })}
