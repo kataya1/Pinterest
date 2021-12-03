@@ -19,12 +19,12 @@ class ProfileData extends Component {
                 />
               </div>
               <div className='profile-name pt-1'>
-                <h1>{this.props.username}</h1>
+                <h1>{this.props.fname}</h1>
               </div>
               <div className='profile-mail pt-1'>
                 <span>
-                  @{this.props.fname}
-                  {this.props.lname}
+                  @{this.props.username}
+                  {/* {this.props.lname} */}
                 </span>
               </div>
               <div className='profile-following-count pt-1'>
