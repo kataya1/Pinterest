@@ -33,7 +33,8 @@ class EmptyComp extends Component {
         },
       })
       .then(response => {
-        this.setState({ users: [response.data] });
+        this.setState({ users: [response.data] },console.log(`sahar${response.data.id}`));
+        localStorage.setItem("userId", response.data.id);
       })
       .catch(error => {
         this.setState({ errormsg: "error retreiving data" });

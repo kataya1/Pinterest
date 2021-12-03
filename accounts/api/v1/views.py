@@ -237,7 +237,23 @@ def list_savedpin(request,id):
     Serialzed_data = Saved_Pins(saved_pins,many=True)
     return Response(data=Serialzed_data.data,status=status.HTTP_200_OK)
 
-
+@api_view(['PATCH', 'DELETE'])
+@permission_classes([IsAuthenticated])
+def update_reactees(request,id):
+    saved_pins = Pin.objects.get(id=id)
+    user = User.objects.get(id=request.user.id)
+    if request.method == 'PATCH':
+        try:
+            saved_pins.reactees.add(user)
+            return Response(**{'data': 'done', 'status': status.HTTP_200_OK})
+        except Exception as e:
+            return Response(**{'data': str(e), 'status': status.HTTP_500_INTERNAL_SERVER_ERROR})
+    else:
+        try:
+            saved_pins.reactees.remove(user)
+            return Response(**{'data': 'deleted', 'status': status.HTTP_200_OK})
+        except Exception as e:
+            return Response(**{'data': str(e), 'status': status.HTTP_500_INTERNAL_SERVER_ERROR})
 
 
 ############################
