@@ -7,9 +7,10 @@
     color: #333;
     
     padding: 1rem;
-    border-radius: 1em;
+    border-radius: 0.3rem;
     
     transition: 0.5s;
+    box-shadow: 1px 1px 6px #0003;
 }
 
 .visible{
