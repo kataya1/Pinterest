@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Home from "../Home/Home";
 import "./Modal.css";
 import { Link } from 'react-router-dom';
-
+import { injectTooltip } from "../Tooltip/Tooltip"
 import "../Home/pin.css";
 
 
@@ -171,7 +171,7 @@ class TrialZoom extends Component {
                       </svg>
                     </i>
                   </div>
-                  <div className='up-arrow' style={{ width: "48px" }}>
+                  <div className='up-arrow' style={{ width: "48px" }} onClickCapture={injectTooltip}>
                     <svg
                       height='32'
                       width='28'

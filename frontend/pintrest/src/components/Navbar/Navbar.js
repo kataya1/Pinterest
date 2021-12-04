@@ -156,6 +156,7 @@ export default function Navbar() {
                     </Link>
                 </>
             )}
+            <span id="tooltipspan"></span>
         </nav>
     );
 }
