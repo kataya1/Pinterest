@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp, faEllipsisH } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { Authcontext } from "../Authentication/Authcontext";
+import { injectTooltip } from "../Tooltip/Tooltip";
 
 
 const PinDisplay = props => {
@@ -30,10 +31,10 @@ const PinDisplay = props => {
                 value='Save'
                 className='btn btn-danger'
               />
-              <div className='one'>
+              <div className='one' style={{ cursor: "pointer"}} onClickCapture={(e) =>{e.preventDefault();e.stopPropagation();injectTooltip(e)}}>
                 <FontAwesomeIcon icon={faEllipsisH} />
               </div>
-              <div className='two'>
+              <div className='two' style={{ cursor: "pointer"}} onClickCapture={(e) =>{e.preventDefault();e.stopPropagation();injectTooltip(e)}}>
                 <FontAwesomeIcon icon={faArrowUp} />
               </div>
             </div>

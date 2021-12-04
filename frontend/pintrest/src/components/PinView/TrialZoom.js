@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Home from "../Home/Home";
 import "./Modal.css";
 import { Link } from 'react-router-dom';
-
+import { injectTooltip } from "../Tooltip/Tooltip"
 import "../Home/pin.css";
 
 
@@ -30,6 +30,13 @@ class TrialZoom extends Component {
     // console.log(`USER${typeof Number(userid) }`)
     // console.log(this.state.reactt.indexOf(Number(userid)))
     if (this.state.reactt.indexOf(Number(userid)) >= 0) {
+      if (this.state.count  === 1)
+      {
+        this.setState({clicked: `You like this`})
+      }else{
+
+        this.setState({clicked: `You and ${this.state.count - 1} like this`})
+      }
       this.setState({ check: true })
       this.setState({ bgcolor: "#E60023" });
     }
@@ -43,37 +50,43 @@ class TrialZoom extends Component {
   handleClick = () => {
     if (this.state.check === false)
     {
-      this.setState({ check: true })
-      this.setState(prev => ({ count: prev.count + 1 }));
       const token = localStorage.getItem('token')
       const url = `${host}/accounts/api/v1/pin/update/${this.props.id}`;
       fetch(url, {
-        method: "patch",
+        method: "PATCH",
         headers: {
           Authorization: `Token ${token}`,
-          "Content-type": "application/json",
         },
-      }).catch(console.error);
-
-      this.setState({ bgcolor: "#E60023" });
-      this.setState({ clicked: `You and ${this.state.count} like this` });
+      }).then(()=>{
+        
+        this.setState({ check: true })
+        this.setState(prev => ({ count: prev.count + 1,
+          clicked: `You ${prev.count? `and ${prev.count}` : ""} like this`
+        }));
+        this.setState({ bgcolor: "#E60023" });
+        // this.setState({ clicked: `You and ${this.state.count} like this` });
+      })
+      .catch(console.error);
+      
 
    
 
     } else if (this.state.check === true) {
-      this.setState({ check: false })
-      this.setState(prev => ({ count: prev.count - 1 }));
       const token = localStorage.getItem('token')
       const url = `${host}/accounts/api/v1/pin/update/${this.props.id}`;
       fetch(url, {
-        method: "delete",
+        method: "DELETE",
         headers: {
           Authorization: `Token ${token}`,
-          "Content-type": "application/json",
         },
-      }).catch(console.error);
-      this.setState({ bgcolor: "black" });
-      this.setState({ clicked: `${this.state.count - 1} like this` });
+      }).then(()=>{
+        this.setState({ check: false })
+        this.setState(prev => ({ count: prev.count - 1,
+          clicked: `${prev.count - 1} like this`
+        }));
+        this.setState({ bgcolor: "black" });
+      })
+      .catch(console.error);
     }
   };
   handleNotesClick = () => {
@@ -158,7 +171,7 @@ class TrialZoom extends Component {
                       </svg>
                     </i>
                   </div>
-                  <div className='up-arrow' style={{ width: "48px" }}>
+                  <div className='up-arrow' style={{ width: "48px" }} onClickCapture={injectTooltip}>
                     <svg
                       height='32'
                       width='28'
@@ -169,7 +182,7 @@ class TrialZoom extends Component {
                       <path d='M21 14c1.1 0 2 .9 2 2v6c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2v-6c0-1.1.9-2 2-2s2 .9 2 2v4h14v-4c0-1.1.9-2 2-2zM8.82 8.84c-.78.78-2.05.79-2.83 0-.78-.78-.79-2.04-.01-2.82L11.99 0l6.02 6.01c.78.78.79 2.05.01 2.83-.78.78-2.05.79-2.83 0l-1.2-1.19v6.18a2 2 0 1 1-4 0V7.66L8.82 8.84z'></path>
                     </svg>
                   </div>
-                  <div className='star'>
+                  <div className='star' onClickCapture={injectTooltip}>
                     <div style={{ height: "48px", width: "48px" }}>
                       <svg
                         height='32'
@@ -267,10 +280,11 @@ class TrialZoom extends Component {
                   </div>
                 </div>
                 <div className='col avatar-info'></div>
-                <div className='col follow-icon'>
+                <div className='col follow-icon' >
                   <button
                     style={{ backgroundColor: "#E2E2E2", float: "right" }}
                     className='btn btn rounded-pill'
+                    onClickCapture={injectTooltip}
                   >
                     <span style={{ fontSize: "16px", fontWeight: "bold" }}>
                       Follow{" "}

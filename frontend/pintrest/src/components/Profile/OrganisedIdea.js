@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { injectTooltip } from "../Tooltip/Tooltip";
 
 class OrganisedIdea extends Component {
   render() {
@@ -29,6 +30,7 @@ class OrganisedIdea extends Component {
                 <button
                   style={{ backgroundColor: "#efefefea" }}
                   type='button'
+                  onClickCapture={injectTooltip}
                   className='btn btn-light rounded-pill'
                 >
                   <span style={{ fontSize: "16px", fontWeight: "700" }}>

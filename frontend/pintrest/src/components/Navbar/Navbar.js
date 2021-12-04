@@ -98,7 +98,7 @@ export default function Navbar() {
             {isUserLogedin ? (
                 <>
 
-                    <ButtonFlex buttonStyle="btn--icon" onClick={(e)=>{ e.stopPropagation(); setDropOpen('notifications_dropdown')}}>
+                    <ButtonFlex buttonStyle="btn--icon" onClick={(e)=>{ e.stopPropagation(); setDropOpen(dropOpen === 'notifications_dropdown' ? false : 'notifications_dropdown')}}>
                         <FontAwesomeIcon icon="bell" size="2x" />
                         { dropOpen === "notifications_dropdown" && 
                             <Dropdown>
@@ -109,7 +109,7 @@ export default function Navbar() {
                             </Dropdown>
                         }
                     </ButtonFlex>
-                    <ButtonFlex buttonStyle="btn--icon" onClick={(e)=>{ e.stopPropagation(); setDropOpen('messages_dropdown')}}>
+                    <ButtonFlex buttonStyle="btn--icon" onClick={(e)=>{ e.stopPropagation(); setDropOpen(  dropOpen === 'messages_dropdown'? false : 'messages_dropdown')}}>
                         <FontAwesomeIcon icon="comment-dots" size="2x" />
                         { dropOpen === "messages_dropdown" && 
                             <Dropdown>
@@ -125,7 +125,7 @@ export default function Navbar() {
                     </Link>
                     <ButtonFlex
                         buttonStyle="btn--down"
-                        onClick={(e) => { e.stopPropagation(); setDropOpen('carret_dropdown'); }}
+                        onClick={(e) => { e.stopPropagation(); setDropOpen(dropOpen === 'carret_dropdown'? false : 'carret_dropdown'); }}
                     >
                         <FontAwesomeIcon icon="chevron-down" />
                         {dropOpen === "carret_dropdown" &&
@@ -156,6 +156,7 @@ export default function Navbar() {
                     </Link>
                 </>
             )}
+            <span id="tooltipspan"></span>
         </nav>
     );
 }

@@ -67,6 +67,7 @@ function App() {
           setCurrentUser(response.data)
           try{
             localStorage.setItem("currentUserAvatarURL", !response.data.avatar ? "" : response.data.avatar )
+            localStorage.setItem("userId", response.data.id);
           }catch{}
         }).catch(err =>{
           if (err.response){
@@ -74,6 +75,8 @@ function App() {
             appData.current['isValid'] = false
             appData.current.token = null
             localStorage.removeItem('token')
+            localStorage.removeItem('userId')
+            localStorage.removeItem('currentUserAvatarURL')
           }
         }).finally(()=>{
           setisUserLogedin(appData.current['isValid'])
@@ -84,6 +87,8 @@ function App() {
         appData.current['isValid'] =false
         appData.current.token = null
         localStorage.removeItem('token')
+        localStorage.removeItem('userId')
+        localStorage.removeItem('currentUserAvatarURL')
       }
     }, [isUserLogedin])
   
