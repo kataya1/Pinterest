@@ -48,10 +48,9 @@ class TrialZoom extends Component {
       const token = localStorage.getItem('token')
       const url = `${host}/accounts/api/v1/pin/update/${this.props.id}`;
       fetch(url, {
-        method: "patch",
+        method: "PATCH",
         headers: {
           Authorization: `Token ${token}`,
-          "Content-type": "application/json",
         },
       }).catch(console.error);
 
@@ -66,10 +65,9 @@ class TrialZoom extends Component {
       const token = localStorage.getItem('token')
       const url = `${host}/accounts/api/v1/pin/update/${this.props.id}`;
       fetch(url, {
-        method: "delete",
+        method: "DELETE",
         headers: {
           Authorization: `Token ${token}`,
-          "Content-type": "application/json",
         },
       }).catch(console.error);
       this.setState({ bgcolor: "black" });
