@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./UserInfo.css";
 import { Link } from 'react-router-dom';
+import { injectTooltip } from "../Tooltip/Tooltip";
 
 const media = localStorage.getItem('media')
 class ProfileData extends Component {
@@ -32,7 +33,10 @@ class ProfileData extends Component {
               </div>
 
               <div className='share-edit pt-1'>
-                <button type='button' className='btn btn-light rounded-pill'>
+                <button 
+                type='button'
+                onClickCapture={injectTooltip} 
+                className='btn btn-light rounded-pill'>
                   <span style={{ fontSize: "16px", fontWeight: "700" }}>
                     Share
                   </span>

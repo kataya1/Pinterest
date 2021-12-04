@@ -5,6 +5,7 @@ import HistoryDisplay from "../History/HistoryDisplay";
 import'../Home/pin.css';
 import styles from './history.module.css'; 
 import AnQ from "../Home/Anq-btns";
+import { injectTooltip } from "../Tooltip/Tooltip";
 
 
 
@@ -83,7 +84,7 @@ class History extends React.Component {
                 <div className={styles.head}>
                     <h3>Tune your home feed</h3>
                     <p>Your home feed is based on your boards, topics, 
-                        browsing history, and the creator profiles you follow. 
+                        browsing history, and  the creator profiles you follow. 
                         Edit your preferences to improve your feed!</p>
 
                 </div>
@@ -96,9 +97,9 @@ class History extends React.Component {
             <div className={styles.row}>
                 <div className={styles.lable}>
                     <div><div className={styles.history}>History</div></div>
-                    <div><div>Boards</div></div>
-                    <div><div>Topics</div></div>
-                    <div><div>Profiles</div></div>
+                    <div onClickCapture={injectTooltip}><div>Boards</div></div>
+                    <div onClickCapture={injectTooltip}><div>Topics</div></div>
+                    <div onClickCapture={injectTooltip}><div>Profiles</div></div>
                 </div>
             </div>
         </div>

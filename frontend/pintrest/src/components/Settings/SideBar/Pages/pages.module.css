@@ -282,7 +282,7 @@ input:checked+.slider:before {
   position: fixed;
   bottom: 0;
   right: 50px;
-  z-index: 50;
+  /* z-index: 50; */
   padding-bottom: 10px;
   background-color: white;
 }
