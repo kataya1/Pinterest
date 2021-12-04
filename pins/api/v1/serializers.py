@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from pins.models import Pin, Save, History
+from pins.models import Comment, Pin, Save, History
 from accounts.models import User
 class UserAvatarSerializer(serializers.ModelSerializer):
 
@@ -38,3 +38,28 @@ class HistoryGetSerializer(serializers.ModelSerializer):
     class Meta:
         model = History
         fields = '__all__'
+
+# kataaya hassan
+
+class CommentCreatorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'avatar')
+
+class CommentPostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = "__all__"
+
+
+class CommentSerializer(serializers.ModelSerializer):
+    creator = CommentCreatorSerializer() 
+    class Meta:
+        model = Comment
+        fields = '__all__'
+
+class PinCommentSerializer(serializers.ModelSerializer):
+    comment_set = CommentSerializer(many=True)
+    class Meta:
+        model = Pin
+        fields = ('id', 'comment_set')
