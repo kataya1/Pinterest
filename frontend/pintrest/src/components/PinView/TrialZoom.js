@@ -30,6 +30,13 @@ class TrialZoom extends Component {
     // console.log(`USER${typeof Number(userid) }`)
     // console.log(this.state.reactt.indexOf(Number(userid)))
     if (this.state.reactt.indexOf(Number(userid)) >= 0) {
+      if (this.state.count  === 1)
+      {
+        this.setState({clicked: `You like this`})
+      }else{
+
+        this.setState({clicked: `You and ${this.state.count - 1} like this`})
+      }
       this.setState({ check: true })
       this.setState({ bgcolor: "#E60023" });
     }
@@ -43,8 +50,6 @@ class TrialZoom extends Component {
   handleClick = () => {
     if (this.state.check === false)
     {
-      this.setState({ check: true })
-      this.setState(prev => ({ count: prev.count + 1 }));
       const token = localStorage.getItem('token')
       const url = `${host}/accounts/api/v1/pin/update/${this.props.id}`;
       fetch(url, {
@@ -52,16 +57,21 @@ class TrialZoom extends Component {
         headers: {
           Authorization: `Token ${token}`,
         },
-      }).catch(console.error);
-
-      this.setState({ bgcolor: "#E60023" });
-      this.setState({ clicked: `You and ${this.state.count} like this` });
+      }).then(()=>{
+        
+        this.setState({ check: true })
+        this.setState(prev => ({ count: prev.count + 1,
+          clicked: `You ${prev.count? `and ${prev.count}` : ""} like this`
+        }));
+        this.setState({ bgcolor: "#E60023" });
+        // this.setState({ clicked: `You and ${this.state.count} like this` });
+      })
+      .catch(console.error);
+      
 
    
 
     } else if (this.state.check === true) {
-      this.setState({ check: false })
-      this.setState(prev => ({ count: prev.count - 1 }));
       const token = localStorage.getItem('token')
       const url = `${host}/accounts/api/v1/pin/update/${this.props.id}`;
       fetch(url, {
@@ -69,9 +79,14 @@ class TrialZoom extends Component {
         headers: {
           Authorization: `Token ${token}`,
         },
-      }).catch(console.error);
-      this.setState({ bgcolor: "black" });
-      this.setState({ clicked: `${this.state.count - 1} like this` });
+      }).then(()=>{
+        this.setState({ check: false })
+        this.setState(prev => ({ count: prev.count - 1,
+          clicked: `${prev.count - 1} like this`
+        }));
+        this.setState({ bgcolor: "black" });
+      })
+      .catch(console.error);
     }
   };
   handleNotesClick = () => {
