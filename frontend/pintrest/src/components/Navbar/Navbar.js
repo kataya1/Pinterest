@@ -86,7 +86,11 @@ export default function Navbar() {
         <nav className={styles.navigation}>
             <Link to="/">
                 <ButtonFlex buttonStyle="btn--logo">
-                    <FontAwesomeIcon icon={["fab", "pinterest"]} size="2x" />
+                    <FontAwesomeIcon icon={["fab", "pinterest"]} size="3x" style={{
+
+                          animation: "fa-spin 5s infinite linear",
+                            color: "#5c7cfa",
+}}  />
                 </ButtonFlex>
                 {/* <img src={newlogo} style={{height: "20px",}} alt="" /> */}
             </Link>
