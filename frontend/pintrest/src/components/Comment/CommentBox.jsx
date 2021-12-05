@@ -10,7 +10,6 @@ const token = localStorage.getItem("token");
 
 export default function CommentBox(props) {
     const [comments, setComments] = useState([]);
-
     useEffect(() => {
         const aborter = new AbortController();
         axios({
@@ -20,9 +19,8 @@ export default function CommentBox(props) {
                 Authorization: "Token " + token,
             },
         })
-            .then((res) => {
-                if (res.data["comment_list"] !== comments)
-                    setComments(res.data["comment_list"]);
+            .then((res) => {        
+                setComments(res.data["comment_list"]);
             })
             .catch((err) => {
                 if (err.name === "AbortError") console.log("aborterror");
@@ -31,7 +29,7 @@ export default function CommentBox(props) {
         return () => {
             aborter.abort();
         };
-    }, [props.pin_id, comments]);
+    }, [props.pin_id]);
 
     return (
         <div>
@@ -60,7 +58,6 @@ export default function CommentBox(props) {
                     </svg>
                 </span>
             </div>
-
             {comments &&
                 comments.map((c) => {
                     return (

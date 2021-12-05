@@ -13,12 +13,12 @@ const token = localStorage.getItem("token");
 //     // console.log(e)
 // })
 
-export default function InputComment(props) {
+export default function InputComment({pin_id, setComments}) {
     const textbox = useRef(null);
     const postComment = (e) => {
         e.preventDefault();
         axios({
-            url: `${host}/pin/${props.pin_id}/comments`,
+            url: `${host}/pin/${pin_id}/comments`,
             method: "POST",
             headers: {
                 Authorization: "Token " + token,
@@ -28,7 +28,21 @@ export default function InputComment(props) {
             },
         })
             .then((res) => {
-                props.setComments(res.data["comment_list"]);
+                axios({
+                    url: `${host}/pin/${pin_id}/comments`,
+                    method: "GET",
+                    headers: {
+                        Authorization: "Token " + token,
+                    },
+                })
+                    .then((res) => {
+                        setComments(res.data["comment_list"]);
+                    })
+                    .catch((err) => {
+                        
+                         console.log(err);
+                    });
+
                 textbox.current.value = "";
             })
             .catch((err) => {
