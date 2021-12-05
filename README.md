@@ -3,41 +3,78 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/30096c8e-c784-4459-a6a2-29506ee1ff11/deploy-status)](https://app.netlify.com/sites/iti-pinterest/deploys)
 [![Heroku](https://heroku-badge.herokuapp.com/?app=iti-pinterest-backend)]
 
+# Contributers
+
+<table>
+  <tr>
+    <td align="center"><a href="https://kataya1.com"><img src="https://avatars.githubusercontent.com/u/34242491?v=4&s=100" width="100px;" alt=""/><br /><sub><b>Mo. Kataya</b></sub></a></td>
+    <td align="center"><a href="https://github.com/HassanTAli"><img src="https://avatars.githubusercontent.com/u/55896820?v=4&s=100" width="100px;" alt=""/><br /><sub><b>Hassan Tarek</b></sub></a></td>
+    <td align="center"><a href="https://github.com/SaharMamdouh"><img src="https://avatars.githubusercontent.com/u/89229313?v=4&s=100" width="100px;" alt=""/><br /><sub><b>Sahar
+ Mamdouh</b></sub></a><br />    </td>
+    <td align="center"><a href="https://github.com/Kholoud731"><img src="https://avatars.githubusercontent.com/u/80483628?v=4&s=100" width="100px;" alt=""/><br /><sub><b>Kholoud Talaat</b></sub></a></td>
+    <td align="center"><a href="https://github.com/MoaazMoustafa"><img src="https://avatars.githubusercontent.com/u/86559465?v=4&s=100" width="100px;" alt=""/><br /><sub><b>Moaaz Moustafa</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/bruno-0"><img src="https://avatars.githubusercontent.com/u/24655400?v=4&s=100" width="100px;" alt=""/><br /><sub><b>bruno-0</b></sub></a></td>
+  </tr>
+</table>
 
 # backend
 
- dependencies 
+##  dependencies 
+#### Python 3
 
- - python3 -m venv venv_name or virtualenv venv_name
--  soruce venv/bin/activate
--  pip install -r requirments
--  python3 manage.py makemigrations
--  python3 manage.py migrate
--  python3 manage.py runserver
+Follow instructions to install the latest version of python for your platform in the [python docs](https://docs.python.org/3/using/unix.html#getting-and-installing-the-latest-version-of-python)
 
-How to run the backend?
+#### Virtual Enviornment
+
+We recommend working within a virtual environment whenever using Python for projects. This keeps your dependencies for each project separate and organaized. Instructions for setting up a virual enviornment for your platform can be found in the [python docs](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/)
+
+#### PIP Dependencies
+
+Once you have your virtual environment setup and running, install dependencies by naviging to the root directory and running:
+
+```bash
+$ pip install -r requirements.txt
+```
+
+This will install all of the required packages we selected within the `requirements.txt` file.
+
+##### Key Dependencies
+ - [Django](https://www.djangoproject.com/) Django is a Python-based free and open-source web framework that follows the model–template–views architectural pattern.
+
+## installation steps
 - After cloning the repo then cd Pinterest/backend/
+### linux
 - Create your virtual environment 
-	- for windows:
-		- Open PowerShell on the same level for backend dir 
-		- Run this command to create your venv 
-			"python3 -m venv 'your environment name'"
-		- Activate your venv by this command
-			"'your environment name'/Scripts/activate"
+   -  ` python3 -m venv venv_name ` or  `  virtualenv venv `
+  -  `soruce venv/bin/activate`
+-  `pip install -r requirments`
+-  `python3 manage.py makemigrations`
+-  `python3 manage.py migrate`
+- ` python3 manage.py runserver`
+### for windows:
+  - Create your virtual environment 
+  - Open PowerShell on the same level for backend dir 
+  - Run this command to create your venv 
+  	"python3 -m venv 'your environment name'"
+  - Activate your venv by this command
+  	"'your environment name'/Scripts/activate"
 - Go to backend directory "cd backend"
 - Install the project requirements "pip install -r requirements"
 - "py manage.py makemigrations"
 - "py manage.py migrate"
 - "py manage.py runserver" => you should see "Starting development server at http://127.0.0.1:8000"
 
+# API
+the api documentation is puplished on this [link](https://documenter.getpostman.com/view/11760714/UVJbJdUU)
+
 
 # frontend
 
-# Getting Started with Create React App
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# Install Modules
+## Install Modules
 
 ### `npm install`
 it will install modules from package.json and package.lock.json 
