@@ -1,0 +1,38 @@
+.comment{
+    width: 100%;
+    margin: 20px 0;
+}
+
+.image{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+}
+
+.title{
+    margin-top: 70px;
+    margin-bottom: 20px;
+}
+
+.comment-msg{
+    padding: 1rem;
+    width: 100%;
+    min-height: 3rem;
+    border-radius: 15px;
+    border: 0.5px solid #767676;
+    margin-bottom: 0;
+}
+
+
+/* .comment:last-child  .comment-input{
+    display: block;
+}
+.comment:not(:last-child)  .comment-input{
+    display: none;
+}
+.comment:last-child  .comment-msg{
+    display: none;
+}
+.comment:last-child .comment-reactbar{
+    display: none;
+} */

@@ -42,9 +42,9 @@
 .btn--text {
     font-weight: bold;
     height: 3rem;
-    color: #fff;
+    color: var(--dark);
     padding: 1rem;
-    background-color: #151515;
+    background-color: var(--white);
     display: flex;
     align-items: center;
     justify-content: center;

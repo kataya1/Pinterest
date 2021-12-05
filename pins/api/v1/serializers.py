@@ -44,7 +44,7 @@ class HistoryGetSerializer(serializers.ModelSerializer):
 class CommentCreatorSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'avatar')
+        fields = ('id', 'avatar', 'username')
 
 class CommentPostSerializer(serializers.ModelSerializer):
     class Meta:

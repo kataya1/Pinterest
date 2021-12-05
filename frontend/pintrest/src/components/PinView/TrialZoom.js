@@ -4,12 +4,13 @@ import "./Modal.css";
 import { Link } from 'react-router-dom';
 import { injectTooltip } from "../Tooltip/Tooltip"
 import "../Home/pin.css";
+import CommentBox from "../Comment/CommentBox";
 
 
 const media = localStorage.getItem('media')
 const host = localStorage.getItem('host')
 const userid = localStorage.getItem('userId')
-const currentUserAvatarURL = localStorage.getItem('currentUserAvatarURL')
+// const currentUserAvatarURL = localStorage.getItem('currentUserAvatarURL')
 class TrialZoom extends Component {
   constructor(props) {
     super(props);
@@ -25,17 +26,16 @@ class TrialZoom extends Component {
   }
 
   componentDidMount() {
-   
+
     // console.log(`${this.state.reactt}`)
     // console.log(`USER${typeof Number(userid) }`)
     // console.log(this.state.reactt.indexOf(Number(userid)))
     if (this.state.reactt.indexOf(Number(userid)) >= 0) {
-      if (this.state.count  === 1)
-      {
-        this.setState({clicked: `You like this`})
-      }else{
+      if (this.state.count === 1) {
+        this.setState({ clicked: `You like this` })
+      } else {
 
-        this.setState({clicked: `You and ${this.state.count - 1} like this`})
+        this.setState({ clicked: `You and ${this.state.count - 1} like this` })
       }
       this.setState({ check: true })
       this.setState({ bgcolor: "#E60023" });
@@ -48,8 +48,7 @@ class TrialZoom extends Component {
   };
 
   handleClick = () => {
-    if (this.state.check === false)
-    {
+    if (this.state.check === false) {
       const token = localStorage.getItem('token')
       const url = `${host}/accounts/api/v1/pin/update/${this.props.id}`;
       fetch(url, {
@@ -57,19 +56,20 @@ class TrialZoom extends Component {
         headers: {
           Authorization: `Token ${token}`,
         },
-      }).then(()=>{
-        
+      }).then(() => {
+
         this.setState({ check: true })
-        this.setState(prev => ({ count: prev.count + 1,
-          clicked: `You ${prev.count? `and ${prev.count}` : ""} like this`
+        this.setState(prev => ({
+          count: prev.count + 1,
+          clicked: `You ${prev.count ? `and ${prev.count}` : ""} like this`
         }));
         this.setState({ bgcolor: "#E60023" });
         // this.setState({ clicked: `You and ${this.state.count} like this` });
       })
-      .catch(console.error);
-      
+        .catch(console.error);
 
-   
+
+
 
     } else if (this.state.check === true) {
       const token = localStorage.getItem('token')
@@ -79,14 +79,15 @@ class TrialZoom extends Component {
         headers: {
           Authorization: `Token ${token}`,
         },
-      }).then(()=>{
+      }).then(() => {
         this.setState({ check: false })
-        this.setState(prev => ({ count: prev.count - 1,
+        this.setState(prev => ({
+          count: prev.count - 1,
           clicked: `${prev.count - 1} like this`
         }));
         this.setState({ bgcolor: "black" });
       })
-      .catch(console.error);
+        .catch(console.error);
     }
   };
   handleNotesClick = () => {
@@ -110,7 +111,7 @@ class TrialZoom extends Component {
     }).catch(console.error);
   };
 
- 
+
 
   render() {
     return (
@@ -362,122 +363,11 @@ class TrialZoom extends Component {
 
                 {/* comment-container */}
               </div>
-              <div className='comment-container' style={{ marginTop: "80px" }}>
-                <div
-                  style={{
-                    fontSize: "1rem",
-                    fontWeight: "bold",
-                    float: "left",
-                  }}
-                >
-                  Comments
-                </div>
-                <div style={{ float: "left", marginLeft: "1%" }}>
-                  <svg
-                    height='18'
-                    width='18'
-                    viewBox='0 0 24 24'
-                    aria-hidden='true'
-                    aria-label=''
-                    role='img'
-                  >
-                    <path d='M12 19.5.66 8.29c-.88-.86-.88-2.27 0-3.14.88-.87 2.3-.87 3.18 0L12 13.21l8.16-8.06c.88-.87 2.3-.87 3.18 0 .88.87.88 2.28 0 3.14L12 19.5z'></path>
-                  </svg>
-                </div>
-              </div>
-              <div
-                className='comment-added row'
-                style={{ width: "100%", marginTop: "20%" }}
-              >
-                <div className='col-2 user'>
-                  <img
-                    src={`${media}${currentUserAvatarURL}`}
-                    alt=''
-                    style={{
-                      width: "48px",
-                      height: "48px",
-                      borderRadius: "50%",
-                      float: "left",
-                    }}
-                  />
-                </div>
-                <div className='col-10'>
-                  <div className='row'>
-                    <input
-                      type='text'
-                      placeholder='Add a comment'
-                      style={{
-                        width: "80%",
-                        height: "50px",
-                        padding: "12px",
-                        borderRadius: "30px",
-                        border: "0.5px solid #767676",
-                      }}
-                    />
-                  </div>
-                  <div className='row' style={{ marginTop: "10px" }}>
-                    <div className='d-flex'>
-                      <div className='heart-emoji px-1'>
-                        <svg
-                          fill='#767676'
-                          height='16'
-                          width='16'
-                          viewBox='0 0 24 24'
-                          aria-label='like icon'
-                          role='img'
-                        >
-                          <path d='m22.178 13.583-9.131 8.992a1.502 1.502 0 0 1-2.094 0l-9.131-8.992a6.192 6.192 0 0 1 0-8.773c2.439-2.413 6.395-2.413 8.834 0L12 6.154l1.344-1.344c2.439-2.413 6.395-2.413 8.834 0a6.192 6.192 0 0 1 0 8.773'></path>
-                        </svg>
-                      </div>
-                      <div className='comment-icon px-1'>
-                        <svg
-                          fill='#767676'
-                          height='16'
-                          width='16'
-                          viewBox='0 0 24 24'
-                          aria-hidden='true'
-                          aria-label=''
-                          role='img'
-                        >
-                          <path d='M12 0C5.85 0 .75 4.94.75 11.08c0 2.7.9 5.24 2.7 7.19L2.1 23.51c-.15.3.3.6.6.45l5.25-2.55c1.35.45 2.7.75 4.05.75 6.15 0 11.25-4.94 11.25-11.08S18.15 0 12 0'></path>
-                        </svg>
-                      </div>
-                      <div className='dotted-icon px-1'>
-                        <svg
-                          fill='#767676'
-                          height='16'
-                          width='16'
-                          viewBox='0 0 24 24'
-                          aria-hidden='true'
-                          aria-label=''
-                          role='img'
-                        >
-                          <path d='M12 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3M3 9c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm18 0c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z'></path>
-                        </svg>
-                      </div>
-                      <div className='px-1' style={{ marginLeft: "56%" }}>
-                        <div className='like-icon'>
-                          <svg
-                            fill='#767676'
-                            height='16'
-                            width='16'
-                            viewBox='0 0 24 24'
-                            aria-label='helpful icon'
-                            role='img'
-                          >
-                            <path d='M21 14.09a2.1 2.1 0 01-2.11 2.08 2.1 2.1 0 012.11 2.1 2.1 2.1 0 01-2.11 2.08H16.5c1.02 0 1.85.82 1.85 1.82 0 1.01-.83 1.83-1.85 1.83H9.9A7.87 7.87 0 012 16.17c0-2.2.93-4.2 2.41-5.61 2.19-2.3 3.4-5.3 3.4-8.47A2.1 2.1 0 019.9 0a2.1 2.1 0 012.12 2.09c0 1.99-.37 3.92-1.05 5.74h7.9A2.1 2.1 0 0121 9.9a2.1 2.1 0 01-2.11 2.1A2.1 2.1 0 0121 14.09z'></path>
-                          </svg>
-                        </div>
-                        <p style={{ fontFamily: "Helvetica Neue" }}>
-                          {" "}
-                          &nbsp;Helpful
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
+              <CommentBox pin_id={this.props.pin_id}/>
+            
+
+
+              {/* <div
                 className='d-flex justify-content-end done-cancel'
                 style={{ marginTop: "3%", marginLeft: "60%" }}
               >
@@ -497,9 +387,9 @@ class TrialZoom extends Component {
                     Done
                   </span>
                 </button>
-              </div>
+              </div> */}
 
-              <div
+              {/* <div
                 className='d-flex user-save'
                 style={{
                   marginTop: "80%",
@@ -516,7 +406,7 @@ class TrialZoom extends Component {
                   </span>
                   saved this pin
                 </p>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -533,10 +423,10 @@ class TrialZoom extends Component {
           </h3>
         </div>
         {/* 3nd Level container */}
-         
-         <Home/>
-        
-          
+
+        <Home />
+
+
       </div>
     );
   }
