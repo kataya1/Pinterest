@@ -86,7 +86,14 @@ export default function Navbar() {
         <nav className={styles.navigation}>
             <Link to="/">
                 <ButtonFlex buttonStyle="btn--logo">
-                    <FontAwesomeIcon icon={["fab", "pinterest"]} size="2x" />
+                    <FontAwesomeIcon icon={["fab", "pinterest"]} size="2x" style={{
+
+animation: "fa-spin 5s infinite linear",
+
+color: "#5c7cfa",
+
+
+}} />
                 </ButtonFlex>
                 {/* <img src={newlogo} style={{height: "20px",}} alt="" /> */}
             </Link>
@@ -98,7 +105,7 @@ export default function Navbar() {
             {isUserLogedin ? (
                 <>
 
-                    <ButtonFlex buttonStyle="btn--icon" onClick={(e)=>{ e.stopPropagation(); setDropOpen('notifications_dropdown')}}>
+                    <ButtonFlex buttonStyle="btn--icon" onClick={(e)=>{ e.stopPropagation(); setDropOpen(dropOpen === 'notifications_dropdown' ? false : 'notifications_dropdown')}}>
                         <FontAwesomeIcon icon="bell" size="2x" />
                         { dropOpen === "notifications_dropdown" && 
                             <Dropdown>
@@ -109,7 +116,7 @@ export default function Navbar() {
                             </Dropdown>
                         }
                     </ButtonFlex>
-                    <ButtonFlex buttonStyle="btn--icon" onClick={(e)=>{ e.stopPropagation(); setDropOpen('messages_dropdown')}}>
+                    <ButtonFlex buttonStyle="btn--icon" onClick={(e)=>{ e.stopPropagation(); setDropOpen(  dropOpen === 'messages_dropdown'? false : 'messages_dropdown')}}>
                         <FontAwesomeIcon icon="comment-dots" size="2x" />
                         { dropOpen === "messages_dropdown" && 
                             <Dropdown>
@@ -121,11 +128,19 @@ export default function Navbar() {
                         }
                     </ButtonFlex>
                     <Link to="/profile">
+                        {
+                            currentUser.avatar &&
                         <Avatar src={`${media}${currentUser.avatar}`} />
+                        }
+                        {
+                            !currentUser.avatar &&
+                        <Avatar src='https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg' />
+                        }
+                      
                     </Link>
                     <ButtonFlex
                         buttonStyle="btn--down"
-                        onClick={(e) => { e.stopPropagation(); setDropOpen('carret_dropdown'); }}
+                        onClick={(e) => { e.stopPropagation(); setDropOpen(dropOpen === 'carret_dropdown'? false : 'carret_dropdown'); }}
                     >
                         <FontAwesomeIcon icon="chevron-down" />
                         {dropOpen === "carret_dropdown" &&
@@ -156,6 +171,7 @@ export default function Navbar() {
                     </Link>
                 </>
             )}
+            <span id="tooltipspan"></span>
         </nav>
     );
 }
