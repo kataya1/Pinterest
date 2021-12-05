@@ -121,7 +121,15 @@ export default function Navbar() {
                         }
                     </ButtonFlex>
                     <Link to="/profile">
+                        {
+                            currentUser.avatar &&
                         <Avatar src={`${media}${currentUser.avatar}`} />
+                        }
+                        {
+                            !currentUser.avatar &&
+                        <Avatar src='https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg' />
+                        }
+                      
                     </Link>
                     <ButtonFlex
                         buttonStyle="btn--down"
