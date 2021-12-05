@@ -50,6 +50,10 @@ This will install all of the required packages we selected within the `requireme
 -  `pip install -r requirments`
 -  `python3 manage.py makemigrations`
 -  `python3 manage.py migrate`
+-  create a file called env.py right next to settings.py in the backend folder and put 
+  ``` 
+   S_KEY = 'django-insecure-anyrandomsecretkey'
+   ```
 - ` python3 manage.py runserver`
 ### for windows:
   - Create your virtual environment 
