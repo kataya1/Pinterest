@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from pins.models import Pin, Save, History
 from accounts.models import User
-from .serializers import PinSerializer, PinCreateSerializer, UserAvatarSerializer, PinSaveSerializer, HistoryPostSerializer, HistoryGetSerializer
+from .serializers import CommentPostSerializer, CommentSerializer, PinSerializer, PinCreateSerializer, UserAvatarSerializer, PinSaveSerializer, HistoryPostSerializer, HistoryGetSerializer
 from rest_framework.permissions import IsAuthenticated
 
 @api_view(['GET'])
@@ -89,3 +89,40 @@ def delete_history(request, **kwargs):
         id = kwargs.get('id')
         History.objects.filter(pk=id).delete()
         return Response({'msg':"Pin Deleted From History"}, status=status.HTTP_201_CREATED)
+
+# from models import Comment
+from .serializers import PinCommentSerializer
+from accounts.api.v1.serializers import UserSerializer
+@api_view(['GET', 'POST'])
+# @permission_classes([IsAuthenticated])
+def get_comments(request, pin_id):
+    pin = Pin.objects.filter(pk=pin_id).first()
+    if pin == None:
+        return Response({"msg": "pin not found"}, status=status.HTTP_404_NOT_FOUND)
+    if request.method == "GET":
+        try:
+            print("🍅 pin id", pin_id)
+            p = PinCommentSerializer(pin)
+            return Response({'comment_list':p.data["comment_set"] }, status=status.HTTP_200_OK)
+        except Exception as e :
+            return Response({'msg':str(e) }, status=status.HTTP_404_NOT_FOUND)
+
+    elif request.method == "POST":
+        try:
+            data = {
+                "creator" :request.user.id,
+                "pin": pin_id,
+                "content": request.data.get("content"),
+                "reactee": [request.user.id,]
+            }
+            new_comment = CommentPostSerializer(data=data)
+            if new_comment.is_valid():
+                new_comment.save()
+                return Response({'msg':new_comment.data }, status=status.HTTP_201_CREATED)
+            else:
+                return Response({'msg': new_comment.errors }, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response({'msg':str(e) }, status=status.HTTP_400_BAD_REQUEST)
+            
+
+        

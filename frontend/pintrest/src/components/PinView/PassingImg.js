@@ -37,6 +37,7 @@ class PassingImg extends Component {
               creator={item.creator}
               likes={item.reactees}
               id={item.id}
+              pin_id={this.props.pinId}
             />
             
          );

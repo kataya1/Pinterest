@@ -86,7 +86,14 @@ export default function Navbar() {
         <nav className={styles.navigation}>
             <Link to="/">
                 <ButtonFlex buttonStyle="btn--logo">
-                    <FontAwesomeIcon icon={["fab", "pinterest"]} size="2x" />
+                    <FontAwesomeIcon icon={["fab", "pinterest"]} size="2x" style={{
+
+animation: "fa-spin 5s infinite linear",
+
+color: "#5c7cfa",
+
+
+}} />
                 </ButtonFlex>
                 {/* <img src={newlogo} style={{height: "20px",}} alt="" /> */}
             </Link>
@@ -121,7 +128,15 @@ export default function Navbar() {
                         }
                     </ButtonFlex>
                     <Link to="/profile">
+                        {
+                            currentUser.avatar &&
                         <Avatar src={`${media}${currentUser.avatar}`} />
+                        }
+                        {
+                            !currentUser.avatar &&
+                        <Avatar src='https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg' />
+                        }
+                      
                     </Link>
                     <ButtonFlex
                         buttonStyle="btn--down"

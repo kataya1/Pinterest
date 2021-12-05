@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import  home, create_pin, save_pin,history, delete_history, api_status
+from .views import  home, create_pin, save_pin,history, delete_history, api_status, get_comments
 app_name="pins"
 urlpatterns = [
     path('home/', home, name='home'),
@@ -8,4 +8,5 @@ urlpatterns = [
     path('profile/history/', history, name='history'),
     path('profile/history/<int:id>', delete_history, name='delete_history'),
      path('', api_status, name="status"),
+    path('pin/<int:pin_id>/comments', get_comments),
 ]

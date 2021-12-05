@@ -7,7 +7,7 @@ class Profile extends Component {
             <div>
                
                  <EmptyComp/>
-                
+
             </div>
         )
     }
