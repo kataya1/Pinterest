@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='board',
             name='pins',
-            field=models.ManyToManyField(blank=True, null=True, related_name='boards', to='pins.Pin'),
+            field=models.ManyToManyField(blank=True, related_name='boards', to='pins.Pin'),
         ),
     ]

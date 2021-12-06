@@ -43,7 +43,7 @@ class Board(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     creator = models.ForeignKey(
         AUTH_USER_MODEL, on_delete=models.PROTECT)
-    pins = models.ManyToManyField('Pin', related_name="boards",blank=True,null=True)
+    pins = models.ManyToManyField('Pin', related_name="boards",blank=True)
 
     def __str__(self):
         return self.name
