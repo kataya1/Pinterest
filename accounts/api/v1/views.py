@@ -279,7 +279,9 @@ def create_pinboard(request):
     board = Board.objects.get(id=request.data.get('board_id'))
     if request.method == 'PATCH':
         try:
+
             board.pins.add(pin)
+
             return Response(**{'data': 'done', 'status': status.HTTP_200_OK})
         except Exception as e:
             return Response(**{'data': str(e), 'status': status.HTTP_500_INTERNAL_SERVER_ERROR})
@@ -289,6 +291,32 @@ def create_pinboard(request):
             return Response(**{'data': 'deleted', 'status': status.HTTP_200_OK})
         except Exception as e:
             return Response(**{'data': str(e), 'status': status.HTTP_500_INTERNAL_SERVER_ERROR})
+
+# @api_view(['PATCH'])
+# @permission_classes([IsAuthenticated])
+# def create_pinboard(request):
+#     pin_array = []
+#     pin=[]
+#     # for i in range(0,3):
+#     pin=Pin.objects.get(id=request.data.get('pin_id'))
+#     pin=list(pin)
+#     pin_array.append(pin[i])
+#     print(pin_array)
+#     board = Board.objects.get(id=request.data.get('board_id'))
+#     if request.method == 'PATCH':
+#         try:
+#             for p_id in pin_array:
+#                 board.pins.add(p_id)
+#                 board.save()
+#             return Response(**{'data': 'done', 'status': status.HTTP_200_OK})
+#         except Exception as e:
+#             return Response(**{'data': str(e), 'status': status.HTTP_500_INTERNAL_SERVER_ERROR})
+#     else:
+#         try:
+#             board.pins.remove(pin)
+#             return Response(**{'data': 'deleted', 'status': status.HTTP_200_OK})
+#         except Exception as e:
+#             return Response(**{'data': str(e), 'status': status.HTTP_500_INTERNAL_SERVER_ERROR})
 
 ############################
 
