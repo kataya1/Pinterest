@@ -78,7 +78,8 @@ export default function Signin() {
                         placeholder="username"
                         onChange={(e) => setUsername(e.target.value)}
                         value={username}
-                        autoComplete="username"
+                        autoComplete="username" 
+                        style={{ outline: 0}}
                     />
                     <input
                         type="password"
@@ -87,7 +88,8 @@ export default function Signin() {
                         placeholder="password"
                         onChange={(e) => setPassword(e.target.value)}
                         value={password}
-                        autoComplete="current-password"
+                        autoComplete="current-password" 
+                        style={{ outline : 0}}
                     />
 
                     <button type="submit">
