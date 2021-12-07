@@ -39,13 +39,11 @@ class Pin(models.Model):
 
 class Board(models.Model):
     name = models.CharField(max_length=50)
-    visibility = models.BooleanField()
+    visibility = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    # image = models.ImageField(
-    #     upload_to="boards/%Y/%m/%D", null=True, blank=True)
     creator = models.ForeignKey(
         AUTH_USER_MODEL, on_delete=models.PROTECT)
-    pins = models.ManyToManyField('Pin', related_name="boards")
+    pins = models.ManyToManyField('Pin', related_name="boards",blank=True)
 
     def __str__(self):
         return self.name

@@ -1,7 +1,7 @@
 from rest_framework.authtoken.views import obtain_auth_token
 from django.urls import path
 from . import views
-from .views import list_user , list_board , list_pin , list_savedpin , update_reactees
+from .views import list_user , list_board , list_pin , list_savedpin , update_reactees, create_board,create_pinboard
 
 app_name="account=v1"
 urlpatterns = [
@@ -31,8 +31,8 @@ urlpatterns = [
     path('pin/<int:id>',list_pin,name='get-pin'),
     path('save/<int:id>',list_savedpin,name='get-savedpin'),
     path('pin/update/<int:id>', update_reactees, name='update-pin'),
-
-
+    path('board/create',create_board , name='update-pin'),
+    path('board/pin/create',create_pinboard , name='update-boardpin'),
 
     #
     # Moaaz kholoud

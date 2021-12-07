@@ -11,7 +11,7 @@ class User(AbstractUser):
     gender = models.CharField(
         choices=(('male', 'm'), ('female', 'f')), max_length=50, default="male")
     avatar = models.ImageField(
-        upload_to="profilePic/%y/%m/%d", null=True, blank=True)
+        upload_to="profilePic/%y/%m/%d", null=True, blank=True, default= "profilePic/defaultuser.png")
     bio = models.TextField(null=True, blank=True)
 
     interest = models.ManyToManyField(Topic,  blank=True)

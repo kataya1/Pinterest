@@ -20,8 +20,8 @@ import { Authcontext } from "../Authentication/Authcontext";
 import Dropdown, { Dropmenuitem } from "./Dropdown/Dropdown";
 import axios from "axios";
 import Userinfolistisem from "./Userinfolistitem/Userinfolistitem"
+import Notifications from './Notifications/Notifications'
 // import newlogo from "./newlogo.png"
-
 
 
 library.add(
@@ -40,7 +40,7 @@ export default function Navbar() {
 
     const handleLogout = (e) => {
         ' removes the token from local storage and sets isUserLogedin to false'
-      
+
         e.preventDefault();
         const path = "/accounts/api/v1";
         const endpoint = "/logout";
@@ -68,6 +68,7 @@ export default function Navbar() {
                 }
             });
     };
+
     const [dropOpen, setDropOpen] = useState(false)
     document.addEventListener('click', () => {
         setDropOpen(false)
@@ -79,7 +80,7 @@ export default function Navbar() {
 
     const emptyBoxstyle = {
         width: "300px",
-        height: "400px",
+        height: "300px",
     }
 
     return (
@@ -88,12 +89,12 @@ export default function Navbar() {
                 <ButtonFlex buttonStyle="btn--logo">
                     <FontAwesomeIcon icon={["fab", "pinterest"]} size="2x" style={{
 
-animation: "fa-spin 5s infinite linear",
+                        animation: "fa-spin 7s infinite linear",
 
-color: "#5c7cfa",
+                        color: "#5c7cfa",
 
 
-}} />
+                    }} />
                 </ButtonFlex>
                 {/* <img src={newlogo} style={{height: "20px",}} alt="" /> */}
             </Link>
@@ -101,27 +102,23 @@ color: "#5c7cfa",
             <Link to="/">
                 <ButtonFlex buttonStyle="btn--text">Home</ButtonFlex>
             </Link>
-            <Searchbox dropOpen={dropOpen} setDropOpen={setDropOpen}/>
+            <Searchbox dropOpen={dropOpen} setDropOpen={setDropOpen} />
             {isUserLogedin ? (
                 <>
 
-                    <ButtonFlex buttonStyle="btn--icon" onClick={(e)=>{ e.stopPropagation(); setDropOpen(dropOpen === 'notifications_dropdown' ? false : 'notifications_dropdown')}}>
+                    <ButtonFlex buttonStyle="btn--icon" onClick={(e) => { e.stopPropagation(); setDropOpen(dropOpen === 'notifications_dropdown' ? false : 'notifications_dropdown') }}>
                         <FontAwesomeIcon icon="bell" size="2x" />
-                        { dropOpen === "notifications_dropdown" && 
-                            <Dropdown>
-                                <Dropmenuitem>
-                                    <p style={{textAlign: 'center'}}>coming soon...</p>
-                                    <div style={emptyBoxstyle}></div>
-                                </Dropmenuitem>
-                            </Dropdown>
+                        {dropOpen === "notifications_dropdown" &&
+                            <Notifications setDropOpen={setDropOpen}/>
+              
                         }
                     </ButtonFlex>
-                    <ButtonFlex buttonStyle="btn--icon" onClick={(e)=>{ e.stopPropagation(); setDropOpen(  dropOpen === 'messages_dropdown'? false : 'messages_dropdown')}}>
+                    <ButtonFlex buttonStyle="btn--icon" onClick={(e) => { e.stopPropagation(); setDropOpen(dropOpen === 'messages_dropdown' ? false : 'messages_dropdown') }}>
                         <FontAwesomeIcon icon="comment-dots" size="2x" />
-                        { dropOpen === "messages_dropdown" && 
+                        {dropOpen === "messages_dropdown" &&
                             <Dropdown>
                                 <Dropmenuitem>
-                                    <p style={{textAlign: 'center'}}>No messages...</p>
+                                    <p style={{ textAlign: 'center' }}>No messages...</p>
                                     <div style={emptyBoxstyle}></div>
                                 </Dropmenuitem>
                             </Dropdown>
@@ -130,23 +127,25 @@ color: "#5c7cfa",
                     <Link to="/profile">
                         {
                             currentUser.avatar &&
-                        <Avatar src={`${media}${currentUser.avatar}`} />
+                            <Avatar src={`${media}${currentUser.avatar}`} />
                         }
                         {
                             !currentUser.avatar &&
-                        <Avatar src='https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg' />
+                            <Avatar src='https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg' />
                         }
-                      
+
                     </Link>
                     <ButtonFlex
                         buttonStyle="btn--down"
-                        onClick={(e) => { e.stopPropagation(); setDropOpen(dropOpen === 'carret_dropdown'? false : 'carret_dropdown'); }}
+                        onClick={(e) => { e.stopPropagation(); setDropOpen(dropOpen === 'carret_dropdown' ? false : 'carret_dropdown'); }}
                     >
                         <FontAwesomeIcon icon="chevron-down" />
                         {dropOpen === "carret_dropdown" &&
                             <Dropdown>
                                 <Dropmenuitem>
-                                    <Userinfolistisem avatarsrc={`${media}${currentUser.avatar}`} username={currentUser.username} email={currentUser.email} />
+                                    <Link to="/profile">
+                                        <Userinfolistisem avatarsrc={`${media}${currentUser.avatar}`} username={currentUser.username} email={currentUser.email} />
+                                    </Link>
                                 </Dropmenuitem>
                                 <Dropmenuitem>
                                     <Link to="/settings">Settings</Link>
