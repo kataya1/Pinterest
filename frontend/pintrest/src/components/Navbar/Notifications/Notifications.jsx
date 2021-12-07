@@ -30,8 +30,9 @@ export default function Notifications({ setDropOpen }) {
                 <p style={{ textAlign: "center" , position: "sticky", top: 0, backgroundColor: "#fff", zIndex: 10, padding: 10, width: "300px" }}>Pins you might Like...</p>
             {pinlist.map((item) => {
                 return (
+                    item && 
                     <Dropmenuitem
-                        key={`search-pin-${item["id"]}`}
+                        key={`pin-${item['id']}`}
                         onclick={(e) => {
                             setDropOpen("false");
                         }}
