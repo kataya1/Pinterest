@@ -29,6 +29,8 @@
 .dropdown ul{
     list-style: none;
     padding: 0;
+    max-height: 350px;
+    overflow: auto;
 }
 .dropdown li{
     height: fit-content;
