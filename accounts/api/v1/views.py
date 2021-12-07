@@ -210,7 +210,7 @@ def search_autocomplete(request):
 # arafa -- sahar
 #
 
-from .serializers import UserProfile , UserBoard , SavedPins , Saved_Pins
+from .serializers import UserProfile , UserBoard , SavedPins , Saved_Pins , BoardSerializer
 from pins.models import Board ,  Pin, Save
 
 @api_view(['GET'])
@@ -224,6 +224,23 @@ def list_board(request,id):
     boards = Board.objects.filter(creator=id)
     Serialzed_data = UserBoard(boards,many=True)
     return Response(data=Serialzed_data.data,status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
+def create_board(request):
+    if request.method == 'POST':
+        data={
+            'name':request.data.get('name'),
+            'creator':request.user.id,
+        }
+        new_board = BoardSerializer(data=data)
+        if new_board.is_valid():
+            new_board.save()
+            return Response(new_board.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(data=new_board.errors)
+
 
 @api_view(['GET'])
 def list_pin(request,id):
@@ -255,7 +272,25 @@ def update_reactees(request,id):
         except Exception as e:
             return Response(**{'data': str(e), 'status': status.HTTP_500_INTERNAL_SERVER_ERROR})
 
+@api_view(['PATCH'])
+@permission_classes([IsAuthenticated])
+def create_pinboard(request):
+    pin = Pin.objects.get(id=request.data.get('pin_id'))
+    board = Board.objects.get(id=request.data.get('board_id'))
+    if request.method == 'PATCH':
+        try:
+            board.pins.add(pin)
+            return Response(**{'data': 'done', 'status': status.HTTP_200_OK})
+        except Exception as e:
+            return Response(**{'data': str(e), 'status': status.HTTP_500_INTERNAL_SERVER_ERROR})
+    else:
+        try:
+            board.pins.remove(pin)
+            return Response(**{'data': 'deleted', 'status': status.HTTP_200_OK})
+        except Exception as e:
+            return Response(**{'data': str(e), 'status': status.HTTP_500_INTERNAL_SERVER_ERROR})
 
+#
 ############################
 
 

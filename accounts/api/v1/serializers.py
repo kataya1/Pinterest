@@ -61,6 +61,24 @@ class UserBoard(serializers.ModelSerializer):
     class Meta:
         model = Board
         fields = '__all__'
+
+class BoardSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Board
+        fields = ('name', 'creator',)
+
+    # def create(self, validated_data):
+    #     image_data = validated_data.pop('pins')
+    #     pins = []
+    #     for image in image_data:
+    #         img_obj = Pin.objects.create(**image)
+    #         pins.append(img_obj)
+
+
+
+
+
+
 class creator_Pins(serializers.ModelSerializer):
 
     class Meta:

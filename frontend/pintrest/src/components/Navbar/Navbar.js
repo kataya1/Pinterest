@@ -88,9 +88,9 @@ export default function Navbar() {
                 <ButtonFlex buttonStyle="btn--logo">
                     <FontAwesomeIcon icon={["fab", "pinterest"]} size="2x" style={{
 
-animation: "fa-spin 5s infinite linear",
+                       animation: "fa-spin 7s infinite linear",
 
-color: "#5c7cfa",
+                           color: "#5c7cfa",
 
 
 }} />
