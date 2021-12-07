@@ -11,7 +11,7 @@
     background-color: white;
     /* width: 70vw; */
     max-width: 100%;
-    width: 70vw;
+    width: 50vw;
     min-height: 300px;
     padding: 3rem;
     padding-bottom: 1.5rem;
@@ -20,9 +20,10 @@
     animation-duration: 0.5s;
     animation-timing-function: ease;
     transition: box-shadow 0.5s;
+    box-shadow: 1px 2px 5px 2px rgba(0, 0, 0, 0.3);
 }
 .form-container:hover{
-    box-shadow: 1px 2px 5px 2px rgba(255, 0, 0, 0.3);
+    box-shadow: 1px 2px 5px 2px rgba(0, 0, 0, 0);
 }
 @keyframes vi {
     from{
@@ -47,9 +48,15 @@
     background-color: lightgray;
     border: 0;
     height: 40px;
-    border-radius: 2px;
+    border-radius: 0.5rem;
     text-align: left;
     padding: 10px
+}
+/* .form-container input:invalid{
+    outline: 2px solid gray;
+} */
+.form-container input:valid{
+    outline:2px solid green ;
 }
 .form-container button{
     text-align: center;
@@ -57,6 +64,11 @@
     color: white;
     cursor: pointer;
     /* transition: ; */
+}
+
+.form-container button:disabled{
+    background-color: gray;
+    color: white;
 }
 .form-container p,.form-container span{
     display: block;
