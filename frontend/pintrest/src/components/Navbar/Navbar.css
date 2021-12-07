@@ -1,0 +1,20 @@
+nav .btn--text:hover{
+    color: white;
+    background-color: red;
+}
+nav .btn--text:active{
+    color: red;
+    background-color: white;
+}
+nav .btn-check:focus+.btn,nav .btn:focus {
+
+    box-shadow: none;    
+}
+
+nav a{
+    text-decoration: none;
+
+}
+nav .btn--down{
+    position: relative;
+}

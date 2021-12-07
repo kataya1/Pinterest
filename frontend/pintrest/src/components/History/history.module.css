@@ -1,0 +1,138 @@
+.container_fluid{
+    height: fit-content;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin-bottom: 50px;
+  
+  }
+  .container_fluid .for_container{
+    width: 740px;
+    margin: auto;
+  }
+
+  .row{
+    width: 100%;
+    padding: 20px 0;
+    height: 50px;
+    
+  }
+  .container_fluid .row .lable{
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+
+    
+  }
+  .container_fluid .row .lable div{
+    font-weight: bold;
+    height: 80%;
+    display: inline-block;
+    padding-bottom: 10px;
+    width: fit-content;
+    margin: 20px;
+  
+  }
+  .container_fluid .row .lable div div:first-child{
+    font-weight: bold;
+    display: inline-block;
+  
+    padding-bottom: 10px;
+    width: 100%;
+    text-align: center;
+    margin: 10px;
+  
+  }
+  .history{
+    border-bottom: 3px solid black ;
+  }
+
+  .container_fluid .row .head{
+    text-align: center;
+  }
+
+  .container_fluid .row .head h3{
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 30px;
+  }
+
+.container_fluid .row .head p{
+    font-size: 19px;
+    font-weight: normal;
+    margin-bottom: 0px;
+  }
+
+
+
+
+
+.pins{
+    width:252px;
+    margin: auto;
+    margin-bottom: 10px;
+    
+  }
+  
+  .pins .pin{
+    width:236px;
+    margin: auto;
+    position: relative;
+  }
+
+  
+  
+  .pins .pin div img{
+  border-radius: 20px;
+  width: 100%;
+  height: 304px;
+  object-fit: cover;
+  }
+  
+.overlay {
+ 
+  display: none;
+}
+.overlay-on {
+  height: calc(100% - 70px) !important;
+  width: 100%;
+  z-index: 3;
+  background-color: rgb(118 94 94 / 52%) !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  
+}  
+
+.overlay div, 
+.overlay-on div{
+  background-color:#c6c6c6;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  font-size: 15px;
+  position: absolute;
+  bottom: 10px;
+  border-radius: 50%;
+}
+.turnoff{
+    display: flex;
+    justify-content: center;
+}
+.turnoff input{
+  background-color:#c6c6c6;
+  display: inline-block;
+  width: fit-content;
+  font-size: 15px;
+  margin-top: 0px;
+  border-radius: 32px;
+  justify-content: center;
+}
+.time{
+    text-align: center;
+    padding-top: 10px;
+}
+
+

@@ -1,0 +1,33 @@
+.modal-dialog {
+  position: relative;
+  top: 50% !important;
+  transform: translate(0, -50%) !important;
+  -ms-transform: translate(0, -50%) !important;
+  -webkit-transform: translate(0, -50%) !important;
+  margin: auto 35%;
+  width: 570px;
+  height: 390px;
+}
+.modal-content {
+  min-height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 25px;
+}
+.modal-body {
+  position: absolute;
+  top: 45px; /** height of header **/
+  bottom: 45px; /** height of footer **/
+  left: 0;
+  right: 0;
+  overflow-y: auto;
+}
+.modal-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

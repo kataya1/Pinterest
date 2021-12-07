@@ -1,0 +1,33 @@
+.plus-btn {
+  background-color: white;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  position: fixed;
+  bottom: 100px;
+  right: 50px;
+  z-index: 50;
+}
+.question-btn {
+  background-color: white;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  position: fixed;
+  bottom: 35px;
+  right: 50px;
+  z-index: 50;
+}
+.question-btn:hover {
+  background-color: #ddd;
+}
+.plus-btn:hover {
+  background-color: #ddd;
+}
+.svg-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--icon);
+}

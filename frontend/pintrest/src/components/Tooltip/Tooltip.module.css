@@ -1,0 +1,25 @@
+.tooltip{
+    
+    position: fixed;
+    display: block;
+
+    background: #e5e5e5;
+    color: #333;
+    
+    padding: 1rem;
+    border-radius: 0.3rem;
+    
+    transition: 0.5s;
+    box-shadow: 1px 1px 6px #0003;
+}
+
+.visible{
+    visibility: visible;
+    opacity: 1;
+    
+}
+
+.invisible{
+    visibility: collapse;
+    opacity: 0;
+}

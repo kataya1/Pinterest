@@ -1,0 +1,85 @@
+.container-part {
+  display: flex;
+}
+.row {
+  display: flex;
+}
+.flex-container {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  -ms-box-orient: horizontal;
+  display: flex;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+/* .wrap li {
+
+background: gold;
+
+} */
+
+.flex-item {
+  padding: 5px;
+  width: 236px;
+  max-height: 400px;
+  margin: 10px;
+  line-height: 100px;
+  text-align: center;
+  display: flex;
+}
+.share-edit {
+  display: flex;
+  justify-content: center;
+}
+.share-edit button {
+  background-color: #efefef;
+  padding: 12px 16px;
+  margin: 5px;
+}
+
+.profile-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.rounded img {
+  background-color: #efefefea;
+  border-radius: 15px;
+}
+.column-image .secondary-image {
+  border: #efefef 1px hidden;
+  border-radius: 50%;
+}
+
+#LegendaryImage:hover {
+  opacity: 0.8;
+  cursor: zoom-in;
+  filter: alpha(opacity=100);
+  /* background: rgba(0, 0, 0, 0.5); */
+}
+
+.pin:hover .overlay{
+  display: flex;
+  cursor: zoom-in;
+} 
+
+
+.overlay {
+  height: calc(100% - 21px);
+   /* height:100%;  */
+  width: 100%;
+  z-index: 3;
+  background-color: rgb(0 0 0 / 0.3);
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 20px;
+  display: none;
+  flex-direction: column;
+}  

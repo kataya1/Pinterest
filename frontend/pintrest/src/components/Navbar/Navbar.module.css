@@ -1,0 +1,10 @@
+.navigation{
+    display: flex;
+    align-items: center;
+    padding: 0.938rem;
+    height: 5rem;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 9;
+}

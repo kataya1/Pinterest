@@ -1,0 +1,15 @@
+.logo {
+    margin: 10px;
+    width: 48px;
+    height: 48px;
+    display: inline-block;
+    justify-content: center;
+    background-color: #eee;
+    border-radius: 50%;
+  }
+  
+  .logo svg {
+    display: flex;
+    transform: translate(12px, 12px);
+  }
+  

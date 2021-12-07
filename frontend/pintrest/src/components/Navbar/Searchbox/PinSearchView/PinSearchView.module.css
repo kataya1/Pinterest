@@ -1,0 +1,43 @@
+.pindev{
+    display: grid;
+    grid-template-areas: "avatar txt";
+    --w : 6rem;
+    grid-template-columns: max-content  auto;
+    position: relative;
+    height: var(--w);
+    cursor: pointer;
+   
+}
+.imagecont{
+    margin-right: 0.5rem;
+    grid-area: avatar;
+    width: var(--w);
+    height: var(--w);
+    /* aspect-ratio: 1; */
+    padding: 0.1rem;
+    border-radius: 0.3rem;
+    overflow: hidden;
+}
+
+.imagecont img {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    border-radius: 0.3rem;
+    overflow: hidden;
+    object-fit: cover;
+}
+.info{
+    grid-area: txt;
+    padding-top: 0.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.pindev p{
+    text-align: left;
+    margin: 0.2em;
+}
+.date{
+    font-size:small;
+}

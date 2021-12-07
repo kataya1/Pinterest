@@ -1,0 +1,29 @@
+.settingsPage {
+    height: 85vh;
+    width: 100vw;
+}
+.sidebarContent {
+    height: 100%;
+    width: 50%;
+    padding: 2.8rem 0 0 0;
+    scroll-behavior: smooth;
+}
+@media only screen and (max-width: 576px) {
+    .sidebarContent{
+        margin-left: 30px;
+        width: 80%;
+    }
+    /* // apply the styles here from this minimum width of 
+    // 576px (medium screen sized devices) */
+}
+@media only screen and (min-width: 576px) and (max-width: 850px) {
+    .sidebarContent{
+        width: 75%;
+    }
+	/* // do something in this width range. */
+}
+@media only screen and (min-width: 850px) and (max-width: 1080) {
+    .sidebarContent {
+        width: 75%;
+    }
+  }
