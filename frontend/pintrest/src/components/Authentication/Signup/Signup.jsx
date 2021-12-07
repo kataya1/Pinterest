@@ -74,13 +74,14 @@ export default function Signup() {
                     style={alertStyle}
                 >
                     {Object.keys(error).map((key, index) => (
-                        <>
-                            <span key={`proplem${key}`}>{`${key}:  ${error[key]}`}</span>
+                        
+                            <span key={`proplem ${key}`}>{`${key}:  ${error[key]}`}</span>
                             
-                        </>
-                    ))}
+                        )
+                        )}
                 </div>
                 <form onSubmit={(e) => submitHandler(e)}>
+                  
                     <input
                         type="text"
                         id="username"
@@ -89,15 +90,18 @@ export default function Signup() {
                         onChange={(e) => setUsername(e.target.value)}
                         value={username}
                         autoComplete="off"
+                        minLength="4"
+                        required
                     />
                     <input
-                        type="text"
+                        type="email"
                         id="email"
                         name="email"
-                        placeholder="email"
+                        placeholder="email@email.com"
                         onChange={(e) => setEmail(e.target.value)}
                         value={email}
                         autoComplete="off"
+                        required
                     />
                     <input
                         type="password"
@@ -107,6 +111,8 @@ export default function Signup() {
                         onChange={(e) => setPassword(e.target.value)}
                         value={password}
                         autoComplete="off"
+                        required
+                        minLength="8"
                     />
                     <input
                         type="password"
@@ -116,8 +122,9 @@ export default function Signup() {
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         value={confirmPassword}
                         autoComplete="off"
+                        required
                     />
-                    <button type="submit">
+                    <button type="submit" >
                         {loading ? "Creating Account.." : "Create Account"}
                     </button>
                     <p id="register_notice">
